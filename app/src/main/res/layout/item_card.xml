@@ -1,43 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="50dp"
-    android:paddingBottom="50dp"
-    android:layout_margin="20dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_title_full_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/item_title_date"
-        android:textSize="10sp"
-        tools:text="Hola"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_title_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/item_title_full_name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/item_title_image"
-        android:textSize="10sp"
-        tools:text="Adios"
-        />
+    android:layout_margin="30dp"
+    android:background="@drawable/ic_card_gradient"
+    >
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/item_title_image"
+        android:id="@+id/item_card_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/item_title_date"
+
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_profesores"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/item_card_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_favoritos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:maxHeight="10dp"
-        android:maxWidth="10dp"
-        />
+        android:tint="#bdc3c7"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_card_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/item_card_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/item_card_fav"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        tools:text="Profe Don Verga"/>
+
+
+
+    <!--
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_title_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/item_title_date"
+            android:textSize="10sp"
+            tools:text="Hola"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_title_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/item_title_full_name"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/item_title_image"
+            android:textSize="10sp"
+            tools:text="Adios"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_title_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/item_title_date"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:maxHeight="10dp"
+            android:maxWidth="10dp"
+            />
+            -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
