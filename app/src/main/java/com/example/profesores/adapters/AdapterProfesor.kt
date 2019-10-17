@@ -22,7 +22,7 @@ class AdapterProfesor (private val names: ArrayList<HashMap<String, String>>): R
 }
 
 class ProfesorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    private val nameTitle: TextView = view.findViewById(R.id.item_title_full_name)
+    private val nameTitle: TextView = view.findViewById(R.id.item_card_name)
 
     fun bind(user: HashMap<String, String>) {
         nameTitle.text = user.get("name") + " " + user.get("lastName")

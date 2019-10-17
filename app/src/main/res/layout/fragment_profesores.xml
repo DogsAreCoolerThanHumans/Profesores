@@ -84,15 +84,16 @@
         android:textColor="@android:color/white"
         android:textSize="30sp"
 
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pr_dv" />
+        app:layout_constraintTop_toBottomOf="@+id/pr_dv"
+        app:layout_constraintBottom_toTopOf="@id/activity_name_professors_rv"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_name_professors_rv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#00F7F7F7"
         app:layout_constraintBottom_toBottomOf="parent"
