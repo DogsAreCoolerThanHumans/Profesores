@@ -11,7 +11,7 @@ import com.example.profesores.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ActivityMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
-//LA MAS PERRA DE RULAX CHUPANDOLE EL CHOCHO AL SAMUEL
+//luis selacome
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

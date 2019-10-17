@@ -7,6 +7,9 @@
     android:layout_marginVertical="10dp"
     android:layout_marginHorizontal="20dp"
     android:background="@drawable/ic_card_gradient"
+    android:divider="@android:color/transparent"
+    android:elevation="20dp"
+
     >
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -33,22 +36,24 @@
         app:layout_constraintRight_toRightOf="parent"
 
         app:layout_constraintTop_toTopOf="parent"
-        android:tint="#bdc3c7"/>
+        android:tint="#bdc3c7"
+        android:elevation="20dp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/item_card_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/item_card_fav"
-        app:layout_constraintHorizontal_bias="0.262"
-        app:layout_constraintStart_toStartOf="@id/item_card_icon"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/item_card_icon"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.517"
         tools:text="Profe Don Verga"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        android:elevation="20dp"/>
 
 
     <!--

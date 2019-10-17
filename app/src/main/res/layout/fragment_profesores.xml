@@ -92,7 +92,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_name_professors_rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="#00F7F7F7"
 
         app:layout_constraintBottom_toBottomOf="parent"

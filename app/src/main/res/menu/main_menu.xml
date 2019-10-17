@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/ic_background_gradient">
+    android:elevation="20dp"
+    android:alpha="0.5"
+    >
     <!-- orden aqui: -->
     <item
         android:id="@+id/action_profesores"
         android:icon="@drawable/ic_profesores"
         android:title="Profesores"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:iconTint="@color/colorPrimaryDark"/>
     <item
         android:id="@+id/action_cursos"
         android:icon="@drawable/ic_cursos"
         android:title="Cursos"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:iconTint="@color/colorPrimaryDark"/>
     <item
         android:id="@+id/action_favoritos"
         android:icon="@drawable/ic_favoritos"
         android:title="Favoritos"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:iconTint="@color/colorPrimaryDark"/>
     <item
         android:id="@+id/action_usuario"
         android:icon="@drawable/ic_usuario"
         android:title="Usuario"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:iconTint="@color/colorPrimaryDark"/>
 </menu>
