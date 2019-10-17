@@ -14,6 +14,7 @@
         app:layout_constraintBottom_toBottomOf="@id/editText"
         app:layout_constraintEnd_toStartOf="@id/editText"
         app:layout_constraintStart_toStartOf="parent"
+        android:tint="@color/colorAccent"
         />
 
     <ImageView
@@ -24,6 +25,7 @@
         app:layout_constraintBottom_toBottomOf="@id/editText"
         app:layout_constraintEnd_toStartOf="@id/cr_us"
         app:layout_constraintStart_toEndOf="@id/editText"
+        android:tint="@color/colorAccent"
         />
 
 
@@ -37,7 +39,8 @@
         android:src="@drawable/ic_usuario_circle"
         app:layout_constraintBottom_toBottomOf="@id/editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/cr_sr" />
+        app:layout_constraintStart_toEndOf="@id/cr_sr"
+        android:tint="@color/colorAccent"/>
 
     <EditText
         android:id="@+id/editText"

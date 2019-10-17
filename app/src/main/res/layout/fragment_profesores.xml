@@ -15,6 +15,7 @@
         app:layout_constraintBottom_toBottomOf="@id/editText"
         app:layout_constraintEnd_toStartOf="@id/editText"
         app:layout_constraintStart_toStartOf="parent"
+        android:tint="@color/colorAccent"
         />
 
     <ImageView
@@ -25,24 +26,29 @@
         app:layout_constraintBottom_toBottomOf="@id/editText"
         app:layout_constraintEnd_toStartOf="@id/pr_us"
         app:layout_constraintStart_toEndOf="@id/editText"
+        android:tint="@color/colorAccent"
         />
 
 
     <ImageView
         android:id="@+id/pr_us"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="#00FFFFFF"
         android:backgroundTint="#00FFFFFF"
         android:src="@drawable/ic_usuario_circle"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
         app:layout_constraintBottom_toBottomOf="@id/editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/pr_sr" />
+        app:layout_constraintStart_toEndOf="@id/pr_sr"
+        android:tint="@color/colorAccent"
+        />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="311dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:ems="10"
@@ -52,7 +58,8 @@
 
         app:layout_constraintEnd_toStartOf="@id/pr_sr"
         app:layout_constraintStart_toEndOf="@id/pr_pr"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:tint="@color/colorAccent"/>
 
     <View
         android:id="@+id/pr_dv"
