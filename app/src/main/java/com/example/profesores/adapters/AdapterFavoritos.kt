@@ -12,7 +12,7 @@ class AdapterFavoritos(
     RecyclerView.Adapter<RecipeHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return RecipeHolder(layoutInflater.inflate(R.layout.item_favoritos, parent, false))
+        return RecipeHolder(layoutInflater.inflate(R.layout.item_card, parent, false))
     }
 
     override fun getItemCount(): Int {
