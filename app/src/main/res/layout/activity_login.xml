@@ -27,6 +27,7 @@
         app:layout_constraintTop_toBottomOf="@id/activity_login_iv_itesogram">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_login_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -43,6 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/activity_login_til_username">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"/>
