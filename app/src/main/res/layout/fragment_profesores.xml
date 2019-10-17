@@ -33,22 +33,19 @@
     <ImageView
         android:id="@+id/pr_us"
 
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="#00FFFFFF"
         android:backgroundTint="#00FFFFFF"
         android:src="@drawable/ic_usuario_circle"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="6dp"
         app:layout_constraintBottom_toBottomOf="@id/editText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/pr_sr"
-        android:tint="@color/colorAccent"
-        />
+        android:tint="@color/colorAccent"/>
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
+        android:layout_width="311dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:ems="10"
@@ -68,6 +65,8 @@
         android:layout_margin="20dp"
         android:layout_marginTop="10dp"
 
+
+        android:tint="@color/colorAccent"
         android:background="@color/cardview_light_background"
         app:layout_constraintBottom_toTopOf="@id/fragment_profesores_tv_title"
         app:layout_constraintHorizontal_bias="1.0"
@@ -84,12 +83,11 @@
         android:textColor="@android:color/white"
         android:textSize="30sp"
 
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pr_dv"
-        app:layout_constraintBottom_toTopOf="@id/activity_name_professors_rv"/>
+        app:layout_constraintTop_toBottomOf="@+id/pr_dv" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_name_professors_rv"

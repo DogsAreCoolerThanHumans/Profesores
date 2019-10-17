@@ -18,7 +18,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:tint="@color/colorAccent"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/item_card_fav"
@@ -37,14 +38,16 @@
         android:id="@+id/item_card_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/item_card_icon"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/item_card_fav"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:textSize="20dp"
         android:textStyle="bold"
-        tools:text="Profe Don Verga"/>
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/item_card_fav"
+        app:layout_constraintHorizontal_bias="0.262"
+        app:layout_constraintStart_toStartOf="@id/item_card_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.517"
+        tools:text="Profe Don Verga"
+        android:textColor="@color/colorAccent"/>
 
 
     <!--
