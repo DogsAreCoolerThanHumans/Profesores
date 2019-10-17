@@ -18,6 +18,7 @@ class FragmentProfesores : Fragment(), ProfesoresContract.View {
         val view = inflater.inflate(R.layout.fragment_profesores, container, false)
         val title = view.findViewById<TextView>(R.id.fragment_profesores_tv_title) //profesores
 
+
         return view
     }
 }

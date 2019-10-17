@@ -91,6 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/pr_dv" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_name_professors_rv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#00F7F7F7"
