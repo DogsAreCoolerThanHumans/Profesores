@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
-    tools:context=".activities.ActivityLogin">
+    tools:context=".activities.ActivityLogin"
+    android:background="@drawable/ic_background_gradient">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/activity_login_iv_itesogram"
@@ -58,6 +59,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/activity_login_login"
         android:textAllCaps="false"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@id/activity_login_tv_forgot_question"
         app:layout_constraintTop_toBottomOf="@id/activity_login_til_password" />
 
