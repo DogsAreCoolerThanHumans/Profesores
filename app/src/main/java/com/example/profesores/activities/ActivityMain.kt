@@ -3,6 +3,7 @@ package com.example.profesores.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import com.example.profesores.Fragments.FragmentCursos
 import com.example.profesores.Fragments.FragmentFavoritos
 import com.example.profesores.Fragments.FragmentUsuario
@@ -10,8 +11,10 @@ import com.example.profesores.Fragments.profesores.FragmentProfesores
 import com.example.profesores.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+
+
+
 class ActivityMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
-//luis selacome
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,6 +22,8 @@ class ActivityMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         val navigation = findViewById<BottomNavigationView>(R.id.activity_main_bnv_navigation)
         navigation.setOnNavigationItemSelectedListener(this)
         navigation.getMenu().findItem(R.id.action_profesores).setChecked(true)//default
+
+        val profesores_cursos_layout = findViewById<TextView>(R.id.item_card_name)
 
         supportFragmentManager //clickeado por default
             .beginTransaction()
@@ -53,6 +58,11 @@ class ActivityMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 .commit()
         }
         return true
+    }
+
+    override fun onBackPressed() {
+
+        // super.onBackPressed();
     }
 }
 //

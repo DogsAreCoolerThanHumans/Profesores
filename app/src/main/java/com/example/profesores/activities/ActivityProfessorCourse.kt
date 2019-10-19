@@ -1,21 +1,24 @@
 package com.example.profesores.activities
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
-import com.parse.ParseUser
-import org.jetbrains.anko.find
-import org.jetbrains.anko.startActivity
+import com.example.profesores.adapters.AdapterProfessorCourse
+import org.jetbrains.anko.contentView
 
-class ActivityCourseProfessor : AppCompatActivity() {
+class ActivityProfessorCourse : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_profesores_cursos)
 
+        val recyclerView = findViewById<RecyclerView>(R.id.activity_name_profesores_cursos_rv)
+        val names = arrayListOf<String>()
+        names.add("Desarrollo de Aplicaciones Moviles")
+        recyclerView.adapter = AdapterProfessorCourse(names)
+        recyclerView.layoutManager = LinearLayoutManager(this.contentView?.context)
     }
 }
