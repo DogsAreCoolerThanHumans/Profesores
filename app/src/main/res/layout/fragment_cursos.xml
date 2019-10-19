@@ -7,20 +7,24 @@
 
     <ImageView
         android:id="@+id/cr_pr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        app:layout_constraintVertical_bias="0"
+
         android:fillColor="#9999"
         android:src="@drawable/ic_profesores"
         app:layout_constraintBottom_toBottomOf="@id/editText"
         app:layout_constraintEnd_toStartOf="@id/editText"
         app:layout_constraintStart_toStartOf="parent"
         android:tint="@color/colorAccent"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <ImageView
         android:id="@+id/cr_sr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/ic_search"
         app:layout_constraintBottom_toBottomOf="@id/editText"
         app:layout_constraintEnd_toStartOf="@id/cr_us"
@@ -32,25 +36,31 @@
     <ImageView
         android:id="@+id/cr_us"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        app:layout_constraintVertical_bias="0"
+
         android:background="#00FFFFFF"
         android:backgroundTint="#00FFFFFF"
         android:src="@drawable/ic_usuario_circle"
         app:layout_constraintBottom_toBottomOf="@id/editText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cr_sr"
+        app:layout_constraintTop_toTopOf="parent"
         android:tint="@color/colorAccent"/>
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="311dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:ems="10"
         android:gravity="right"
         android:hint="Search  "
         android:inputType="textPersonName"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="10dp"
 
         app:layout_constraintEnd_toStartOf="@id/cr_sr"
         app:layout_constraintStart_toEndOf="@id/cr_pr"
