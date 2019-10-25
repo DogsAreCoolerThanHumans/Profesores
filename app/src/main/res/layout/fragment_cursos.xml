@@ -61,6 +61,8 @@
         android:inputType="textPersonName"
         app:layout_constraintVertical_bias="0"
         android:layout_marginTop="10dp"
+        app:backgroundTint="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimaryDark"
 
         app:layout_constraintEnd_toStartOf="@id/cr_sr"
         app:layout_constraintStart_toEndOf="@id/cr_pr"
