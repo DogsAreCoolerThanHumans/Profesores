@@ -1,6 +1,7 @@
 package com.example.profesores.Fragments.profesores
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +9,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.profesores.Fragments.FragmentProfesorCurso
 import com.example.profesores.R
+import com.example.profesores.activities.ActivityMain
 import com.example.profesores.adapters.AdapterProfesor
 
-class FragmentProfesores : Fragment(), ProfesoresContract.View {
+class FragmentProfesores : Fragment(), ProfesoresContract.View, AdapterProfesor.OnItemClickListener {
+    private lateinit var adapter: AdapterProfesor
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,8 +41,19 @@ class FragmentProfesores : Fragment(), ProfesoresContract.View {
         names.add(HashMap())
         names[4].put("name", "Alberto")
         names[4].put("lastName", "Miramontes")
-        recyclerView.adapter = AdapterProfesor(names)
+        adapter = AdapterProfesor(names)
+        adapter.setListener(this)
+        recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         return view
+    }
+
+    override fun onItemClick(position: Int) {
+        //(activity as ActivityMain).openProfesorCurso()
+        val fragment = FragmentProfesorCurso()
+        val args = Bundle()
+        args.putString("profesor", adapter.names[position].get("name") + " " +
+                        adapter.names[position].get("lastName"))
+        (activity as ActivityMain).openFragment(fragment, args)
     }
 }

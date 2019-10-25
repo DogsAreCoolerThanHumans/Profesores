@@ -1,42 +1,52 @@
 package com.example.profesores.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
-import com.example.profesores.activities.ActivityProfessorCourse
 
-class AdapterProfesor (private val names: ArrayList<HashMap<String, String>>)
-    : RecyclerView.Adapter<ProfesorViewHolder>() {
+class AdapterProfesor (val names: ArrayList<HashMap<String, String>>)
+    : RecyclerView.Adapter<AdapterProfesor.ProfesorViewHolder>() {
 
-    lateinit var view: View
+    private var listener: OnItemClickListener? = null
+
+    fun setListener(l: OnItemClickListener?) {
+        listener = l
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfesorViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
-        this.view = view
-        return ProfesorViewHolder(view)
+        return ProfesorViewHolder(view, listener)
     }
 
     override fun getItemCount(): Int = names.size
 
 
     override fun onBindViewHolder(holder: ProfesorViewHolder, position: Int) {
-        holder.bind(names[position], view)
+        holder.bind(names[position])
     }
-}
 
-class ProfesorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    private val nameTitle: TextView = view.findViewById(R.id.item_card_name)
+    class ProfesorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val nameTitle: TextView = view.findViewById(R.id.item_card_name)
 
-    fun bind(user: HashMap<String, String>, view: View) {
-        nameTitle.text = user.get("name") + " " + user.get("lastName")
+        fun bind(user: HashMap<String, String>) {
+            nameTitle.text = user.get("name") + " " + user.get("lastName")
+        }
 
-        nameTitle.setOnClickListener {
-            val intent = Intent(view.context, ActivityProfessorCourse::class.java)
-            view.context.startActivity(intent)
+        constructor(itemView: View, listener: AdapterProfesor.OnItemClickListener?): this(itemView) {
+            nameTitle.setOnClickListener {
+                listener?.onItemClick(adapterPosition)
+            }
         }
     }
+<<<<<<< HEAD
+=======
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+>>>>>>> Profesores cursos interface working
 }
 

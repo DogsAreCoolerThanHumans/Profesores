@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.example.profesores.Fragments.FragmentCursos
 import com.example.profesores.Fragments.FragmentFavoritos
+import com.example.profesores.Fragments.FragmentProfesorCurso
 import com.example.profesores.Fragments.FragmentUsuario
 import com.example.profesores.Fragments.profesores.FragmentProfesores
 import com.example.profesores.R
@@ -60,9 +62,27 @@ class ActivityMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return true
     }
 
-    override fun onBackPressed() {
+/*    override fun onBackPressed() {
 
         // super.onBackPressed();
+    }*/
+
+    fun openProfesorCurso(){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.activity_main_fl_main_content,
+                            FragmentProfesorCurso()
+            )
+            .commit()
+    }
+
+    fun openFragment(fragment: Fragment, args: Bundle?) {
+        fragment.arguments = args
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.activity_main_fl_main_content,
+                     fragment)
+            .commit()
     }
 }
 //
