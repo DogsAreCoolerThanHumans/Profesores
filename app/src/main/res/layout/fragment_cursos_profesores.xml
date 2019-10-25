@@ -91,7 +91,7 @@
 
         android:layout_marginTop="28dp"
         android:fillColor="#9999"
-        android:src="@drawable/ic_profesores"
+        android:src="@drawable/ic_cursos"
 
         android:tint="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Profesores"
+        android:text="Cursos"
         android:textColor="@android:color/white"
 
         android:textSize="30sp"
@@ -131,7 +131,7 @@
         android:id="@+id/fragment_cursos_tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cursos"
+        android:text="Profesores"
         android:textColor="@android:color/white"
         android:textSize="30sp"
 
