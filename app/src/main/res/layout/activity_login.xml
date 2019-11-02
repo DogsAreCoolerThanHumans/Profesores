@@ -12,7 +12,7 @@
         android:id="@+id/activity_login_iv_itesogram"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:src="@drawable/ic_profesores"
+        android:src="@drawable/ic_board"
         app:layout_constraintBottom_toTopOf="@id/activity_login_til_username"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
@@ -69,13 +69,15 @@
         android:id="@+id/activity_login_btn_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:textSize="20dp"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         android:text="@string/activity_login_login"
         android:textAllCaps="false"
-        android:gravity="center"
+        android:textColor="#591D59"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@id/activity_login_tv_forgot_question"
-        app:layout_constraintTop_toBottomOf="@id/activity_login_til_password" />
+        app:layout_constraintTop_toBottomOf="@id/activity_login_til_password"
+        tools:layout_editor_absoluteX="30dp" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/activity_login_tv_forgot_question"

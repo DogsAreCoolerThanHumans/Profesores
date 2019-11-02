@@ -7,121 +7,151 @@
     android:background="@drawable/ic_background_gradient">
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="412dp"
-        android:layout_height="179dp"
-        android:layout_marginBottom="102dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:id="@+id/pr_pr"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:fillColor="#9999"
+
+        android:src="@drawable/ic_profesores"
+        android:tint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@id/editText"
+        app:layout_constraintEnd_toStartOf="@id/editText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/colorPrimaryDark" />
+        app:layout_constraintVertical_bias="0
+" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="72dp"
-        android:layout_height="117dp"
+        android:id="@+id/pr_sr"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_search"
+        android:tint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@id/editText"
+        app:layout_constraintEnd_toStartOf="@id/pr_us"
+        app:layout_constraintStart_toEndOf="@id/editText" />
 
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="97dp"
-        android:layout_marginEnd="183dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/corgiprof" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="Testing"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="@+id/textView3"
-        android:backgroundTint="@color/colorPrimary"/>
+    <ImageView
+        android:id="@+id/pr_us"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="#00FFFFFF"
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="114dp"
-        android:text="testing@iteso.mx"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="126dp"
-        android:layout_marginEnd="16dp"
-        android:text="Cerrar sesión"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        android:backgroundTint="#00FFFFFF"
+        android:src="@drawable/ic_usuario_circle"
+        android:tint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@id/editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/pr_sr"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="386dp"
-        android:layout_height="44dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="419dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
+        android:gravity="right"
+        android:hint="Search  "
         android:inputType="textPersonName"
-        android:text="Favorites"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.15" />
+        android:textColorHint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_constraintEnd_toStartOf="@id/pr_sr"
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
-        android:layout_width="344dp"
-        android:layout_height="69dp"
-        android:foregroundGravity="left"
-        android:minHeight="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@id/pr_pr"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <View
+        android:id="@+id/pr_dv"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="20dp"
+
+        android:layout_marginTop="10dp"
+        android:background="@color/cardview_light_background"
+        android:tint="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@id/fragment_profesores_tv_title"
+
+        app:layout_constraintEnd_toEndOf="@id/pr_us"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.047"
-        >
+        app:layout_constraintStart_toStartOf="@+id/pr_pr"
+        app:layout_constraintTop_toBottomOf="@id/pr_sr" />
 
-        <ImageView
-            android:layout_width="53dp"
-            android:layout_height="59dp"
-            android:layout_gravity="left"
-            android:layout_marginTop="5dp"
-            android:foregroundGravity="left"
-            android:src="@drawable/corgit1"
-            />
+    <ImageView
+        android:id="@+id/pr_prof"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="75dp"
-            android:layout_marginLeft="75dp"
-            android:layout_marginTop="25dp"
-            android:text="Juguito de NoSaberQuéPedo"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+        android:layout_marginTop="28dp"
+        android:fillColor="#9999"
+        android:src="@drawable/ic_usuario"
 
+        android:tint="@color/colorAccent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pr_dv" />
 
-    </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragment_profesores_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Nombre usuario"
+        android:textColor="@android:color/white"
+
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/pr_dv2"
+        app:layout_constraintTop_toBottomOf="@+id/pr_dv" />
+
+    <View
+        android:id="@+id/pr_dv2"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_margin="20dp"
+
+        android:background="@color/cardview_light_background"
+        android:tint="@color/colorAccent"
+
+        app:layout_constraintBottom_toTopOf="@+id/fragment_cursos_tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@+id/pr_prof"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_profesores_tv_title"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragment_cursos_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Historial"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pr_prof" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_name_profesores_cursos_rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#00F7F7F7"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_cursos_tv_title"
+        app:layout_constraintVertical_bias="0.03" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
