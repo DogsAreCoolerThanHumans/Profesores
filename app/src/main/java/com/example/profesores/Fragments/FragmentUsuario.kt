@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
+import com.example.profesores.adapters.AdapterComentario
 import com.example.profesores.adapters.AdapterCurso
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
@@ -29,21 +30,21 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
         val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_usuario_rv)
         val names = arrayListOf<HashMap<String, String>>()
         names.add(HashMap())
-        names[0].put("name", "Erick")
-        names[0].put("lastName", "De Santiago")
+        names[0].put("name", "Me gustó mucho su clase porque el coral blanco o el ambiente que estamos manejando, lo estamos contaminando de una manera inigmi, i, im, inimaginablemente, inig, inigmante. Esto quiere decir que el coral blanco se está maltratando, eh, pues esas algas rojas. Eh, las algas verde puede servir como cobustible ")
+        names[0].put("lastName", "")
         names.add(HashMap())
-        names[1].put("name", "Raul")
-        names[1].put("lastName", "Alvarez")
+        names[1].put("name", "Buen profe")
+        names[1].put("lastName", "")
         names.add(HashMap())
-        names[2].put("name", "Luis")
-        names[2].put("lastName", "Beltran")
+        names[2].put("name", "Está bien papi hmmm")
+        names[2].put("lastName", "")
         names.add(HashMap())
-        names[3].put("name", "Javier")
-        names[3].put("lastName", "Torres")
+        names[3].put("name", "MELAPELAN TODOS")
+        names[3].put("lastName", "")
         names.add(HashMap())
-        names[4].put("name", "Isaac")
-        names[4].put("lastName", "Cabrera")
-        recyclerView.adapter = AdapterCurso(names)
+        names[4].put("name", "Súper barco alv")
+        names[4].put("lastName", "")
+        recyclerView.adapter = AdapterComentario(names)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         return view
     }
