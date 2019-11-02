@@ -1,6 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="20dp"
+    android:layout_marginHorizontal="20dp"
+    android:background="@drawable/ic_card_gradient"
+    android:divider="@android:color/transparent"
+    android:elevation="20dp"
 
-</LinearLayout>
+    >
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/comentario_card_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintVertical_bias="0"
+
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_comentario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:tint="@color/colorAccent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/comentario_card_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_like"
+        app:layout_constraintBottom_toTopOf="@id/comentario_card_dislike"
+        app:layout_constraintRight_toRightOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        android:tint="#bdc3c7"
+        android:elevation="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/comentario_card_dislike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_dislike"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/comentario_card_like"
+        android:tint="#bdc3c7"
+        android:elevation="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/comentario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginVertical="10dp"
+
+        android:elevation="20dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"
+        android:justificationMode="inter_word"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/comentario_card_like"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/comentario_card_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Me gustó mucho su clase porque el coral blanco o el ambiente que estamos manejando, lo estamos contaminando de una manera inigmi, i, im, inimaginablemente, inig, inigmante. Esto quiere decir que el coral blanco se está maltratando, eh, pues esas algas rojas. Eh, las algas verde puede servir como cobustible " />
+
+
+    <!--
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_title_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/item_title_date"
+            android:textSize="10sp"
+            tools:text="Hola"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_title_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/item_title_full_name"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/item_title_image"
+            android:textSize="10sp"
+            tools:text="Adios"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_title_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/item_title_date"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:maxHeight="10dp"
+            android:maxWidth="10dp"
+            />
+            -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

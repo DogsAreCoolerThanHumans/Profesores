@@ -23,7 +23,7 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View {
         val view = inflater.inflate(R.layout.fragment_favoritos, container, false)
         val title = view.findViewById<TextView>(R.id.fragment_favoritos_tv_title) //profesores
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_courses_rv)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_favoritos_rv)
         val names = arrayListOf<HashMap<String, String>>()
         names.add(HashMap())
         names[0].put("name", "Erick")

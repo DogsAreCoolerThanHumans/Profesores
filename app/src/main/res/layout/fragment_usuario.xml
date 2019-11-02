@@ -141,7 +141,7 @@
         app:layout_constraintTop_toBottomOf="@+id/pr_prof" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/activity_name_profesores_cursos_rv"
+        android:id="@+id/activity_name_usuario_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#00F7F7F7"
