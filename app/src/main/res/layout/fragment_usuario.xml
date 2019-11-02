@@ -128,7 +128,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragment_cursos_tv_title"
+        android:id="@+id/fragment_usuario_tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Historial"
