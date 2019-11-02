@@ -46,9 +46,5 @@ class AdapterProfesor (val names: ArrayList<HashMap<String, String>>)
     interface OnItemClickListener {
         fun onItemClick(position: Int)
     }
-<<<<<<< HEAD
-//rofesores cursos interface working
-=======
->>>>>>> master
 }
 
