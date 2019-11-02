@@ -7,7 +7,7 @@
     android:background="@drawable/ic_background_gradient">
 
     <ImageView
-        android:id="@+id/pr_pr"
+        android:id="@+id/fv_pr"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="10dp"
@@ -23,18 +23,18 @@
 " />
 
     <ImageView
-        android:id="@+id/pr_sr"
+        android:id="@+id/fv_sr"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_search"
         android:tint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@id/editText"
-        app:layout_constraintEnd_toStartOf="@id/pr_us"
+        app:layout_constraintEnd_toStartOf="@id/fv_us"
         app:layout_constraintStart_toEndOf="@id/editText" />
 
 
     <ImageView
-        android:id="@+id/pr_us"
+        android:id="@+id/fv_us"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="10dp"
@@ -45,7 +45,7 @@
         android:tint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@id/editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/pr_sr"
+        app:layout_constraintStart_toEndOf="@id/fv_sr"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
@@ -61,14 +61,14 @@
         android:inputType="textPersonName"
         android:textColorHint="@color/colorPrimaryDark"
         app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintEnd_toStartOf="@id/pr_sr"
+        app:layout_constraintEnd_toStartOf="@id/fv_sr"
 
-        app:layout_constraintStart_toEndOf="@id/pr_pr"
+        app:layout_constraintStart_toEndOf="@id/fv_pr"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
     <View
-        android:id="@+id/pr_dv"
+        android:id="@+id/fv_dv"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_margin="20dp"
@@ -76,15 +76,15 @@
         android:layout_marginTop="10dp"
         android:background="@color/cardview_light_background"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@id/fragment_profesores_tv_title"
+        app:layout_constraintBottom_toTopOf="@id/fragment_favoritos_tv_title"
 
-        app:layout_constraintEnd_toEndOf="@id/pr_us"
+        app:layout_constraintEnd_toEndOf="@id/fv_us"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/pr_pr"
-        app:layout_constraintTop_toBottomOf="@id/pr_sr" />
+        app:layout_constraintStart_toStartOf="@+id/fv_pr"
+        app:layout_constraintTop_toBottomOf="@id/fv_sr" />
 
     <ImageView
-        android:id="@+id/pr_prof"
+        android:id="@+id/fv_prof"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="10dp"
@@ -95,7 +95,7 @@
 
         android:tint="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pr_dv" />
+        app:layout_constraintTop_toBottomOf="@+id/fv_dv" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/fragment_favoritos_tv_title"
@@ -108,11 +108,11 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/pr_dv2"
-        app:layout_constraintTop_toBottomOf="@+id/pr_dv" />
+        app:layout_constraintStart_toStartOf="@+id/fv_dv2"
+        app:layout_constraintTop_toBottomOf="@+id/fv_dv" />
 
     <View
-        android:id="@+id/pr_dv2"
+        android:id="@+id/fv_dv2"
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_margin="20dp"
@@ -120,25 +120,25 @@
         android:background="@color/cardview_light_background"
         android:tint="@color/colorAccent"
 
-        app:layout_constraintBottom_toTopOf="@+id/fragment_cursos_tv_title"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_cursos_favoritos_tv_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toEndOf="@+id/pr_prof"
+        app:layout_constraintStart_toEndOf="@+id/fv_prof"
         app:layout_constraintTop_toBottomOf="@+id/fragment_profesores_tv_title"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragment_cursos_tv_title"
+        android:id="@+id/fragment_cursos_favoritos_tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cursos"
+        android:text="Cursos / Profesores"
         android:textColor="@android:color/white"
         android:textSize="30sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pr_prof" />
+        app:layout_constraintTop_toBottomOf="@+id/fv_prof" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_name_favoritos_rv"
@@ -150,7 +150,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_cursos_tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_cursos_favoritos_tv_title"
         app:layout_constraintVertical_bias="0.03" />
 
 
