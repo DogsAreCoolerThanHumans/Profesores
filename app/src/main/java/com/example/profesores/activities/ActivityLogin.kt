@@ -1,5 +1,6 @@
 package com.example.profesores.activities
 
+import android.content.Context
 import android.util.Log
 
 
@@ -10,6 +11,8 @@ import android.widget.EditText
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import com.example.profesores.R
+import com.example.profesores.utils.SESSION_ID_KEY
+import com.example.profesores.utils.SHARED_PREFERENCES
 import com.google.android.material.textfield.TextInputLayout
 
 import com.parse.LogInCallback;
@@ -34,6 +37,7 @@ class ActivityLogin : AppCompatActivity() {
             ParseUser.logInInBackground(mUsername.getText().toString(),
                 mPassword.getText().toString()){ user, e ->
                     if (user != null) {
+                        saveSessionToken(user.sessionToken)
                         startActivity<ActivityMain>()
                     } else {
                         ParseUser.logOut()
@@ -41,5 +45,12 @@ class ActivityLogin : AppCompatActivity() {
                     }
                 }
         }
+    }
+
+    private fun saveSessionToken(sessionToken: String) {
+        val sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString(SESSION_ID_KEY, sessionToken)
+        editor.apply()
     }
 }

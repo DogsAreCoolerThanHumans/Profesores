@@ -41,12 +41,10 @@ class AdapterProfesor (val names: ArrayList<HashMap<String, String>>)
             }
         }
     }
-<<<<<<< HEAD
-=======
+
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
     }
->>>>>>> Profesores cursos interface working
 }
 
