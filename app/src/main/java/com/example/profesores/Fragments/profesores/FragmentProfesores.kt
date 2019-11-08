@@ -52,7 +52,7 @@ class FragmentProfesores : Fragment(), ProfesoresContract.View, AdapterProfesor.
         //(activity as ActivityMain).openProfesorCurso()
         val fragment = FragmentProfesorCurso()
         val args = Bundle()
-        args.putString("profesor", adapter.names[position].get("name") + " " +
+        args.putString("curso", adapter.names[position].get("name") + " " +
                         adapter.names[position].get("lastName"))
         (activity as ActivityMain).openFragment(fragment, args)
     }

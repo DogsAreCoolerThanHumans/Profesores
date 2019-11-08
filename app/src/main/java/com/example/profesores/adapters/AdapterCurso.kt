@@ -8,11 +8,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
 
-class AdapterCurso (private val names: ArrayList<HashMap<String, String>>): RecyclerView.Adapter<CursoViewHolder>() {
+class AdapterCurso (val names: ArrayList<HashMap<String, String>>):
+    RecyclerView.Adapter<AdapterCurso.CursoViewHolder>() {
+
+    private var listener: OnItemClickListener? = null
+
+    fun setListener(l: OnItemClickListener?) {
+        listener = l
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CursoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
-        return CursoViewHolder(view)
+        return CursoViewHolder(view, listener)
     }
 
     override fun getItemCount(): Int = names.size
@@ -20,12 +27,22 @@ class AdapterCurso (private val names: ArrayList<HashMap<String, String>>): Recy
     override fun onBindViewHolder(holder: CursoViewHolder, position: Int) {
         holder.bind(names[position])
     }
-}
 
-class CursoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    private val nameTitle: TextView = view.findViewById(R.id.item_card_name)
+    class CursoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val nameTitle: TextView = view.findViewById(R.id.item_card_name)
 
-    fun bind(user: HashMap<String, String>) {
-        nameTitle.text = user.get("name") + " " + user.get("lastName")
+        fun bind(user: HashMap<String, String>) {
+            nameTitle.text = user.get("name") + " " + user.get("lastName")
+        }
+
+        constructor(itemView: View, listener: AdapterCurso.OnItemClickListener?): this(itemView) {
+            nameTitle.setOnClickListener {
+                listener?.onItemClick(adapterPosition)
+            }
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
     }
 }

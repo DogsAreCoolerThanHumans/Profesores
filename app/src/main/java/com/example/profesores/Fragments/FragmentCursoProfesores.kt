@@ -11,28 +11,30 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
+import com.example.profesores.adapters.AdapterCourseProfessor
+import com.example.profesores.adapters.AdapterCurso
 import com.example.profesores.adapters.AdapterProfesor
 import com.example.profesores.adapters.AdapterProfessorCourse
 
-class FragmentProfesorCurso: Fragment(), AdapterProfesor.OnItemClickListener,
-     ProfesoresContract.View {
-    private lateinit var adapter: AdapterProfessorCourse
+class FragmentCursoProfesores: Fragment(), AdapterCurso.OnItemClickListener,
+    ProfesoresContract.View {
+    private lateinit var adapter: AdapterCourseProfessor
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_profesores_cursos, container, false)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_profesores_cursos_rv)
+        val view = inflater.inflate(R.layout.fragment_cursos_profesores, container, false)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_cursos_profesores_rv)
         val names = arrayListOf<String>()
 
-        val n = arguments?.getString("curso")
+        val n = arguments?.getString("profesor")
 
-        val profesorTitle = view.findViewById<TextView>(R.id.fragment_profesores_tv_title)
+        val cursoTitle = view.findViewById<TextView>(R.id.fragment_cursos_tv_title)
 
-        profesorTitle.setText(n)
-        names.add("Desarrollo de Aplicaciones Moviles")
-        adapter = AdapterProfessorCourse(names)
+        cursoTitle.setText(n)
+        names.add("Erick Anaya")
+        adapter = AdapterCourseProfessor(names)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         return view

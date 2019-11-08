@@ -7,8 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
 
-class AdapterCourseProfessor (private val names: ArrayList<HashMap<String, String>>)
+class AdapterCourseProfessor (val names: ArrayList<String>)
     : RecyclerView.Adapter<CourseProfessorViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseProfessorViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
@@ -25,7 +26,7 @@ class AdapterCourseProfessor (private val names: ArrayList<HashMap<String, Strin
 class CourseProfessorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val nameTitle: TextView = view.findViewById(R.id.item_card_name)
 
-    fun bind(user: HashMap<String, String>) {
-        nameTitle.text = user.get("name") + " " + user.get("lastName")
+    fun bind(user: String) {
+        nameTitle.text = user.toString()
     }
 }
