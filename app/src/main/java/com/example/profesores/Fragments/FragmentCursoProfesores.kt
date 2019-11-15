@@ -13,8 +13,6 @@ import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
 import com.example.profesores.adapters.AdapterCourseProfessor
 import com.example.profesores.adapters.AdapterCurso
-import com.example.profesores.adapters.AdapterProfesor
-import com.example.profesores.adapters.AdapterProfessorCourse
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseRelation
@@ -34,7 +32,7 @@ class FragmentCursoProfesores: Fragment(), AdapterCurso.OnItemClickListener,
 
         val n = arguments?.getString("cursoId")
 
-        val cursoTitle = view.findViewById<TextView>(R.id.fragment_profesores_tv_title)
+        val cursoTitle = view.findViewById<TextView>(R.id.com_cr_pr_tv_curso)
         query.whereEqualTo("objectId", n)
         query.include("profesores")
         query.getFirstInBackground { curso, e ->

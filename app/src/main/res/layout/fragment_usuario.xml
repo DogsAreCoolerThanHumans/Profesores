@@ -76,7 +76,7 @@
         android:layout_marginTop="10dp"
         android:background="@color/cardview_light_background"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@id/fragment_profesores_tv_title"
+        app:layout_constraintBottom_toTopOf="@id/com_cr_pr_tv_curso"
 
         app:layout_constraintEnd_toEndOf="@id/us_us"
         app:layout_constraintHorizontal_bias="1.0"
@@ -98,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/us_dv" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragment_profesores_tv_title"
+        android:id="@+id/com_cr_pr_tv_curso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -124,7 +124,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/us_prof"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_profesores_tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/com_cr_pr_tv_curso"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textview.MaterialTextView

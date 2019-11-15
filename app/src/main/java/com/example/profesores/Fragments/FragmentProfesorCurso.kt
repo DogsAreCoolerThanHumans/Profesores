@@ -13,7 +13,6 @@ import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
 import com.example.profesores.adapters.AdapterProfesor
 import com.example.profesores.adapters.AdapterProfessorCourse
-import com.parse.Parse
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseRelation
@@ -29,7 +28,7 @@ class FragmentProfesorCurso: Fragment(), AdapterProfesor.OnItemClickListener,
         val view = inflater.inflate(R.layout.fragment_profesores_cursos, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_profesores_cursos_rv)
         val query = ParseQuery<ParseObject>("Profesores")
-        val profesorTitle = view.findViewById<TextView>(R.id.fragment_profesores_tv_title)
+        val profesorTitle = view.findViewById<TextView>(R.id.com_cr_pr_tv_curso)
         val names = arrayListOf<String>()
 
 
