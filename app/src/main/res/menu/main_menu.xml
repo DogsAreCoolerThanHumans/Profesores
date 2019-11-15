@@ -20,7 +20,7 @@
     <item
         android:id="@+id/action_review"
         android:icon="@drawable/ic_review"
-        android:title="Review"
+        android:title="New Review"
         app:showAsAction="ifRoom"
         android:iconTint="@color/colorPrimaryDark"/>
     <item

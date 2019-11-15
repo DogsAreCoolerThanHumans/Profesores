@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,4 +30,40 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
 
         return view
     }
+
+    //funct para tomar valor del radio btn del rating y pasar a variable
+    //va en el adapter o aquí???
+    fun onRadioButtonClicked(view: View) {
+        if (view is RadioButton) {
+            // Is the button now checked?
+            val checked = view.isChecked
+
+            // Check which radio button was clicked
+            when (view.getId()) {
+                R.id.r1 ->
+                    if (checked) {
+                        //val rating = 1
+                        //etc...
+                    }
+                R.id.r2 ->
+                    if (checked) {
+                        //val rating = 2
+                    }
+                R.id.r3 ->
+                    if (checked) {
+                        //val rating = 3
+                    }
+                R.id.r4 ->
+                    if (checked) {
+                        //val rating = 4
+                    }
+                R.id.r5 ->
+                    if (checked) {
+                        //val rating = 5
+                    }
+            }
+        }
+    }
+
+
 }

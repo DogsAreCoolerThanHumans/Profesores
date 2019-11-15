@@ -140,6 +140,78 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/us_prof" />
 
+    <ImageView
+        android:id="@+id/re_comments"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_comentario"
+        android:tint="@color/colorAccent"
+        android:layout_marginLeft="10dp"
+
+        app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
+        app:layout_constraintStart_toEndOf="@id/fragment_usuario_tv_title" />
+
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/user_comments_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="69"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="5dp"
+
+        app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
+        app:layout_constraintStart_toEndOf="@id/re_comments"/>
+
+    <ImageView
+        android:id="@+id/re_likes"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_like"
+        android:tint="@color/colorAccent"
+        android:layout_marginHorizontal="5dp"
+
+        app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
+        app:layout_constraintStart_toEndOf="@id/user_comments_count"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/user_likes_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="34"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="5dp"
+
+        app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
+        app:layout_constraintStart_toEndOf="@id/re_likes"/>
+
+    <ImageView
+        android:id="@+id/re_dislikes"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_dislike"
+        android:tint="@color/colorAccent"
+        android:layout_marginHorizontal="5dp"
+
+        app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
+        app:layout_constraintStart_toEndOf="@id/user_likes_count"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/user_dislikes_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="5dp"
+
+
+        app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
+        app:layout_constraintStart_toEndOf="@id/re_dislikes"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_name_usuario_rv"
         android:layout_width="match_parent"

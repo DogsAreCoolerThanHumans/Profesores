@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_background_gradient">
 
-    <com.google.android.material.textview.MaterialTextView
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/com_cr_pr_profesor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="Curso"
+        android:hint="Nombre Curso"
         android:textColor="@android:color/white"
         android:textColorHint="@color/colorPrimaryDark"
 
@@ -20,7 +20,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/re_dv2"
-        app:layout_constraintTop_toBottomOf="@+id/re_dv2" />
+        app:layout_constraintTop_toBottomOf="@+id/re_dv2"
+        app:layout_constraintBottom_toBottomOf="@id/com_cr_pr_curs"/>
 
     <ImageView
         android:id="@+id/re_pr"
@@ -35,8 +36,7 @@
         app:layout_constraintEnd_toStartOf="@id/editText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0
-" />
+        app:layout_constraintVertical_bias="0" />
 
     <ImageView
         android:id="@+id/re_sr"
@@ -113,12 +113,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/re_dv" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/com_cr_pr_tv_curso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="Profesor"
+        android:hint="Nombre Profesor"
         android:textColorHint="@color/colorPrimaryDark"
         app:backgroundTint="@color/colorPrimary"
         android:textColor="@android:color/white"
@@ -135,12 +135,13 @@
         android:id="@+id/re_dv2"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_margin="20dp"
+        android:layout_marginHorizontal="20dp"
 
         android:background="@color/cardview_light_background"
-        android:tint="@color/colorAccent"
 
+        android:tint="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/com_cr_pr_curs"
         app:layout_constraintTop_toBottomOf="@+id/com_cr_pr_tv_curso" />
 
@@ -153,6 +154,8 @@
 
         app:layout_constraintTop_toBottomOf="@id/com_cr_pr_curs"
         app:layout_constraintStart_toStartOf="@id/fragment_review_tv_title" />
+
+
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/com_pr_cr_comments_count"
@@ -239,6 +242,18 @@
         app:layout_constraintStart_toStartOf="@id/fragment_review_tv_title"
         app:layout_constraintTop_toBottomOf="@+id/fragment_review_tv_title" />
 
+    <ImageView
+        android:id="@+id/re_rating"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+
+
+        android:src="@drawable/ic_rating"
+        android:tint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_review_tv_rating"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup" />
+
+    <!--
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/rating_input"
         android:layout_width="wrap_content"
@@ -247,14 +262,71 @@
 
         android:hint="[1...5]"
         app:backgroundTint="@color/colorPrimary"
-        android:textColor="@color/colorPrimaryDark"
-        android:textColorHint="@color/colorAccent"
+        android:textColorHint="@color/colorPrimaryDark"
 
         app:layout_constraintEnd_toEndOf="@id/com_pr_cr_dislikes_count"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@id/fragment_review_tv_rating"
         app:layout_constraintTop_toBottomOf="@id/fragment_review_tv_title"
         />
+        -->
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:orientation="horizontal"
+        android:outlineAmbientShadowColor="@color/colorPrimary"
+        android:outlineSpotShadowColor="@color/design_default_color_on_primary"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_review_tv_rating"
+        app:layout_constraintStart_toEndOf="@id/fragment_review_tv_comments"
+        app:layout_constraintTop_toBottomOf="@id/fragment_review_tv_title"
+        app:layout_constraintEnd_toEndOf="@id/comentario_box">
+
+        <RadioButton
+            android:id="@+id/r1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="1"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioButton
+            android:id="@+id/r2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="2"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioButton
+            android:id="@+id/r3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="3"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioButton
+            android:id="@+id/r4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="4"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioButton
+            android:id="@+id/r5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:outlineSpotShadowColor="@color/colorPrimary"
+            android:text="5"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/colorPrimary" />
+    </RadioGroup>
+
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/fragment_review_tv_comments"
@@ -314,9 +386,11 @@
             app:layout_constraintEnd_toEndOf="parent"
 
             android:gravity="top"
-            android:textColorHint="@color/colorAccent"
-            android:hint="El coral blanco o el ambiente que estamos manejando, lo estamos contaminando de una manera inigmi, i, im, inimaginablemente, inig, inigmante. Esto quiere decir que el coral blanco se está maltratando, eh, pues esas algas rojas. Eh, las algas verde puede servir como combustible."
-            />
+            app:backgroundTint="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:hint="Comentarios sobre el profesor"
+
+            android:maxLength="280"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
