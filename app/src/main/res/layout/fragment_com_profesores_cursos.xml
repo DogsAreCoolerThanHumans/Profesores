@@ -92,7 +92,7 @@
         android:layout_marginTop="10dp"
         android:background="@color/cardview_light_background"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@id/com_cr_pr_tv_curso"
+        app:layout_constraintBottom_toTopOf="@id/com_cr_pr_tv_profesor"
 
         app:layout_constraintEnd_toEndOf="@id/re_us"
         app:layout_constraintHorizontal_bias="1.0"
@@ -114,7 +114,7 @@
         app:layout_constraintTop_toBottomOf="@+id/re_dv" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/com_cr_pr_tv_curso"
+        android:id="@+id/com_cr_pr_tv_profesor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -142,7 +142,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/com_cr_pr_curs"
-        app:layout_constraintTop_toBottomOf="@+id/com_cr_pr_tv_curso" />
+        app:layout_constraintTop_toBottomOf="@+id/com_cr_pr_tv_profesor" />
 
     <ImageView
         android:id="@+id/com_pr_cr_rating"
@@ -150,7 +150,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
 
-        android:src="@drawable/ic_favoritos"
+        android:src="@drawable/ic_rating"
         android:tint="@color/colorAccent"
         app:layout_constraintStart_toStartOf="@id/fragment_com_profesores_cursos_tv_title"
         app:layout_constraintTop_toBottomOf="@id/re_comments" />

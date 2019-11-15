@@ -150,7 +150,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
 
-        android:src="@drawable/ic_favoritos"
+        android:src="@drawable/ic_rating"
         android:tint="@color/colorAccent"
         app:layout_constraintStart_toStartOf="@id/fragment_com_profesores_cursos_tv_title"
         app:layout_constraintTop_toBottomOf="@id/re_comments" />
