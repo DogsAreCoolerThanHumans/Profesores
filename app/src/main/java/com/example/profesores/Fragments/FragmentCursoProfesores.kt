@@ -17,7 +17,7 @@ import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseRelation
 
-class FragmentCursoProfesores: Fragment(), AdapterCurso.OnItemClickListener,
+class FragmentCursoProfesores: Fragment(),
     ProfesoresContract.View {
     private lateinit var adapter: AdapterCourseProfessor
     override fun onCreateView(
@@ -59,10 +59,6 @@ class FragmentCursoProfesores: Fragment(), AdapterCurso.OnItemClickListener,
             }
         }
         return view
-    }
-
-    override fun onItemClick(position: Int) {
-        Log.v("PROF", adapter.names[position])
     }
 
 }

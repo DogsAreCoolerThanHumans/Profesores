@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
@@ -24,9 +25,11 @@ class AdapterProfessorCourse (val names: ArrayList<String>)
 
     class ProfessorCourseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val nameTitle: TextView = view.findViewById(R.id.item_card_name)
+        private val cursoIcon: ImageView = view.findViewById(R.id.item_card_icon)
 
         fun bind(user: String) {
             nameTitle.text = user.toString()
+            cursoIcon.setImageResource(R.drawable.ic_cursos)
         }
 
     }

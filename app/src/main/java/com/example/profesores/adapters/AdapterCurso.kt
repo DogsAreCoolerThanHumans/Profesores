@@ -4,6 +4,7 @@ package com.example.profesores.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
@@ -31,9 +32,12 @@ class AdapterCurso (val names: List<ParseObject>):
 
     class CursoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val nameTitle: TextView = view.findViewById(R.id.item_card_name)
+        private val cursoIcon: ImageView = view.findViewById(R.id.item_card_icon)
+
 
         fun bind(user: ParseObject) {
             nameTitle.text = user.get("name").toString()
+            cursoIcon.setImageResource(R.drawable.ic_cursos)
         }
 
         constructor(itemView: View, listener: AdapterCurso.OnItemClickListener?): this(itemView) {

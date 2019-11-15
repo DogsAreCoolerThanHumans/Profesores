@@ -3,6 +3,7 @@ package com.example.profesores.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
@@ -25,8 +26,10 @@ class AdapterCourseProfessor (val names: ArrayList<String>)
 
 class CourseProfessorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val nameTitle: TextView = view.findViewById(R.id.item_card_name)
+    private val profIcon: ImageView = view.findViewById(R.id.item_card_icon)
 
     fun bind(user: String) {
         nameTitle.text = user.toString()
+        profIcon.setImageResource(R.drawable.ic_profesores)
     }
 }
