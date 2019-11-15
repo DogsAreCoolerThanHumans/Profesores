@@ -1,13 +1,15 @@
 package com.example.profesores.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
+import com.parse.ParseObject
 
-class AdapterProfesor (val names: ArrayList<HashMap<String, String>>)
+class AdapterProfesor (val names: List<ParseObject>)
     : RecyclerView.Adapter<AdapterProfesor.ProfesorViewHolder>() {
 
     private var listener: OnItemClickListener? = null
@@ -31,8 +33,9 @@ class AdapterProfesor (val names: ArrayList<HashMap<String, String>>)
     class ProfesorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTitle: TextView = view.findViewById(R.id.item_card_name)
 
-        fun bind(user: HashMap<String, String>) {
-            nameTitle.text = user.get("name") + " " + user.get("lastName")
+        @SuppressLint("SetTextI18n")
+        fun bind(user: ParseObject) {
+            nameTitle.text = user.get("name").toString()
         }
 
         constructor(itemView: View, listener: AdapterProfesor.OnItemClickListener?): this(itemView) {

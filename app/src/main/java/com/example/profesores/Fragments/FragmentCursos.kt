@@ -13,6 +13,8 @@ import com.example.profesores.R
 import com.example.profesores.activities.ActivityMain
 import com.example.profesores.adapters.AdapterCurso
 import com.example.profesores.adapters.AdapterProfesor
+import com.parse.ParseObject
+import com.parse.ParseQuery
 
 class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemClickListener {
     private lateinit var adapter: AdapterCurso
@@ -22,28 +24,19 @@ class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemC
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_cursos, container, false)
-        val title = view.findViewById<TextView>(R.id.fragment_cursos_tv_title) //profesores
-
         val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_courses_rv)
-        val names = arrayListOf<HashMap<String, String>>()
-        names.add(HashMap())
-        names[0].put("name", "Erick")
-        names[0].put("lastName", "De Santiago")
-        names.add(HashMap())
-        names[1].put("name", "Raul")
-        names[1].put("lastName", "Alvarez")
-        names.add(HashMap())
-        names[2].put("name", "Luis")
-        names[2].put("lastName", "Beltran")
-        names.add(HashMap())
-        names[3].put("name", "Javier")
-        names[3].put("lastName", "Torres")
-        names.add(HashMap())
-        names[4].put("name", "Isaac")
-        names[4].put("lastName", "Cabrera")
-        adapter = AdapterCurso(names)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(view.context)
+        val query = ParseQuery<ParseObject>("Cursos")
+        query.include("profesores")
+        query.findInBackground { list, e ->
+            if (e == null) {
+                adapter = AdapterCurso(list)
+                adapter.setListener(this)
+                recyclerView.adapter = adapter
+                recyclerView.layoutManager = LinearLayoutManager(this.context)
+            } else
+                error { "Error $e" }  // Log.e using anko
+        }
+
         return view
     }
 
@@ -51,8 +44,7 @@ class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemC
         //(activity as ActivityMain).openProfesorCurso()
         val fragment = FragmentCursoProfesores()
         val args = Bundle()
-        args.putString("curso", adapter.names[position].get("name") + " " +
-                adapter.names[position].get("lastName"))
+        args.putString("cursoId", adapter.names[position].objectId)
         (activity as ActivityMain).openFragment(fragment, args)
     }
 }

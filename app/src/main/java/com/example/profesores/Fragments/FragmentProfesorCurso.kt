@@ -13,6 +13,10 @@ import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
 import com.example.profesores.adapters.AdapterProfesor
 import com.example.profesores.adapters.AdapterProfessorCourse
+import com.parse.Parse
+import com.parse.ParseObject
+import com.parse.ParseQuery
+import com.parse.ParseRelation
 
 class FragmentProfesorCurso: Fragment(), AdapterProfesor.OnItemClickListener,
      ProfesoresContract.View {
@@ -24,17 +28,37 @@ class FragmentProfesorCurso: Fragment(), AdapterProfesor.OnItemClickListener,
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profesores_cursos, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_profesores_cursos_rv)
+        val query = ParseQuery<ParseObject>("Profesores")
+        val profesorTitle = view.findViewById<TextView>(R.id.fragment_profesores_tv_title)
         val names = arrayListOf<String>()
 
-        val n = arguments?.getString("curso")
 
-        val profesorTitle = view.findViewById<TextView>(R.id.fragment_profesores_tv_title)
-
-        profesorTitle.setText(n)
-        names.add("Desarrollo de Aplicaciones Moviles")
-        adapter = AdapterProfessorCourse(names)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(view.context)
+        val n = arguments?.getString("profesorId")
+        query.whereEqualTo("objectId", n)
+        query.include("cursos")
+        query.getFirstInBackground { prof, e ->
+            if(e == null){
+                profesorTitle.setText(prof.get("name").toString())
+                var listOfCursos = (prof["cursos"] as ParseRelation<*>).query
+                listOfCursos.findInBackground { cursoList, err ->
+                    if(err == null){
+                        for(curso in cursoList){
+                            names.add(curso.get("name").toString())
+                        }
+                        adapter = AdapterProfessorCourse(names)
+                        recyclerView.adapter = adapter
+                        recyclerView.layoutManager = LinearLayoutManager(view.context)
+                    }
+                    else {
+                        Log.v("ERROR","Hubo un error con la relación Profesor-Curso en Parse")
+                    }
+                }
+            }
+            else {
+                Log.e("ERROR", "Ha habido un problema con el query para la vista " +
+                        "de profesores-curso")
+            }
+        }
         return view
     }
 

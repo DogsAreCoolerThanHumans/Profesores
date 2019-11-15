@@ -24,23 +24,6 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View {
         val title = view.findViewById<TextView>(R.id.fragment_favoritos_tv_title) //profesores
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_favoritos_rv)
-        val names = arrayListOf<HashMap<String, String>>()
-        names.add(HashMap())
-        names[0].put("name", "Erick")
-        names[0].put("lastName", "De Santiago")
-        names.add(HashMap())
-        names[1].put("name", "Raul")
-        names[1].put("lastName", "Alvarez")
-        names.add(HashMap())
-        names[2].put("name", "Luis")
-        names[2].put("lastName", "Beltran")
-        names.add(HashMap())
-        names[3].put("name", "Javier")
-        names[3].put("lastName", "Torres")
-        names.add(HashMap())
-        names[4].put("name", "Isaac")
-        names[4].put("lastName", "Cabrera")
-        recyclerView.adapter = AdapterCurso(names)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         return view
     }

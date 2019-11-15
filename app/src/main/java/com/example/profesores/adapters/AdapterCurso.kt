@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
+import com.parse.ParseObject
 
-class AdapterCurso (val names: ArrayList<HashMap<String, String>>):
+class AdapterCurso (val names: List<ParseObject>):
     RecyclerView.Adapter<AdapterCurso.CursoViewHolder>() {
 
     private var listener: OnItemClickListener? = null
@@ -31,8 +32,8 @@ class AdapterCurso (val names: ArrayList<HashMap<String, String>>):
     class CursoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val nameTitle: TextView = view.findViewById(R.id.item_card_name)
 
-        fun bind(user: HashMap<String, String>) {
-            nameTitle.text = user.get("name") + " " + user.get("lastName")
+        fun bind(user: ParseObject) {
+            nameTitle.text = user.get("name").toString()
         }
 
         constructor(itemView: View, listener: AdapterCurso.OnItemClickListener?): this(itemView) {
