@@ -18,6 +18,12 @@
         app:showAsAction="ifRoom"
         android:iconTint="@color/colorPrimaryDark"/>
     <item
+        android:id="@+id/action_review"
+        android:icon="@drawable/ic_review"
+        android:title="Review"
+        app:showAsAction="ifRoom"
+        android:iconTint="@color/colorPrimaryDark"/>
+    <item
         android:id="@+id/action_favoritos"
         android:icon="@drawable/ic_favoritos"
         android:title="Favoritos"
