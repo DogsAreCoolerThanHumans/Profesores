@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
+import com.example.profesores.activities.ActivityMain
 import com.example.profesores.adapters.AdapterCourseProfessor
 import com.example.profesores.adapters.AdapterCurso
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseRelation
 
-class FragmentCursoProfesores: Fragment(),
+class FragmentCursoProfesores: Fragment(), AdapterCourseProfessor.OnItemClickListener,
     ProfesoresContract.View {
     private lateinit var adapter: AdapterCourseProfessor
     override fun onCreateView(
@@ -28,11 +29,10 @@ class FragmentCursoProfesores: Fragment(),
         val view = inflater.inflate(R.layout.fragment_cursos_profesores, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_cursos_profesores_rv)
         val query = ParseQuery<ParseObject>("Cursos")
-        val names = arrayListOf<String>()
 
         val n = arguments?.getString("cursoId")
 
-        val cursoTitle = view.findViewById<TextView>(R.id.com_cr_pr_tv_profesor)
+        val cursoTitle = view.findViewById<TextView>(R.id.com_cr_pr_tv_curso)
         query.whereEqualTo("objectId", n)
         query.include("profesores")
         query.getFirstInBackground { curso, e ->
@@ -41,10 +41,8 @@ class FragmentCursoProfesores: Fragment(),
                 var listOfProfs = (curso["profesores"] as ParseRelation<*>).query
                 listOfProfs.findInBackground { profList, err ->
                     if(err == null){
-                        for(prof in profList){
-                            names.add(prof.get("name").toString())
-                        }
-                        adapter = AdapterCourseProfessor(names)
+                        adapter = AdapterCourseProfessor(profList)
+                        adapter.setListener(this)
                         recyclerView.adapter = adapter
                         recyclerView.layoutManager = LinearLayoutManager(view.context)
                     }
@@ -59,6 +57,13 @@ class FragmentCursoProfesores: Fragment(),
             }
         }
         return view
+    }
+
+    override fun onItemClick(position: Int) {
+        //AQUI TENEMOS QUE MANDARLE EL NOMBRE DEL PROFESOR, CURSO Y LOS IDS PARA LA BD
+        val fragment = FragmentComCursosProfesores()
+        val args = Bundle()
+        (activity as ActivityMain).openFragment(fragment, args)
     }
 
 }

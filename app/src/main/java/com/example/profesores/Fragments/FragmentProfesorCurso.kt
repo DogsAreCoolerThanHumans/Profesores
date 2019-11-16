@@ -29,7 +29,7 @@ class FragmentProfesorCurso: Fragment(), AdapterProfessorCourse.OnItemClickListe
         val view = inflater.inflate(R.layout.fragment_profesores_cursos, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_profesores_cursos_rv)
         val query = ParseQuery<ParseObject>("Profesores")
-        val profesorTitle = view.findViewById<TextView>(R.id.com_cr_pr_tv_profesor)
+        val profesorTitle = view.findViewById<TextView>(R.id.com_cr_pr_tv_curso)
 
 
         val n = arguments?.getString("profesorId")
@@ -42,14 +42,14 @@ class FragmentProfesorCurso: Fragment(), AdapterProfessorCourse.OnItemClickListe
                 listOfCursos.findInBackground { cursoList, err ->
                     if(err == null){
                         adapter = AdapterProfessorCourse(cursoList)
+                        adapter.setListener(this)
+                        recyclerView.adapter = adapter
+                        recyclerView.layoutManager = LinearLayoutManager(view.context)
                     }
                     else {
                         Log.v("ERROR","Hubo un error con la relación Profesor-Curso en Parse")
                     }
                 }
-                adapter.setListener(this)
-                recyclerView.adapter = adapter
-                recyclerView.layoutManager = LinearLayoutManager(view.context)
             }
             else {
                 Log.e("ERROR", "Ha habido un problema con el query para la vista " +

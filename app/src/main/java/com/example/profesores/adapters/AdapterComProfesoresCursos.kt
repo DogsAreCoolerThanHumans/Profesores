@@ -1,4 +1,4 @@
 package com.example.profesores.adapters
 
-class AdapterComProfesoresCursos {
+class AdapterComProfesoresCursos{
 }

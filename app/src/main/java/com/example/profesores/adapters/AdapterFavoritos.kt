@@ -3,31 +3,32 @@ package com.example.profesores.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
 
 class AdapterFavoritos(
-    var recipes: ArrayList<HashMap<String, Any?>>
+    var recipes: ArrayList<String>
 ) :
-    RecyclerView.Adapter<RecipeHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeHolder {
+    RecyclerView.Adapter<FavoritesViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return RecipeHolder(layoutInflater.inflate(R.layout.item_card, parent, false))
+        return FavoritesViewHolder(layoutInflater.inflate(R.layout.item_card, parent, false))
     }
 
     override fun getItemCount(): Int {
         return recipes.size
     }
 
-    override fun onBindViewHolder(holder: RecipeHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
         holder.bind(recipes[position])
     }
 }
 
-class RecipeHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val mView = itemView
+class FavoritesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    private val nameTitle: TextView = view.findViewById(R.id.item_card_name)
 
-    fun bind(recipe: HashMap<String, Any?>) {
-        /* TODO Get all data and show into item */
+    fun bind(fav: String) {
+        nameTitle.text = fav
     }
 }

@@ -7,14 +7,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
+import com.parse.ParseObject
 
-class AdapterCourseProfessor (val names: ArrayList<String>)
-    : RecyclerView.Adapter<CourseProfessorViewHolder>() {
+class AdapterCourseProfessor (val names: List<ParseObject>)
+    : RecyclerView.Adapter<AdapterCourseProfessor.CourseProfessorViewHolder>() {
 
+    private var listener: OnItemClickListener? = null
+
+    fun setListener(l: OnItemClickListener?) {
+        listener = l
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseProfessorViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
-        return CourseProfessorViewHolder(view)
+        return CourseProfessorViewHolder(view, listener)
     }
 
     override fun getItemCount(): Int = names.size
@@ -22,14 +28,26 @@ class AdapterCourseProfessor (val names: ArrayList<String>)
     override fun onBindViewHolder(holder: CourseProfessorViewHolder, position: Int) {
         holder.bind(names[position])
     }
-}
 
-class CourseProfessorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    private val nameTitle: TextView = view.findViewById(R.id.item_card_name)
-    private val profIcon: ImageView = view.findViewById(R.id.item_card_icon)
+    class CourseProfessorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val nameTitle: TextView = view.findViewById(R.id.item_card_name)
+        private val profIcon: ImageView = view.findViewById(R.id.item_card_icon)
 
-    fun bind(user: String) {
-        nameTitle.text = user.toString()
-        profIcon.setImageResource(R.drawable.ic_profesores)
+        fun bind(user: ParseObject) {
+            nameTitle.text = user.get("name").toString()
+            profIcon.setImageResource(R.drawable.ic_profesores)
+        }
+
+        constructor(itemView: View, listener: AdapterCourseProfessor.OnItemClickListener?): this(itemView) {
+            nameTitle.setOnClickListener {
+                listener?.onItemClick(adapterPosition)
+            }
+        }
     }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
 }
+
