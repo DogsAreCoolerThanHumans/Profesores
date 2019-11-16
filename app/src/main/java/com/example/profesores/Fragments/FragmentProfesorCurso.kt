@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
+import com.example.profesores.activities.ActivityMain
 import com.example.profesores.adapters.AdapterProfesor
 import com.example.profesores.adapters.AdapterProfessorCourse
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseRelation
 
-class FragmentProfesorCurso: Fragment(), AdapterProfesor.OnItemClickListener,
+class FragmentProfesorCurso: Fragment(), AdapterProfessorCourse.OnItemClickListener,
      ProfesoresContract.View {
     private lateinit var adapter: AdapterProfessorCourse
     override fun onCreateView(
@@ -29,7 +30,6 @@ class FragmentProfesorCurso: Fragment(), AdapterProfesor.OnItemClickListener,
         val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_profesores_cursos_rv)
         val query = ParseQuery<ParseObject>("Profesores")
         val profesorTitle = view.findViewById<TextView>(R.id.com_cr_pr_tv_profesor)
-        val names = arrayListOf<String>()
 
 
         val n = arguments?.getString("profesorId")
@@ -41,17 +41,15 @@ class FragmentProfesorCurso: Fragment(), AdapterProfesor.OnItemClickListener,
                 var listOfCursos = (prof["cursos"] as ParseRelation<*>).query
                 listOfCursos.findInBackground { cursoList, err ->
                     if(err == null){
-                        for(curso in cursoList){
-                            names.add(curso.get("name").toString())
-                        }
-                        adapter = AdapterProfessorCourse(names)
-                        recyclerView.adapter = adapter
-                        recyclerView.layoutManager = LinearLayoutManager(view.context)
+                        adapter = AdapterProfessorCourse(cursoList)
                     }
                     else {
                         Log.v("ERROR","Hubo un error con la relación Profesor-Curso en Parse")
                     }
                 }
+                adapter.setListener(this)
+                recyclerView.adapter = adapter
+                recyclerView.layoutManager = LinearLayoutManager(view.context)
             }
             else {
                 Log.e("ERROR", "Ha habido un problema con el query para la vista " +
@@ -62,7 +60,10 @@ class FragmentProfesorCurso: Fragment(), AdapterProfesor.OnItemClickListener,
     }
 
     override fun onItemClick(position: Int) {
-        Log.v("PROF", adapter.names[position])
+        //AQUI TENEMOS QUE MANDARLE EL NOMBRE DEL PROFESOR, CURSO Y LOS IDS PARA LA BD
+        val fragment = FragmentComProfesoresCursos()
+        val args = Bundle()
+        (activity as ActivityMain).openFragment(fragment, args)
     }
 
 }
