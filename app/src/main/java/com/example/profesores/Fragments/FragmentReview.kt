@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
+import com.example.profesores.activities.ActivityMain
 import com.example.profesores.adapters.AdapterComentario
 import com.example.profesores.adapters.AdapterCurso
 import org.jetbrains.anko.find
@@ -63,6 +64,14 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
                     }
             }
         }
+    }
+
+    override fun onItemClick(position: Int) {
+        //(activity as ActivityMain).openProfesorCurso()
+        val fragment = FragmentProfesorCurso()
+        val args = Bundle()
+        args.putString("profesorId", adapter.names[position].objectId)
+        (activity as ActivityMain).openFragment(fragment, args)
     }
 
 
