@@ -73,7 +73,7 @@ class FragmentReview : Fragment(), ProfesoresContract.View, AdapterProfesor.OnIt
         val rating = 1;
 
 
-        
+
     }
 
 
