@@ -15,12 +15,13 @@ import com.example.profesores.R
 import com.example.profesores.activities.ActivityMain
 import com.example.profesores.adapters.AdapterComentario
 import com.example.profesores.adapters.AdapterCurso
+import com.example.profesores.adapters.AdapterProfesor
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.support.v4.startActivity
 
-class FragmentReview : Fragment(), ProfesoresContract.View {
+class FragmentReview : Fragment(), ProfesoresContract.View, AdapterProfesor.OnItemClickListener {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -67,11 +68,12 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
     }
 
     override fun onItemClick(position: Int) {
-        //(activity as ActivityMain).openProfesorCurso()
-        val fragment = FragmentProfesorCurso()
-        val args = Bundle()
-        args.putString("profesorId", adapter.names[position].objectId)
-        (activity as ActivityMain).openFragment(fragment, args)
+
+        //poner funcionalidad/switchCase de radio btns aquí?
+        val rating = 1;
+
+
+        
     }
 
 
