@@ -49,10 +49,14 @@ class AdapterFavoritos(
         private val favoriteButton: ImageView = view.findViewById(R.id.item_card_fav)
         private var isProfe: Int = 0
 
+        private val favIcon: ImageView = view.findViewById(R.id.item_card_icon)//para ícono global (ambos RVs)
+
 
         fun bind(fav: ParseObject) {
             nameTitle.text = fav.get("name").toString()
             val currentUser = ParseUser.getCurrentUser()
+            favIcon.setImageResource(R.drawable.ic_favoritos)// no supe separarlo por ícono de prof/curs, puse uno global a ambos RV
+
 
             var list = (currentUser["profesoresFav"] as ParseRelation<*>).query
             list.findInBackground { profList, e ->
