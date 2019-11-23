@@ -15,8 +15,10 @@ import com.example.profesores.adapters.AdapterCurso
 import com.example.profesores.adapters.AdapterProfesor
 import com.parse.ParseObject
 import com.parse.ParseQuery
+import com.parse.ParseUser
 
-class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemClickListener {
+class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemClickListener,
+    AdapterCurso.makeFavListener {
     private lateinit var adapter: AdapterCurso
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +33,7 @@ class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemC
             if (e == null) {
                 adapter = AdapterCurso(list)
                 adapter.setListener(this)
+                adapter.setFavListener(this)
                 recyclerView.adapter = adapter
                 recyclerView.layoutManager = LinearLayoutManager(this.context)
             } else
@@ -46,5 +49,15 @@ class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemC
         val args = Bundle()
         args.putString("cursoId", adapter.names[position].objectId)
         (activity as ActivityMain).openFragment(fragment, args)
+    }
+
+    override fun favItemClick(position: Int) {
+        val currentUser = ParseUser.getCurrentUser()
+        adapter.names[position].saveInBackground{
+            currentUser.getRelation<ParseObject>("cursosFav").add(adapter.names[position])
+            currentUser.saveInBackground()
+        }
+        adapter.notifyDataSetChanged()
+
     }
 }

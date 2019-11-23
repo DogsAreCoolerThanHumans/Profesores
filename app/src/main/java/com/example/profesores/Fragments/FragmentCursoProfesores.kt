@@ -60,7 +60,6 @@ class FragmentCursoProfesores: Fragment(), AdapterCourseProfessor.OnItemClickLis
     }
 
     override fun onItemClick(position: Int) {
-        //AQUI TENEMOS QUE MANDARLE EL NOMBRE DEL PROFESOR, CURSO Y LOS IDS PARA LA BD
         val fragment = FragmentComCursosProfesores()
         val args = Bundle()
         (activity as ActivityMain).openFragment(fragment, args)

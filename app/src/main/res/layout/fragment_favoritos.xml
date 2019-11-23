@@ -120,7 +120,7 @@
         android:background="@color/cardview_light_background"
         android:tint="@color/colorAccent"
 
-        app:layout_constraintBottom_toTopOf="@+id/fragment_cursos_favoritos_tv_title"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_profesores_favoritos_tv_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/fv_prof"
@@ -128,20 +128,50 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragment_cursos_favoritos_tv_title"
+        android:id="@+id/fragment_profesores_favoritos_tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cursos / Profesores"
+        android:text="Profesores"
         android:textColor="@android:color/white"
         android:textSize="30sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fv_prof" />
+        app:layout_constraintTop_toBottomOf="@+id/fv_prof"
+        app:layout_constraintBottom_toTopOf="@id/activity_profesores_favoritos_rv"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/activity_name_favoritos_rv"
+        android:id="@+id/activity_profesores_favoritos_rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#00F7F7F7"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_profesores_favoritos_tv_title"
+        app:layout_constraintBottom_toTopOf="@id/fragment_cursos_favoritos_tv_title"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fragment_cursos_favoritos_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cursos"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintTop_toBottomOf="@id/activity_profesores_favoritos_rv"
+        app:layout_constraintBottom_toTopOf="@id/activity_cursos_favoritos_rv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_cursos_favoritos_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#00F7F7F7"
@@ -152,6 +182,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_cursos_favoritos_tv_title"
         app:layout_constraintVertical_bias="0.03" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,46 +11,97 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
+import com.example.profesores.activities.ActivityMain
 import com.example.profesores.adapters.AdapterCurso
 import com.example.profesores.adapters.AdapterFavoritos
+import com.example.profesores.adapters.AdapterProfesor
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseRelation
 import com.parse.ParseUser
 import org.jetbrains.anko.find
 
-class FragmentFavoritos : Fragment(), ProfesoresContract.View {
+class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.OnItemClickListener,
+        AdapterFavoritos.makeFavListener{
+    private lateinit var adapterProf: AdapterFavoritos
+    private lateinit var adapterCurso: AdapterFavoritos
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_favoritos, container, false)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_favoritos_rv)
-/*        val query = ParseQuery<ParseObject>("User")
-        query.whereEqualTo("objectId", ParseUser.getCurrentUser().objectId)
-        query.include("Profesores")
-        query.include("Cursos")
-
-        query.getFirstInBackground { list, e ->
+        val profRecyclerView = view.findViewById<RecyclerView>(R.id.activity_profesores_favoritos_rv)
+        val cursosRecyclerView = view.findViewById<RecyclerView>(R.id.activity_cursos_favoritos_rv)
+        var currentUser = ParseUser.getCurrentUser()
+        (currentUser["profesoresFav"] as ParseRelation<*>).query.findInBackground { profList, e ->
             if(e == null){
-                var listOfProfs = (list["profesoresFav"] as ParseRelation<*>).query
-                //POR COMPLETAR
+                adapterProf = AdapterFavoritos(profList, 1)
+                adapterProf.setListener(this)
+                adapterProf.setFavListener(this)
+                profRecyclerView.adapter = adapterProf
+                profRecyclerView.layoutManager = LinearLayoutManager(view.context)
             }
             else {
-                Log.e("ERROR", "ERROR EN FAVORITOS")
+                Log.e("ERROR", "Error finding profesores favoritos")
             }
+        }
 
-        }*/
+        (currentUser["cursosFav"] as ParseRelation<*>).query.findInBackground { cursosList, e ->
+            if(e == null){
+                adapterCurso = AdapterFavoritos(cursosList, 2)
+                adapterCurso.setListener(this)
+                adapterCurso.setFavListener(this)
+                cursosRecyclerView.adapter = adapterCurso
+                cursosRecyclerView.layoutManager = LinearLayoutManager(view.context)
+            }
+            else {
+                Log.e("ERROR", "Error finding cursos favoritos")
+            }
+        }
 
-        var names = arrayListOf<String>()
-        names.add("Desarrollo de Aplicaciones Moviles")
-        names.add("Erick Anaya De Santiago")
-
-        recyclerView.adapter = AdapterFavoritos(names)
-        recyclerView.layoutManager = LinearLayoutManager(view.context)
 
         return view
     }
 
+    override fun onItemClick(position: Int, isProf: Int) {
+        //(activity as ActivityMain).openProfesorCurso()
+        lateinit var fragment: Fragment
+        val args = Bundle()
+        if(isProf == 1) {
+            fragment = FragmentProfesorCurso()
+            args.putString("profesorId", adapterProf.recipes[position].objectId)
+        }
+
+        else {
+            fragment = FragmentCursoProfesores()
+            args.putString("cursoId", adapterCurso.recipes[position].objectId)
+        }
+
+        (activity as ActivityMain).openFragment(fragment, args)
+    }
+
+    override fun favItemClick(position: Int, isProf: Int) {
+        val currentUser = ParseUser.getCurrentUser()
+
+        if(isProf == 1) {
+            adapterProf.recipes[position].deleteInBackground {
+                currentUser.getRelation<ParseObject>("profesoresFav")
+                    .remove(adapterProf.recipes[position])
+                currentUser.saveInBackground()
+                adapterProf.notifyDataSetChanged()
+            }
+        }
+
+        else {
+            adapterCurso.recipes[position].deleteInBackground {
+                currentUser.getRelation<ParseObject>("cursosFav")
+                    .remove(adapterCurso.recipes[position])
+                currentUser.saveInBackground()
+                adapterCurso.notifyDataSetChanged()
+            }
+        }
+
+    }
 }

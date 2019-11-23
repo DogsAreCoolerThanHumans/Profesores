@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
 
         android:layout_margin="16dp"
-        android:src="@drawable/ic_favoritos"
+        android:src="@drawable/heart_outline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
 

@@ -1,26 +1,37 @@
 package com.example.profesores.adapters
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
 import com.parse.ParseObject
+import com.parse.ParseRelation
+import com.parse.ParseUser
 
 class AdapterProfesor (val names: List<ParseObject>)
     : RecyclerView.Adapter<AdapterProfesor.ProfesorViewHolder>() {
 
     private var listener: OnItemClickListener? = null
+    private var favListener: makeFavListener? = null
 
     fun setListener(l: OnItemClickListener?) {
         listener = l
     }
 
+    fun setFavListener(fL: makeFavListener?){
+        favListener = fL;
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfesorViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
-        return ProfesorViewHolder(view, listener)
+        return ProfesorViewHolder(view, listener, favListener)
     }
 
     override fun getItemCount(): Int = names.size
@@ -32,15 +43,34 @@ class AdapterProfesor (val names: List<ParseObject>)
 
     class ProfesorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTitle: TextView = view.findViewById(R.id.item_card_name)
+        val favoriteButton: ImageView = view.findViewById(R.id.item_card_fav)
 
         @SuppressLint("SetTextI18n")
         fun bind(user: ParseObject) {
             nameTitle.text = user.get("name").toString()
+            val currentUser = ParseUser.getCurrentUser()
+            var listProf = (currentUser["profesoresFav"] as ParseRelation<*>).query
+            listProf.findInBackground { profList, e->
+                if(e == null){
+                    if(profList.size != 0) {
+                        for (i in 0..profList.size - 1) {
+                            if (profList[i]["name"] == user["name"])
+                                favoriteButton.setImageResource(R.drawable.cards_heart)
+                        }
+                    }
+                } else {
+                    Log.e("error", "error con funcionalidad de favoritos")
+                }
+            }
         }
 
-        constructor(itemView: View, listener: AdapterProfesor.OnItemClickListener?): this(itemView) {
+        constructor(itemView: View, listener: OnItemClickListener?, favListener: makeFavListener?)
+                : this(itemView) {
             nameTitle.setOnClickListener {
                 listener?.onItemClick(adapterPosition)
+            }
+            favoriteButton.setOnClickListener{
+                favListener?.favItemClick(adapterPosition)
             }
         }
     }
@@ -48,6 +78,10 @@ class AdapterProfesor (val names: List<ParseObject>)
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
+    }
+
+    interface makeFavListener {
+        fun favItemClick(position: Int)
     }
 }
 
