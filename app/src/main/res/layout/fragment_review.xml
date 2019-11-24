@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_background_gradient">
+    android:background="@drawable/ic_background_gradient"
+    android:id="@+id/fragmentReview">
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/com_cr_pr_profesor"
@@ -92,7 +93,7 @@
         android:layout_marginTop="10dp"
         android:background="@color/cardview_light_background"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@id/com_cr_pr_tv_curso"
+        app:layout_constraintBottom_toTopOf="@id/re_input_profesor"
 
         app:layout_constraintEnd_toEndOf="@id/re_us"
         app:layout_constraintHorizontal_bias="1.0"
@@ -113,10 +114,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/re_dv" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/com_cr_pr_tv_curso"
+
+    <AutoCompleteTextView
+        android:id="@+id/re_input_profesor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:completionThreshold="1"
 
         android:hint="Nombre Profesor"
         android:textColorHint="@color/colorPrimaryDark"
@@ -143,7 +146,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/com_cr_pr_curs"
-        app:layout_constraintTop_toBottomOf="@+id/com_cr_pr_tv_curso" />
+        app:layout_constraintTop_toBottomOf="@+id/re_input_profesor" />
 
     <ImageView
         android:id="@+id/re_comments"
@@ -154,7 +157,6 @@
 
         app:layout_constraintTop_toBottomOf="@id/com_cr_pr_curs"
         app:layout_constraintStart_toStartOf="@id/fragment_review_tv_title" />
-
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -216,6 +218,27 @@
         app:layout_constraintStart_toEndOf="@id/re_dislikes"/>
 
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/re_register_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/ic_card_gradient"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+
+        android:text="Registrar prof/curs/rel"
+        android:textAllCaps="false"
+        android:textColor="#591D59"
+        android:textSize="15dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/re_comments"
+        app:layout_constraintVertical_bias="0.0" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/fragment_review_tv_title"
         android:layout_width="wrap_content"
@@ -228,7 +251,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/re_comments" />
+        app:layout_constraintTop_toBottomOf="@+id/re_register_btn" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/fragment_review_tv_rating"
@@ -404,7 +427,7 @@
 
         android:gravity="center"
 
-        android:text="Post Review"
+        android:text="Registrar Review"
         android:textAllCaps="false"
         android:textColor="#591D59"
         android:textSize="25dp"

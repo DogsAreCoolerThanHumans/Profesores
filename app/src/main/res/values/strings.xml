@@ -1,11 +1,22 @@
 <resources>
-    <string name="app_name">Profesores</string>
+<string name="app_name">Profesores</string>
 
-    <string name="activity_login_user">Correo electrónico</string>
-    <string name="activity_login_password">Contraseña</string>
-    <string name="activity_login_login">Iniciar Sesión</string>
-    <string name="activity_login_forgot_question">¿Olvidaste tus datos de inicio de sesión?</string>
-    <string name="activity_login_forgot_action">Obtén ayuda.</string>
-    <string name="activity_login_create_account_question">¿No tienes cuenta?</string>
-    <string name="activity_login_create_account_action">Regístrate.</string>
+<string name="activity_login_user">Correo electrónico</string>
+<string name="activity_login_password">Contraseña</string>
+<string name="activity_login_login">Iniciar Sesión</string>
+<string name="activity_login_forgot_question">¿Olvidaste tus datos de inicio de sesión?</string>
+<string name="activity_login_forgot_action">Obtén ayuda.</string>
+<string name="activity_login_create_account_question">¿No tienes cuenta?</string>
+<string name="activity_login_create_account_action">Regístrate.</string>
+
+<string-array name="countries_array">
+    <item>Afghanistan</item>
+    <item>Albania</item>
+    <item>Algeria</item>
+    <item>American Samoa</item>
+    <item>Andorra</item>
+    <item>Angola</item>
+    <item>Anguilla</item>
+    <item>Antarctica</item>
+</string-array>
 </resources>
