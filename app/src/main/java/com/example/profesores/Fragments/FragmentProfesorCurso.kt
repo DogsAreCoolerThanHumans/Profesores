@@ -12,15 +12,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
 import com.example.profesores.activities.ActivityMain
-import com.example.profesores.adapters.AdapterProfesor
 import com.example.profesores.adapters.AdapterProfessorCourse
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseRelation
+import com.parse.ParseUser
 
 class FragmentProfesorCurso: Fragment(), AdapterProfessorCourse.OnItemClickListener,
-     ProfesoresContract.View {
+     AdapterProfessorCourse.makeFavListener, ProfesoresContract.View {
     private lateinit var adapter: AdapterProfessorCourse
+    private val currentUser = ParseUser.getCurrentUser()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,6 +45,7 @@ class FragmentProfesorCurso: Fragment(), AdapterProfessorCourse.OnItemClickListe
                     if(err == null){
                         adapter = AdapterProfessorCourse(cursoList)
                         adapter.setListener(this)
+                        adapter.setFavListener(this)
                         recyclerView.adapter = adapter
                         recyclerView.layoutManager = LinearLayoutManager(view.context)
                     }
@@ -64,6 +67,28 @@ class FragmentProfesorCurso: Fragment(), AdapterProfessorCourse.OnItemClickListe
         val fragment = FragmentComProfesoresCursos()
         val args = Bundle()
         (activity as ActivityMain).openFragment(fragment, args)
+    }
+
+    override fun favItemClick(position: Int) {
+
+        val userCursos = currentUser.getRelation<ParseObject>("cursosFav")
+
+        userCursos.query.whereEqualTo("name", adapter.names[position]["name"]).getFirstInBackground {
+                favCurso, e->
+            if(e == null){
+                adapter.names[position].saveInBackground {
+                    userCursos.remove(adapter.names[position])
+                }
+            }
+            else {
+                adapter.names[position].saveInBackground {
+                    userCursos.add(adapter.names[position])
+                }
+            }
+        }
+
+        currentUser.saveInBackground()
+        adapter.notifyDataSetChanged()
     }
 
 }

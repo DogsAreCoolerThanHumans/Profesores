@@ -33,7 +33,7 @@ class AdapterFavoritos(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
-        return FavoritesViewHolder(view, listener, isProf)
+        return FavoritesViewHolder(view, listener, isProf, favListener)
     }
 
     override fun getItemCount(): Int {
@@ -59,39 +59,29 @@ class AdapterFavoritos(
 
 
             var list = (currentUser["profesoresFav"] as ParseRelation<*>).query
-            list.findInBackground { profList, e ->
-                if (e == null) {
-                    if (profList.size != 0) {
-                        for (i in 0..profList.size - 1) {
-                            if (profList[i]["name"] == fav["name"])
-                                favoriteButton.setImageResource(R.drawable.cards_heart)
-                        }
-                    }
-                } else {
-                    Log.e("error", "error con funcionalidad de favoritos")
-                }
+            list.whereEqualTo("name", fav["name"])
+            list.getFirstInBackground { prof, e ->
+                if(e==null)
+                    favoriteButton.setImageResource(R.drawable.cards_heart)
             }
             list = (currentUser["cursosFav"] as ParseRelation<*>).query
-            list.findInBackground { cursoList, e ->
-                if (e == null) {
-                    if (cursoList.size != 0) {
-                        for (i in 0..cursoList.size - 1) {
-                            if (cursoList[i]["name"] == fav["name"])
-                                favoriteButton.setImageResource(R.drawable.cards_heart)
-                        }
-                    }
-                } else {
-                    Log.e("error", "error con funcionalidad de favoritos")
-                }
+            list.whereEqualTo("name", fav["name"])
+            list.getFirstInBackground { curso, e ->
+                if(e==null)
+                    favoriteButton.setImageResource(R.drawable.cards_heart)
             }
         }
 
-        constructor(itemView: View, listener: OnItemClickListener?, isProf: Int)
+        constructor(itemView: View, listener: OnItemClickListener?, isProf: Int,
+                    favListener: makeFavListener?)
                 : this(itemView) {
             nameTitle.setOnClickListener {
                 listener?.onItemClick(adapterPosition, isProf)
             }
             this.isProfe = isProfe
+            favoriteButton.setOnClickListener{
+                favListener?.favItemClick(adapterPosition, isProf)
+            }
         }
     }
 

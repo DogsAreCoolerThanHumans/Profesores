@@ -17,10 +17,13 @@ import com.example.profesores.adapters.AdapterCurso
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseRelation
+import com.parse.ParseUser
 
-class FragmentCursoProfesores: Fragment(), AdapterCourseProfessor.OnItemClickListener,
-    ProfesoresContract.View {
+class FragmentCursoProfesores : Fragment(), AdapterCourseProfessor.OnItemClickListener,
+    AdapterCourseProfessor.makeFavListener, ProfesoresContract.View {
     private lateinit var adapter: AdapterCourseProfessor
+    private val currentUser = ParseUser.getCurrentUser()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,24 +39,25 @@ class FragmentCursoProfesores: Fragment(), AdapterCourseProfessor.OnItemClickLis
         query.whereEqualTo("objectId", n)
         query.include("profesores")
         query.getFirstInBackground { curso, e ->
-            if(e == null){
+            if (e == null) {
                 cursoTitle.setText(curso.get("name").toString())
                 var listOfProfs = (curso["profesores"] as ParseRelation<*>).query
                 listOfProfs.findInBackground { profList, err ->
-                    if(err == null){
+                    if (err == null) {
                         adapter = AdapterCourseProfessor(profList)
                         adapter.setListener(this)
+                        adapter.setFavListener(this)
                         recyclerView.adapter = adapter
                         recyclerView.layoutManager = LinearLayoutManager(view.context)
-                    }
-                    else {
-                        Log.v("ERROR","Hubo un error con la relación Profesor-Curso en Parse")
+                    } else {
+                        Log.v("ERROR", "Hubo un error con la relación Profesor-Curso en Parse")
                     }
                 }
-            }
-            else {
-                Log.e("ERROR", "Ha habido un problema con el query para la vista " +
-                        "de profesores-curso")
+            } else {
+                Log.e(
+                    "ERROR", "Ha habido un problema con el query para la vista " +
+                            "de profesores-curso"
+                )
             }
         }
         return view
@@ -65,4 +69,26 @@ class FragmentCursoProfesores: Fragment(), AdapterCourseProfessor.OnItemClickLis
         (activity as ActivityMain).openFragment(fragment, args)
     }
 
+    override fun favItemClick(position: Int) {
+
+        val userProfes = currentUser.getRelation<ParseObject>("profesoresFav")
+
+        userProfes.query.whereEqualTo("name", adapter.names[position]["name"]).getFirstInBackground {
+                favProf, e->
+            if(e == null){
+                adapter.names[position].saveInBackground {
+                    userProfes.remove(adapter.names[position])
+                }
+            }
+            else {
+                adapter.names[position].saveInBackground {
+                    userProfes.add(adapter.names[position])
+                }
+            }
+        }
+
+        currentUser.saveInBackground()
+        adapter.notifyDataSetChanged()
+
+    }
 }

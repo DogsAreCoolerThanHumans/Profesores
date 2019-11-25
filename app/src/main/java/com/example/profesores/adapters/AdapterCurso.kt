@@ -49,7 +49,14 @@ class AdapterCurso (val names: List<ParseObject>):
             cursoIcon.setImageResource(R.drawable.ic_cursos)
             val currentUser = ParseUser.getCurrentUser()
             var listCursos = (currentUser["cursosFav"] as ParseRelation<*>).query
-            listCursos.findInBackground { cursoList, e->
+            listCursos.whereEqualTo("name", user["name"])
+            listCursos.getFirstInBackground { curso, e ->
+                if(e == null)
+                    favoriteButton.setImageResource(R.drawable.cards_heart)
+                else
+                    favoriteButton.setImageResource(R.drawable.heart_outline)
+            }
+            /*listCursos.findInBackground { cursoList, e->
                 if(e == null){
                     if(cursoList.size != 0) {
                         for (i in 0..cursoList.size - 1) {
@@ -60,7 +67,7 @@ class AdapterCurso (val names: List<ParseObject>):
                 } else {
                     Log.e("error", "error con funcionalidad de favoritos")
                 }
-            }
+            }*/
         }
 
         constructor(itemView: View, listener: OnItemClickListener?, favListener: makeFavListener?)

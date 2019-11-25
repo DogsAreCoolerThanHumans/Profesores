@@ -84,24 +84,34 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.
 
     override fun favItemClick(position: Int, isProf: Int) {
         val currentUser = ParseUser.getCurrentUser()
-
         if(isProf == 1) {
-            adapterProf.recipes[position].deleteInBackground {
-                currentUser.getRelation<ParseObject>("profesoresFav")
-                    .remove(adapterProf.recipes[position])
-                currentUser.saveInBackground()
-                adapterProf.notifyDataSetChanged()
+            val userProfes = currentUser.getRelation<ParseObject>("profesoresFav")
+
+            userProfes.query.whereEqualTo("name", adapterProf.recipes[position]["name"]).getFirstInBackground {
+                    favProf, e->
+                if(e == null){
+                    adapterProf.recipes[position].saveInBackground {
+                        userProfes.remove(adapterProf.recipes[position])
+                    }
+                }
             }
+            adapterProf.notifyDataSetChanged()
         }
 
         else {
-            adapterCurso.recipes[position].deleteInBackground {
-                currentUser.getRelation<ParseObject>("cursosFav")
-                    .remove(adapterCurso.recipes[position])
-                currentUser.saveInBackground()
-                adapterCurso.notifyDataSetChanged()
+            val userCursos = currentUser.getRelation<ParseObject>("cursosFav")
+            userCursos.query.whereEqualTo("name", adapterCurso.recipes[position]["name"]).getFirstInBackground {
+                    favCurso, e->
+                if(e == null){
+                    adapterCurso.recipes[position].saveInBackground {
+                        userCursos.remove(adapterCurso.recipes[position])
+                    }
+                }
             }
+
+            adapterCurso.notifyDataSetChanged()
         }
 
+        currentUser.saveInBackground()
     }
 }

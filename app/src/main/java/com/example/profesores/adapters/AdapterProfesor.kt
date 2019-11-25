@@ -50,17 +50,12 @@ class AdapterProfesor (val names: List<ParseObject>)
             nameTitle.text = user.get("name").toString()
             val currentUser = ParseUser.getCurrentUser()
             var listProf = (currentUser["profesoresFav"] as ParseRelation<*>).query
-            listProf.findInBackground { profList, e->
-                if(e == null){
-                    if(profList.size != 0) {
-                        for (i in 0..profList.size - 1) {
-                            if (profList[i]["name"] == user["name"])
-                                favoriteButton.setImageResource(R.drawable.cards_heart)
-                        }
-                    }
-                } else {
-                    Log.e("error", "error con funcionalidad de favoritos")
-                }
+            listProf.whereEqualTo("name", user["name"])
+            listProf.getFirstInBackground { prof, e ->
+                if(e == null)
+                    favoriteButton.setImageResource(R.drawable.cards_heart)
+                else
+                    favoriteButton.setImageResource(R.drawable.heart_outline)
             }
         }
 

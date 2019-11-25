@@ -18,12 +18,20 @@ class AdapterProfessorCourse (val names: List<ParseObject>)
 
     private var listener: OnItemClickListener? = null
 
+    private var favListener: makeFavListener? = null
+
     fun setListener(l: OnItemClickListener?) {
         listener = l
     }
+
+    fun setFavListener(fL: makeFavListener?){
+        favListener = fL;
+    }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfessorCourseViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
-        return ProfessorCourseViewHolder(view, listener)
+        return ProfessorCourseViewHolder(view, listener, favListener)
     }
 
     override fun getItemCount(): Int = names.size
@@ -43,29 +51,32 @@ class AdapterProfessorCourse (val names: List<ParseObject>)
             cursoIcon.setImageResource(R.drawable.ic_cursos)
             val currentUser = ParseUser.getCurrentUser()
             var listCursos = (currentUser["cursosFav"] as ParseRelation<*>).query
-            listCursos.findInBackground { cursoList, e->
-                if(e == null){
-                    if(cursoList.size != 0) {
-                        for (i in 0..cursoList.size - 1) {
-                            if (cursoList[i]["name"] == user["name"])
-                                favoriteButton.setImageResource(R.drawable.cards_heart)
-                        }
-                    }
-                } else {
-                    Log.e("error", "error con funcionalidad de favoritos")
-                }
+            listCursos.whereEqualTo("name", user["name"])
+            listCursos.getFirstInBackground { curso, e ->
+                if(e==null)
+                    favoriteButton.setImageResource(R.drawable.cards_heart)
+                else
+                    favoriteButton.setImageResource(R.drawable.heart_outline)
             }
         }
 
-        constructor(itemView: View, listener: AdapterProfessorCourse.OnItemClickListener?): this(itemView) {
+        constructor(itemView: View, listener: OnItemClickListener?, favListener: makeFavListener?)
+                : this(itemView) {
             nameTitle.setOnClickListener {
                 listener?.onItemClick(adapterPosition)
+            }
+            favoriteButton.setOnClickListener{
+                favListener?.favItemClick(adapterPosition)
             }
         }
     }
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
+    }
+
+    interface makeFavListener {
+        fun favItemClick(position: Int)
     }
 
 }

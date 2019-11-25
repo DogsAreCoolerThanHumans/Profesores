@@ -20,6 +20,7 @@ import com.parse.ParseUser
 class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemClickListener,
     AdapterCurso.makeFavListener {
     private lateinit var adapter: AdapterCurso
+    private val currentUser = ParseUser.getCurrentUser()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -52,12 +53,23 @@ class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemC
     }
 
     override fun favItemClick(position: Int) {
-        val currentUser = ParseUser.getCurrentUser()
-        adapter.names[position].saveInBackground{
-            currentUser.getRelation<ParseObject>("cursosFav").add(adapter.names[position])
-            currentUser.saveInBackground()
-        }
-        adapter.notifyDataSetChanged()
 
+        val userCursos = currentUser.getRelation<ParseObject>("cursosFav")
+        userCursos.query.whereEqualTo("name", adapter.names[position]["name"]).getFirstInBackground {
+                favCurso, e->
+            if(e == null){
+                adapter.names[position].saveInBackground {
+                    userCursos.remove(adapter.names[position])
+                }
+            }
+            else {
+                adapter.names[position].saveInBackground {
+                    userCursos.add(adapter.names[position])
+                }
+            }
+        }
+
+        currentUser.saveInBackground()
+        adapter.notifyDataSetChanged()
     }
 }
