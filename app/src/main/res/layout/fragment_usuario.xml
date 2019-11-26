@@ -15,8 +15,8 @@
 
         android:src="@drawable/ic_profesores"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/editText"
-        app:layout_constraintEnd_toStartOf="@id/editText"
+        app:layout_constraintBottom_toBottomOf="@id/us_searchEdit"
+        app:layout_constraintEnd_toStartOf="@id/us_searchEdit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0
@@ -28,9 +28,9 @@
         android:layout_height="30dp"
         android:src="@drawable/ic_search"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/editText"
+        app:layout_constraintBottom_toBottomOf="@id/us_searchEdit"
         app:layout_constraintEnd_toStartOf="@id/us_us"
-        app:layout_constraintStart_toEndOf="@id/editText" />
+        app:layout_constraintStart_toEndOf="@id/us_searchEdit" />
 
 
     <ImageView
@@ -43,14 +43,14 @@
         android:backgroundTint="#00FFFFFF"
         android:src="@drawable/ic_usuario_circle"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/editText"
+        app:layout_constraintBottom_toBottomOf="@id/us_searchEdit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/us_sr"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/us_searchEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -76,7 +76,7 @@
         android:layout_marginTop="10dp"
         android:background="@color/cardview_light_background"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@id/com_cr_pr_tv_curso"
+        app:layout_constraintBottom_toTopOf="@id/us_tv_curso"
 
         app:layout_constraintEnd_toEndOf="@id/us_us"
         app:layout_constraintHorizontal_bias="1.0"
@@ -98,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/us_dv" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/com_cr_pr_tv_curso"
+        android:id="@+id/us_tv_curso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -124,7 +124,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/us_prof"
-        app:layout_constraintTop_toBottomOf="@+id/com_cr_pr_tv_curso"
+        app:layout_constraintTop_toBottomOf="@+id/us_tv_curso"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -141,7 +141,7 @@
         app:layout_constraintTop_toBottomOf="@+id/us_prof" />
 
     <ImageView
-        android:id="@+id/re_comments"
+        android:id="@+id/us_comments"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_comentario"
@@ -154,7 +154,7 @@
 
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/user_comments_count"
+        android:id="@+id/us_comments_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="69"
@@ -163,10 +163,10 @@
         android:layout_marginHorizontal="5dp"
 
         app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
-        app:layout_constraintStart_toEndOf="@id/re_comments"/>
+        app:layout_constraintStart_toEndOf="@id/us_comments"/>
 
     <ImageView
-        android:id="@+id/re_likes"
+        android:id="@+id/us_likes"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_like"
@@ -174,10 +174,10 @@
         android:layout_marginHorizontal="5dp"
 
         app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
-        app:layout_constraintStart_toEndOf="@id/user_comments_count"/>
+        app:layout_constraintStart_toEndOf="@id/us_comments_count"/>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/user_likes_count"
+        android:id="@+id/us_likes_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="34"
@@ -186,10 +186,10 @@
         android:layout_marginHorizontal="5dp"
 
         app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
-        app:layout_constraintStart_toEndOf="@id/re_likes"/>
+        app:layout_constraintStart_toEndOf="@id/us_likes"/>
 
     <ImageView
-        android:id="@+id/re_dislikes"
+        android:id="@+id/us_dislikes"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_dislike"
@@ -197,10 +197,10 @@
         android:layout_marginHorizontal="5dp"
 
         app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
-        app:layout_constraintStart_toEndOf="@id/user_likes_count"/>
+        app:layout_constraintStart_toEndOf="@id/us_likes_count"/>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/user_dislikes_count"
+        android:id="@+id/us_dislikes_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="12"
@@ -210,10 +210,10 @@
 
 
         app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
-        app:layout_constraintStart_toEndOf="@id/re_dislikes"/>
+        app:layout_constraintStart_toEndOf="@id/us_dislikes"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/activity_name_usuario_rv"
+        android:id="@+id/us_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#00F7F7F7"

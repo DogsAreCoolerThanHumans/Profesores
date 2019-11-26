@@ -14,8 +14,8 @@
 
         android:fillColor="#9999"
         android:src="@drawable/ic_profesores"
-        app:layout_constraintBottom_toBottomOf="@id/editText"
-        app:layout_constraintEnd_toStartOf="@id/editText"
+        app:layout_constraintBottom_toBottomOf="@id/cr_searchEdit"
+        app:layout_constraintEnd_toStartOf="@id/cr_searchEdit"
         app:layout_constraintStart_toStartOf="parent"
         android:tint="@color/colorAccent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,9 +26,9 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_search"
-        app:layout_constraintBottom_toBottomOf="@id/editText"
+        app:layout_constraintBottom_toBottomOf="@id/cr_searchEdit"
         app:layout_constraintEnd_toStartOf="@id/cr_us"
-        app:layout_constraintStart_toEndOf="@id/editText"
+        app:layout_constraintStart_toEndOf="@id/cr_searchEdit"
         android:tint="@color/colorAccent"
         />
 
@@ -43,14 +43,14 @@
         android:background="#00FFFFFF"
         android:backgroundTint="#00FFFFFF"
         android:src="@drawable/ic_usuario_circle"
-        app:layout_constraintBottom_toBottomOf="@id/editText"
+        app:layout_constraintBottom_toBottomOf="@id/cr_searchEdit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cr_sr"
         app:layout_constraintTop_toTopOf="parent"
         android:tint="@color/colorAccent"/>
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/cr_searchEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -68,14 +68,14 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <View
-        android:id="@+id/pr_dv"
+        android:id="@+id/cr_dv"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_margin="20dp"
         android:layout_marginTop="10dp"
 
         android:background="@color/cardview_light_background"
-        app:layout_constraintBottom_toTopOf="@id/fragment_cursos_tv_title"
+        app:layout_constraintBottom_toTopOf="@id/cr_tv_title"
         app:layout_constraintHorizontal_bias="1.0"
 
         app:layout_constraintEnd_toEndOf="@id/cr_us"
@@ -83,7 +83,7 @@
         app:layout_constraintTop_toBottomOf="@id/cr_sr" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragment_cursos_tv_title"
+        android:id="@+id/cr_tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cursos"
@@ -94,17 +94,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pr_dv" />
+        app:layout_constraintTop_toBottomOf="@+id/cr_dv" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/activity_name_courses_rv"
+        android:id="@+id/cr__rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#00F7F7F7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_cursos_tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/cr_tv_title"
         app:layout_constraintVertical_bias="0.03"/>
 
 

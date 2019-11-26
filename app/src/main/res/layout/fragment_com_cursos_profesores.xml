@@ -19,11 +19,11 @@
         app:backgroundTint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/re_dv2"
-        app:layout_constraintTop_toBottomOf="@+id/re_dv2" />
+        app:layout_constraintStart_toStartOf="@+id/com_cr_pr_dv2"
+        app:layout_constraintTop_toBottomOf="@+id/com_cr_pr_dv2" />
 
     <ImageView
-        android:id="@+id/re_pr"
+        android:id="@+id/com_cr_pr_pr"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="10dp"
@@ -31,26 +31,26 @@
 
         android:src="@drawable/ic_profesores"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/editText"
-        app:layout_constraintEnd_toStartOf="@id/editText"
+        app:layout_constraintBottom_toBottomOf="@id/com_cr_pr_searchText"
+        app:layout_constraintEnd_toStartOf="@id/com_cr_pr_searchText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0
 " />
 
     <ImageView
-        android:id="@+id/re_sr"
+        android:id="@+id/com_cr_pr_sr"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_search"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/editText"
-        app:layout_constraintEnd_toStartOf="@id/re_us"
-        app:layout_constraintStart_toEndOf="@id/editText" />
+        app:layout_constraintBottom_toBottomOf="@id/com_cr_pr_searchText"
+        app:layout_constraintEnd_toStartOf="@id/com_cr_pr_us"
+        app:layout_constraintStart_toEndOf="@id/com_cr_pr_searchText" />
 
 
     <ImageView
-        android:id="@+id/re_us"
+        android:id="@+id/com_cr_pr_us"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="10dp"
@@ -59,14 +59,14 @@
         android:backgroundTint="#00FFFFFF"
         android:src="@drawable/ic_usuario_circle"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/editText"
+        app:layout_constraintBottom_toBottomOf="@id/com_cr_pr_searchText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/re_sr"
+        app:layout_constraintStart_toEndOf="@id/com_cr_pr_sr"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/com_cr_pr_searchText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -77,14 +77,14 @@
         android:inputType="textPersonName"
         android:textColorHint="@color/colorPrimaryDark"
         app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintEnd_toStartOf="@id/re_sr"
+        app:layout_constraintEnd_toStartOf="@id/com_cr_pr_sr"
 
-        app:layout_constraintStart_toEndOf="@id/re_pr"
+        app:layout_constraintStart_toEndOf="@id/com_cr_pr_pr"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
     <View
-        android:id="@+id/re_dv"
+        android:id="@+id/com_cr_pr_dv"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_margin="20dp"
@@ -94,10 +94,10 @@
         android:tint="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@id/com_cr_pr_tv_curso"
 
-        app:layout_constraintEnd_toEndOf="@id/re_us"
+        app:layout_constraintEnd_toEndOf="@id/com_cr_pr_us"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/re_pr"
-        app:layout_constraintTop_toBottomOf="@id/re_sr" />
+        app:layout_constraintStart_toStartOf="@+id/com_cr_pr_pr"
+        app:layout_constraintTop_toBottomOf="@id/com_cr_pr_sr" />
 
     <ImageView
         android:id="@+id/com_cr_pr_curs"
@@ -111,7 +111,7 @@
 
         android:tint="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/re_dv" />
+        app:layout_constraintTop_toBottomOf="@+id/com_cr_pr_dv" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/com_cr_pr_tv_curso"
@@ -126,13 +126,13 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/re_dv2"
-        app:layout_constraintTop_toBottomOf="@+id/re_dv"
+        app:layout_constraintStart_toStartOf="@+id/com_cr_pr_dv2"
+        app:layout_constraintTop_toBottomOf="@+id/com_cr_pr_dv"
         app:layout_constraintTop_toTopOf="@id/com_cr_pr_curs"/>
 
 
     <View
-        android:id="@+id/re_dv2"
+        android:id="@+id/com_cr_pr_dv2"
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_margin="20dp"
@@ -153,7 +153,7 @@
         android:src="@drawable/ic_rating"
         android:tint="@color/colorAccent"
         app:layout_constraintStart_toStartOf="@id/fragment_com_profesores_cursos_tv_title"
-        app:layout_constraintTop_toBottomOf="@id/re_comments" />
+        app:layout_constraintTop_toBottomOf="@id/com_cr_pr_comments" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/com_cr_pr_rating_count"
@@ -167,11 +167,11 @@
 
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@id/re_comments"
-        app:layout_constraintTop_toBottomOf="@id/re_comments" />
+        app:layout_constraintStart_toEndOf="@id/com_cr_pr_comments"
+        app:layout_constraintTop_toBottomOf="@id/com_cr_pr_comments" />
 
     <ImageView
-        android:id="@+id/re_comments"
+        android:id="@+id/com_cr_pr_comments"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_comentario"
@@ -192,10 +192,10 @@
         android:layout_marginHorizontal="5dp"
 
         app:layout_constraintTop_toBottomOf="@id/com_cr_pr_curs"
-        app:layout_constraintStart_toEndOf="@id/re_comments"/>
+        app:layout_constraintStart_toEndOf="@id/com_cr_pr_comments"/>
 
     <ImageView
-        android:id="@+id/re_likes"
+        android:id="@+id/com_cr_pr_likes"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_like"
@@ -215,10 +215,10 @@
         android:layout_marginHorizontal="5dp"
 
         app:layout_constraintTop_toBottomOf="@id/com_cr_pr_curs"
-        app:layout_constraintStart_toEndOf="@id/re_likes"/>
+        app:layout_constraintStart_toEndOf="@id/com_cr_pr_likes"/>
 
     <ImageView
-        android:id="@+id/re_dislikes"
+        android:id="@+id/com_cr_pr_dislikes"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_dislike"
@@ -238,7 +238,7 @@
         android:layout_marginHorizontal="5dp"
 
         app:layout_constraintTop_toBottomOf="@id/com_cr_pr_curs"
-        app:layout_constraintStart_toEndOf="@id/re_dislikes"/>
+        app:layout_constraintStart_toEndOf="@id/com_cr_pr_dislikes"/>
 
 
     <com.google.android.material.textview.MaterialTextView
