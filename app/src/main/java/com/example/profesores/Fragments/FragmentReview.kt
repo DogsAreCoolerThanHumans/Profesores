@@ -32,6 +32,7 @@ import com.parse.ParseQuery
 
 class FragmentReview : Fragment(), ProfesoresContract.View {
     private lateinit var profesList: Array<String>
+    private lateinit var cursosList: Array<String>
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,7 +42,9 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
 //        val title = view.findViewById<TextView>(R.id.fragment_review_tv_title) //profesores
 
 
-        val query = ParseQuery<ParseObject>("Profesores")
+        var query = ParseQuery<ParseObject>("Profesores")
+        val textView = view.findViewById<AutoCompleteTextView>(R.id.re_input_profesor)
+                as AutoCompleteTextView//id del textview en layout
 
         query.findInBackground { profes, e ->
             if(e == null){
@@ -49,21 +52,15 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
                 for(i in 0..profes.size - 1){
                     profesList[i] = (profes[i]["name"].toString())
                 }
+
+                val adapter = ArrayAdapter(requireActivity(),
+                    android.R.layout.simple_dropdown_item_1line, profesList) //simple_list_item_1
+                textView.setAdapter(adapter)
             }
         }
 
 
-        val colors = arrayOf(
-            "Red","Green","Blue","Maroon","Magenta",
-            "Gold","GreenYellow"
-        )
-
-        val textView = view.findViewById<AutoCompleteTextView>(R.id.re_input_profesor) as AutoCompleteTextView//id del textview en layout
-        // Get the string array
-        val countries = resources.getStringArray(R.array.countries_array)//id del array en strings.xml
         // Create the adapter and set it to the AutoCompleteTextView
-        val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_dropdown_item_1line, profesList) //simple_list_item_1
-        textView.setAdapter(adapter)
 
 
         textView.threshold = 1 //número de caracteres escritos para mostrar sugerencias
@@ -77,17 +74,22 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
             }
         }
 
-        //curso
-        val chtm = arrayOf(
-            "tu","puta","madre","machorra","lesbiana",
-            "pta","prra"
-        )
-
-        val textViewC = view.findViewById<AutoCompleteTextView>(R.id.re_input_curso) as AutoCompleteTextView //id del textview en layout
+        val textViewC = view.findViewById<AutoCompleteTextView>(R.id.re_input_curso)
+                as AutoCompleteTextView //id del textview en layout
         // Create the adapter and set it to the AutoCompleteTextView
-        val adapterC = ArrayAdapter(requireActivity(), android.R.layout.simple_dropdown_item_1line, chtm); //simple_list_item_1
-        textViewC.setAdapter(adapterC)
+        query = ParseQuery<ParseObject>("Cursos")
+        query.findInBackground { cursos, e ->
+            if(e == null){
+                cursosList = Array(cursos.size) {""}
+                for(i in 0..cursos.size - 1){
+                    cursosList[i] = (cursos[i]["name"].toString())
+                }
 
+                val adapterC = ArrayAdapter(requireActivity(),
+                    android.R.layout.simple_dropdown_item_1line, cursosList) //simple_list_item_1
+                textViewC.setAdapter(adapterC)
+            }
+        }
 
         textViewC.threshold = 1 //número de caracteres escritos para mostrar sugerencias
 
