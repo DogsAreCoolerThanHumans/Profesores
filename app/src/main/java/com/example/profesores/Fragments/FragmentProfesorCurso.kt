@@ -22,6 +22,7 @@ class FragmentProfesorCurso: Fragment(), AdapterProfessorCourse.OnItemClickListe
      AdapterProfessorCourse.makeFavListener, ProfesoresContract.View {
     private lateinit var adapter: AdapterProfessorCourse
     private val currentUser = ParseUser.getCurrentUser()
+    private val n = arguments?.getString("profesorId")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +35,6 @@ class FragmentProfesorCurso: Fragment(), AdapterProfessorCourse.OnItemClickListe
         val profesorTitle = view.findViewById<TextView>(R.id.com_cr_pr_tv_curso)
 
 
-        val n = arguments?.getString("profesorId")
         query.whereEqualTo("objectId", n)
         query.include("cursos")
         query.getFirstInBackground { prof, e ->
@@ -66,6 +66,8 @@ class FragmentProfesorCurso: Fragment(), AdapterProfessorCourse.OnItemClickListe
         //AQUI TENEMOS QUE MANDARLE EL NOMBRE DEL PROFESOR, CURSO Y LOS IDS PARA LA BD
         val fragment = FragmentComProfesoresCursos()
         val args = Bundle()
+        args.putString("profesorId", n)
+        args.putString("cursoId", adapter.names[position].objectId)
         (activity as ActivityMain).openFragment(fragment, args)
     }
 
