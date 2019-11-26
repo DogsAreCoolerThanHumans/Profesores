@@ -9,6 +9,7 @@ import android.widget.Adapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
 import com.parse.ParseObject
@@ -21,7 +22,7 @@ class AdapterComProfesoresCursos (val names: List<ParseObject>)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComProfesorCursoViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.comentario_card, parent, false)
         return ComProfesorCursoViewHolder(view)
     }
 
@@ -33,8 +34,8 @@ class AdapterComProfesoresCursos (val names: List<ParseObject>)
     }
 
     class ComProfesorCursoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val comment: TextView = view.findViewById(R.id.comentario)
-        val dislikesCount: TextView = view.findViewById(R.id.com_pr_cr_dislikes_count)
+        val comment: AppCompatTextView = view.findViewById(R.id.comentario)
+        val dislikesCount: TextView = view.findViewById(R.id.comentario_card_dislike_count)
         val likesCount: TextView = view.findViewById(R.id.comentario_card_like_count)
 
         fun bind(user: ParseObject) {
