@@ -25,7 +25,7 @@ class FragmentComProfesoresCursos : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_com_profesores_cursos, container, false)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.fragment_com_cursos_profesores_rv)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.fragment_com_pr_cr_rv)
         var totalLikes = 0
         var totalDislikes = 0
         var totalComments: Int
@@ -37,25 +37,30 @@ class FragmentComProfesoresCursos : Fragment() {
 
         val queryProf = ParseQuery<ParseObject>("Profesores")
         val queryCurso = ParseQuery<ParseObject>("Cursos")
+        val profComm = arguments?.getString("profesor")
+        val cursoComm = arguments?.getString("curso")
 
-        cursoName.text = queryProf.whereEqualTo("objectId", arguments?.getString
-            ("cursoId"))["name"].toString()
-        profName.text = queryCurso.whereEqualTo("objectId", arguments?.getString
-            ("profesorId"))["name"].toString()
+        queryProf.whereEqualTo("objectId", profComm)
+            .getFirstInBackground { prof, e ->
+                if(e == null)
+                    profName.text = prof["name"].toString()
+            }
+
+        queryCurso.whereEqualTo("objectId", cursoComm).getFirstInBackground{
+            curso, e->
+            if(e == null)
+                cursoName.text = curso["name"].toString()
+        }
 
         val query = ParseQuery<ParseObject>("Comments")
         query.include("cursoComm")
         query.include("profesorComm")
-        query.include("userComm")
 
-        query.whereEqualTo("profesorComm", arguments?.getString("profesorId"))
-        query.whereEqualTo("cursoComm", arguments?.getString("cursoId"))
         query.findInBackground { commList, e->
-
             if(e == null){
                 adapter = AdapterComProfesoresCursos(commList)
+                Log.e("LOL", commList[0]["Comment"].toString())
                 recyclerView.adapter = adapter
-                recyclerView.layoutManager = LinearLayoutManager(this.context)
                 for(i in 0..commList.size - 1){
                     totalLikes += Integer.parseInt(commList[i]["Likes"].toString())
                     totalDislikes += Integer.parseInt(commList[i]["Dislikes"].toString())
@@ -64,13 +69,12 @@ class FragmentComProfesoresCursos : Fragment() {
                 likesCount.text = totalLikes.toString()
                 dislikesCount.text = totalDislikes.toString()
                 commentCount.text = totalComments.toString()
+                recyclerView.layoutManager = LinearLayoutManager(this.context)
             }
             else {
                 Log.e("ERROR_COMMENT", "COMMENTS NOT FOUND")
             }
-
         }
         return view
     }
-
 }

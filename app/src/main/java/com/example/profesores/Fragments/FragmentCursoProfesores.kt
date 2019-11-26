@@ -37,6 +37,7 @@ class FragmentCursoProfesores : Fragment(), AdapterCourseProfessor.OnItemClickLi
 
         val cursoTitle = view.findViewById<TextView>(R.id.cr_pr_tv_curso)
         query.whereEqualTo("objectId", n)
+        query.include("cursos")
         query.include("profesores")
         query.getFirstInBackground { curso, e ->
             if (e == null) {
