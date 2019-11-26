@@ -38,9 +38,9 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
         val view = inflater.inflate(R.layout.fragment_review, container, false)
 //        val title = view.findViewById<TextView>(R.id.fragment_review_tv_title) //profesores
 
-        return view
 
-/*        val colors = arrayOf(
+
+        val colors = arrayOf(
             "Red","Green","Blue","Maroon","Magenta",
             "Gold","GreenYellow"
         )
@@ -63,7 +63,9 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
                 // Display the suggestion dropdown on focus
                 textView.showDropDown()
             }
-        }*/
+        }
+
+        return view
         //
 
     }
