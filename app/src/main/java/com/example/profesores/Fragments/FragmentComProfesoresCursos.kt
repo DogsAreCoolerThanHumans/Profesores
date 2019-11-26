@@ -13,7 +13,8 @@ import com.example.profesores.R
 import com.example.profesores.adapters.AdapterComProfesoresCursos
 import com.parse.ParseObject
 import com.parse.ParseQuery
-import com.parse.ParseUser
+
+
 
 
 class FragmentComProfesoresCursos : Fragment() {
@@ -52,10 +53,16 @@ class FragmentComProfesoresCursos : Fragment() {
                 cursoName.text = curso["name"].toString()
         }
 
-        val query = ParseQuery<ParseObject>("Comments")
-        query.include("cursoComm")
-        query.include("profesorComm")
+        val queryProfCom = ParseQuery<ParseObject>("Comments")
+        val queryCursoCom = ParseQuery<ParseObject>("Comments")
 
+        queryProfCom.whereMatches("profesorComm", profComm)
+        queryCursoCom.whereMatches("cursoComm", cursoComm)
+
+        val queries = ArrayList<ParseQuery<ParseObject>>()
+        queries.add(queryProfCom)
+        queries.add(queryCursoCom)
+        val query = ParseQuery.or(queries)
         query.findInBackground { commList, e->
             if(e == null){
                 adapter = AdapterComProfesoresCursos(commList)
