@@ -26,10 +26,12 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.Toast
-
+import com.parse.ParseObject
+import com.parse.ParseQuery
 
 
 class FragmentReview : Fragment(), ProfesoresContract.View {
+    private lateinit var profesList: Array<String>
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,6 +41,16 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
 //        val title = view.findViewById<TextView>(R.id.fragment_review_tv_title) //profesores
 
 
+        val query = ParseQuery<ParseObject>("Profesores")
+
+        query.findInBackground { profes, e ->
+            if(e == null){
+                profesList = Array(profes.size) {""}
+                for(i in 0..profes.size - 1){
+                    profesList[i] = (profes[i]["name"].toString())
+                }
+            }
+        }
 
         val colors = arrayOf(
             "Red","Green","Blue","Maroon","Magenta",
@@ -50,7 +62,7 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
         // Get the string array
         val countries = resources.getStringArray(R.array.countries_array)//id del array en strings.xml
         // Create the adapter and set it to the AutoCompleteTextView
-        val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_dropdown_item_1line, colors) //simple_list_item_1
+        val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_dropdown_item_1line, profesList) //simple_list_item_1
         textView.setAdapter(adapter)
 
 
