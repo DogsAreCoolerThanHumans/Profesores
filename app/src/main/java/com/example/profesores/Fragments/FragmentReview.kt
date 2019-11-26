@@ -29,18 +29,18 @@ import android.widget.Toast
 
 
 
-class FragmentReview : Fragment(), ProfesoresContract.View, AdapterProfesor.OnItemClickListener {
+class FragmentReview : Fragment(), ProfesoresContract.View {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_review, container, false)
-        val title = view.findViewById<TextView>(R.id.fragment_review_tv_title) //profesores
+//        val title = view.findViewById<TextView>(R.id.fragment_review_tv_title) //profesores
 
         return view
 
-        val colors = arrayOf(
+/*        val colors = arrayOf(
             "Red","Green","Blue","Maroon","Magenta",
             "Gold","GreenYellow"
         )
@@ -63,12 +63,12 @@ class FragmentReview : Fragment(), ProfesoresContract.View, AdapterProfesor.OnIt
                 // Display the suggestion dropdown on focus
                 textView.showDropDown()
             }
-        }
+        }*/
         //
 
     }
 
-    //funct para tomar valor del radio btn del rating y pasar a variable numérica
+ /*   //funct para tomar valor del radio btn del rating y pasar a variable numérica
     //va en el adapter o aquí???
     fun onRadioButtonClicked(view: View) {
         if (view is RadioButton) {
@@ -109,7 +109,7 @@ class FragmentReview : Fragment(), ProfesoresContract.View, AdapterProfesor.OnIt
 
 
 
-    }
+    }*/
 
 
 }

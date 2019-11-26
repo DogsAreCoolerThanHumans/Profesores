@@ -30,9 +30,9 @@ class FragmentProfesorCurso: Fragment(), AdapterProfessorCourse.OnItemClickListe
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profesores_cursos, container, false)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_profesores_cursos_rv)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.pr_cr_rv)
         val query = ParseQuery<ParseObject>("Profesores")
-        val profesorTitle = view.findViewById<TextView>(R.id.com_cr_pr_tv_curso)
+        val profesorTitle = view.findViewById<TextView>(R.id.pr_cr_tv_profesor)
 
 
         query.whereEqualTo("objectId", n)
@@ -76,7 +76,7 @@ class FragmentProfesorCurso: Fragment(), AdapterProfessorCourse.OnItemClickListe
         val userCursos = currentUser.getRelation<ParseObject>("cursosFav")
 
         userCursos.query.whereEqualTo("name", adapter.names[position]["name"]).getFirstInBackground {
-                favCurso, e->
+                _, e->
             if(e == null){
                 adapter.names[position].saveInBackground {
                     userCursos.remove(adapter.names[position])

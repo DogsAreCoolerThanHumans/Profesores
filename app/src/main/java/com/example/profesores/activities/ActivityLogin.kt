@@ -35,7 +35,7 @@ class ActivityLogin : AppCompatActivity() {
         mLogin = find(R.id.activity_login_btn_login)
         mLogin.setOnClickListener {
             ParseUser.logInInBackground(mUsername.getText().toString(),
-                mPassword.getText().toString()){ user, e ->
+                mPassword.getText().toString()){ user, _ ->
                     if (user != null) {
                         saveSessionToken(user.sessionToken)
                         startActivity<ActivityMain>()

@@ -27,7 +27,7 @@ class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemC
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_cursos, container, false)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_courses_rv)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.cr_rv)
         val query = ParseQuery<ParseObject>("Cursos")
         query.include("profesores")
         query.findInBackground { list, e ->
@@ -56,7 +56,7 @@ class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemC
 
         val userCursos = currentUser.getRelation<ParseObject>("cursosFav")
         userCursos.query.whereEqualTo("name", adapter.names[position]["name"]).getFirstInBackground {
-                favCurso, e->
+                _, e->
             if(e == null){
                 adapter.names[position].saveInBackground {
                     userCursos.remove(adapter.names[position])

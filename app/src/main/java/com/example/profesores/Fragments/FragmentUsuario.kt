@@ -27,7 +27,7 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
         val view = inflater.inflate(R.layout.fragment_usuario, container, false)
         val title = view.findViewById<TextView>(R.id.fragment_usuario_tv_title) //profesores
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.activity_name_usuario_rv)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.us_rv)
         val names = arrayListOf<HashMap<String, String>>()
         names.add(HashMap())
         names[0].put("name", "Me gustó mucho su clase porque el coral blanco o el ambiente que estamos manejando, lo estamos contaminando de una manera inigmi, i, im, inimaginablemente, inig, inigmante. Esto quiere decir que el coral blanco se está maltratando, eh, pues esas algas rojas. Eh, las algas verde puede servir como cobustible ")

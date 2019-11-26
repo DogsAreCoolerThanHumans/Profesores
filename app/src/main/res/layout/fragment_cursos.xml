@@ -97,7 +97,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cr_dv" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cr__rv"
+        android:id="@+id/cr_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#00F7F7F7"
