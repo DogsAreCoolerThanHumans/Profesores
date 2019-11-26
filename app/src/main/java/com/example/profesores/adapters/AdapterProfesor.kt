@@ -5,18 +5,35 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.R
 import com.parse.ParseObject
 import com.parse.ParseRelation
 import com.parse.ParseUser
 
-class AdapterProfesor (val names: List<ParseObject>)
-    : RecyclerView.Adapter<AdapterProfesor.ProfesorViewHolder>() {
+class AdapterProfesor (var names: List<ParseObject>)
+    : RecyclerView.Adapter<AdapterProfesor.ProfesorViewHolder>(),
+    Filterable { //filterable agregada
+
+    //Para Filters!
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(filter: CharSequence?): FilterResults {
+                Log.v("Filter", filter.toString())
+                val f = FilterResults()
+                f.values = ArrayList<ParseObject>() /////////////// hacer un filter que devuelva sólo los names que cumplan con tal parámetro
+                return f
+            }
+
+            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+                names = p1?.values as List<ParseObject>
+                notifyDataSetChanged()
+            }
+
+        }
+    }
+    //
 
     private var listener: OnItemClickListener? = null
     private var favListener: makeFavListener? = null
