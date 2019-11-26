@@ -7,8 +7,8 @@
     android:background="@drawable/ic_background_gradient"
     android:id="@+id/fragmentReview">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/re_profesor"
+    <AutoCompleteTextView
+        android:id="@+id/re_input_curso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -155,7 +155,7 @@
         android:layout_height="30dp"
         android:src="@drawable/ic_comentario"
         android:tint="@color/colorAccent"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
 
         app:layout_constraintTop_toBottomOf="@id/re_curs"
         app:layout_constraintStart_toStartOf="@id/re_tv_title" />
@@ -169,7 +169,7 @@
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
 
         app:layout_constraintTop_toBottomOf="@id/re_curs"
         app:layout_constraintStart_toEndOf="@id/re_comments"/>
@@ -181,7 +181,7 @@
         android:src="@drawable/ic_like"
         android:tint="@color/colorAccent"
         android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
 
         app:layout_constraintTop_toBottomOf="@id/re_curs"
         app:layout_constraintStart_toEndOf="@id/re_comments_count"/>
@@ -194,7 +194,7 @@
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
 
         app:layout_constraintTop_toBottomOf="@id/re_curs"
         app:layout_constraintStart_toEndOf="@id/re_likes"/>
@@ -206,7 +206,7 @@
         android:src="@drawable/ic_dislike"
         android:tint="@color/colorAccent"
         android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
 
         app:layout_constraintTop_toBottomOf="@id/re_curs"
         app:layout_constraintStart_toEndOf="@id/re_likes_count"/>
@@ -219,7 +219,7 @@
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
 
         app:layout_constraintTop_toBottomOf="@id/re_curs"
         app:layout_constraintStart_toEndOf="@id/re_dislikes"/>

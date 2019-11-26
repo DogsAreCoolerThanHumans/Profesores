@@ -52,12 +52,12 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
             }
         }
 
+
         val colors = arrayOf(
             "Red","Green","Blue","Maroon","Magenta",
             "Gold","GreenYellow"
         )
 
-        //para autocomplete:
         val textView = view.findViewById<AutoCompleteTextView>(R.id.re_input_profesor) as AutoCompleteTextView//id del textview en layout
         // Get the string array
         val countries = resources.getStringArray(R.array.countries_array)//id del array en strings.xml
@@ -77,8 +77,32 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
             }
         }
 
-        return view
+        //curso
+        val chtm = arrayOf(
+            "tu","puta","madre","machorra","lesbiana",
+            "pta","prra"
+        )
+
+        val textViewC = view.findViewById<AutoCompleteTextView>(R.id.re_input_curso) as AutoCompleteTextView //id del textview en layout
+        // Create the adapter and set it to the AutoCompleteTextView
+        val adapterC = ArrayAdapter(requireActivity(), android.R.layout.simple_dropdown_item_1line, chtm); //simple_list_item_1
+        textViewC.setAdapter(adapterC)
+
+
+        textViewC.threshold = 1 //número de caracteres escritos para mostrar sugerencias
+
+        // Set a focus change listener for auto complete text view
+        textViewC.onFocusChangeListener = View.OnFocusChangeListener{
+                view, b ->
+            if(b){
+                // Display the suggestion dropdown on focus
+                textViewC.showDropDown()
+            }
+        }
         //
+
+        return view
+
 
     }
 
