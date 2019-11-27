@@ -77,25 +77,30 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
 
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
-                if(s.length == 0)
+                if(s.length == 0) {
                     textViewC.isEnabled = false
+                    textViewC.setText("")
+                }
                 else {
                     textViewC.isEnabled = true
                     query.whereEqualTo("name", textView.text.toString())
                     query.getFirstInBackground { prof, e ->
-                        var listOfCursos = (prof["cursos"] as ParseRelation<*>).query
-                        listOfCursos.findInBackground { cursoList, err ->
-                            if (err == null){
-                                cursosList = Array(cursoList.size) {""}
-                                for(i in 0..cursoList.size - 1){
-                                    cursosList[i] = cursoList[i]["name"].toString()
+                        if (e == null) {
+                            var listOfCursos = (prof["cursos"] as ParseRelation<*>).query
+                            listOfCursos.findInBackground { cursoList, err ->
+                                if (err == null) {
+                                    cursosList = Array(cursoList.size) { "" }
+                                    for (i in 0..cursoList.size - 1) {
+                                        cursosList[i] = cursoList[i]["name"].toString()
+                                    }
+                                    val adapterC = ArrayAdapter(
+                                        requireActivity(),
+                                        android.R.layout.simple_dropdown_item_1line, cursosList
+                                    ) //simple_list_item_1
+                                    textViewC.setAdapter(adapterC)
+                                } else {
+                                    Log.e("ERRORCURSOREVIEW", "Cursos not found from Profesor")
                                 }
-                                val adapterC = ArrayAdapter(requireActivity(),
-                                    android.R.layout.simple_dropdown_item_1line, cursosList) //simple_list_item_1
-                                textViewC.setAdapter(adapterC)
-                            }
-                            else {
-                                Log.e("ERRORCURSOREVIEW", "Cursos not found from Profesor")
                             }
                         }
                     }
@@ -111,8 +116,10 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
 
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
-                if(s.length == 0)
+                if(s.length == 0) {
+                    comment.setText("")
                     comment.isEnabled = false
+                }
                 else
                     comment.isEnabled = true
             }
