@@ -124,7 +124,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/fv_prof"
-        app:layout_constraintTop_toBottomOf="@+id/com_cr_pr_tv_curso"
+        app:layout_constraintTop_toBottomOf="@+id/fv_tv_title"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textview.MaterialTextView

@@ -12,11 +12,12 @@
         android:id="@+id/activity_login_iv_itesogram"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:src="@drawable/ic_board"
-        app:layout_constraintBottom_toTopOf="@id/activity_login_til_username"
+        android:src="@drawable/ic_misprofesores_logo"
+        android:tint="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@id/misProfesores"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        android:tint="@color/colorAccent"/>
+        tools:layout_editor_absoluteX="30dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/activity_login_til_username"
@@ -27,7 +28,7 @@
         android:hint="@string/activity_login_user"
         app:hintTextColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@id/activity_login_til_password"
-        app:layout_constraintTop_toBottomOf="@id/activity_login_iv_itesogram"
+        app:layout_constraintTop_toBottomOf="@id/misProfesores"
         android:backgroundTint="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
         >
@@ -127,5 +128,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/activity_login_tv_create_account_question"
         app:layout_constraintTop_toTopOf="@id/activity_login_tv_create_account_question" />
+
+    <TextView
+        android:id="@+id/misProfesores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MisProfesores"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_login_iv_itesogram"
+        app:layout_constraintBottom_toTopOf="@id/activity_login_til_username"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

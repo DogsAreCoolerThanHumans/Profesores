@@ -54,7 +54,7 @@ class AdapterCourseProfessor (val names: List<ParseObject>)
             listProf.getFirstInBackground { prof, e ->
                 if(e == null)
                     favoriteButton.setImageResource(R.drawable.cards_heart)
-                else
+                else if(e != null)
                     favoriteButton.setImageResource(R.drawable.heart_outline)
             }
         }
