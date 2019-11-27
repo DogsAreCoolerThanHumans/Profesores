@@ -2,6 +2,8 @@ package com.example.profesores.Fragments
 
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,10 +17,13 @@ import com.example.profesores.R
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import com.example.profesores.Fragments.profesores.FragmentProfesores
+import com.example.profesores.activities.ActivityMain
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.parse.ParseRelation
 import com.parse.ParseUser
+import java.util.*
 
 
 class FragmentReview : Fragment(), ProfesoresContract.View {
@@ -42,10 +47,80 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
                 as AutoCompleteTextView//id del textview en layout
         val textViewC = view.findViewById<AutoCompleteTextView>(R.id.re_input_curso)
                 as AutoCompleteTextView //id del textview en layout
+        textViewC.isEnabled = false
+
         val comment = view.findViewById<EditText>(R.id.re_comentario)
+        comment.isEnabled = false
         val submitReview = view.findViewById<Button>(R.id.re_finish_btn)
 
-        if(textViewC.text.toString() != "" && textView.text.toString() == ""){
+
+        query.findInBackground { profes, e ->
+            if (e == null) {
+                profesList = Array(profes.size) { "" }
+                for (i in 0..profes.size - 1) {
+                    profesList[i] = (profes[i]["name"].toString())
+                }
+
+                val adapter = ArrayAdapter(
+                    requireActivity(),
+                    android.R.layout.simple_dropdown_item_1line, profesList
+                ) //simple_list_item_1
+                textView.setAdapter(adapter)
+            }
+        }
+        textView.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+                if(s.length == 0)
+                    textViewC.isEnabled = false
+                else {
+                    textViewC.isEnabled = true
+                    query.whereEqualTo("name", textView.text.toString())
+                    query.getFirstInBackground { prof, e ->
+                        var listOfCursos = (prof["cursos"] as ParseRelation<*>).query
+                        listOfCursos.findInBackground { cursoList, err ->
+                            if (err == null){
+                                cursosList = Array(cursoList.size) {""}
+                                for(i in 0..cursoList.size - 1){
+                                    cursosList[i] = cursoList[i]["name"].toString()
+                                }
+                                val adapterC = ArrayAdapter(requireActivity(),
+                                    android.R.layout.simple_dropdown_item_1line, cursosList) //simple_list_item_1
+                                textViewC.setAdapter(adapterC)
+                            }
+                            else {
+                                Log.e("ERRORCURSOREVIEW", "Cursos not found from Profesor")
+                            }
+                        }
+                    }
+                }
+            }
+        })
+        textViewC.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+                if(s.length == 0)
+                    comment.isEnabled = false
+                else
+                    comment.isEnabled = true
+            }
+        })
+
+
+
+/*        if(textViewC.text.toString() != "" && textView.text.toString() == ""){
             queryC.whereEqualTo("name", textViewC.text)
             if(queryC.first != null){
                 queryC.getFirstInBackground { curso, e ->
@@ -120,7 +195,7 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
                     textViewC.setAdapter(adapterC)
                 }
             }
-        }
+        }*/
 
 
         textView.threshold = 1 //número de caracteres escritos para mostrar sugerencias
@@ -168,27 +243,22 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
                                 cursoId = curso.objectId
                                 comObject.put("profesorComm", prof)
                                 comObject.put("cursoComm", curso)
-                                Log.v("PROFID, CURSOID COMMENT", profId + " " + cursoId + " "
-                                        + comment.text.toString())
                                 comObject.put("Comment", comment.text.toString())
                                 comObject.put("Likes", 0)
                                 comObject.put("Dislikes", 0)
                                 comObject.save()
+                                val fragment = FragmentProfesores()
+                                val args = Bundle()
+                                (activity as ActivityMain).openFragment(fragment, args)
                             }
                             else {
-                                val curso = ParseObject("Cursos")
-                                curso.put("name", textViewC.text)
-                                curso.saveInBackground().isCompleted
-                                cursoId = curso.objectId
+                                Log.e("CursoError", "Curso not found")
                             }
                         }
 
                     }
                     else {
-                        val profe = ParseObject("Profesores")
-                        profe.put("name", textView.text)
-                        profe.saveInBackground().isCompleted
-                        profId = profe.objectId
+                        Log.e("ProfError", "Prof not found")
                     }
                 }
                 Toast.makeText(this.context, "Review submitted!", Toast.LENGTH_SHORT).show()
