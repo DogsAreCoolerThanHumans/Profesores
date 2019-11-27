@@ -1,38 +1,31 @@
 package com.example.profesores.Fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
-import com.example.profesores.activities.ActivityMain
-import com.example.profesores.adapters.AdapterComentario
-import com.example.profesores.adapters.AdapterCurso
-import com.example.profesores.adapters.AdapterProfesor
-import kotlinx.android.synthetic.main.fragment_com_cursos_profesores.*
-import org.jetbrains.anko.find
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.support.v4.find
-import org.jetbrains.anko.support.v4.startActivity
-import android.widget.AdapterView
 
-//import android.support.v7.app.AppCompatActivity
+
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
-import android.widget.Toast
 import com.parse.ParseObject
 import com.parse.ParseQuery
+import com.parse.ParseRelation
+import com.parse.ParseUser
 
 
 class FragmentReview : Fragment(), ProfesoresContract.View {
     private lateinit var profesList: Array<String>
     private lateinit var cursosList: Array<String>
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,25 +35,92 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
 //        val title = view.findViewById<TextView>(R.id.fragment_review_tv_title) //profesores
 
 
-        var query = ParseQuery<ParseObject>("Profesores")
+        val query = ParseQuery<ParseObject>("Profesores")
+        val queryC = ParseQuery<ParseObject>("Cursos")
+
         val textView = view.findViewById<AutoCompleteTextView>(R.id.re_input_profesor)
                 as AutoCompleteTextView//id del textview en layout
+        val textViewC = view.findViewById<AutoCompleteTextView>(R.id.re_input_curso)
+                as AutoCompleteTextView //id del textview en layout
+        val comment = view.findViewById<EditText>(R.id.re_comentario)
+        val submitReview = view.findViewById<Button>(R.id.re_finish_btn)
 
-        query.findInBackground { profes, e ->
-            if(e == null){
-                profesList = Array(profes.size) {""}
-                for(i in 0..profes.size - 1){
-                    profesList[i] = (profes[i]["name"].toString())
+        if(textViewC.text.toString() != "" && textView.text.toString() == ""){
+            queryC.whereEqualTo("name", textViewC.text)
+            if(queryC.first != null){
+                queryC.getFirstInBackground { curso, e ->
+                    if(e == null) {
+                        var listOfProfes = (curso["profesores"] as ParseRelation<*>).query
+                        listOfProfes.findInBackground { profes, err ->
+                            if(err == null){
+                                profesList = Array(profes.size) { "" }
+                                for(i in 0..profes.size - 1){
+                                    profesList[i] = (profes[i]["name"].toString())
+                                }
+
+                                val adapter = ArrayAdapter(requireActivity(),
+                                    android.R.layout.simple_dropdown_item_1line, profesList)
+                                textView.setAdapter(adapter)
+                            }
+                        }
+                    }
+                    else
+                        Log.e("ERROR", "PROF NOT FOUND")
                 }
-
-                val adapter = ArrayAdapter(requireActivity(),
-                    android.R.layout.simple_dropdown_item_1line, profesList) //simple_list_item_1
-                textView.setAdapter(adapter)
             }
         }
+        else if(textView.text.toString() != "" && textViewC.text.toString() == ""){
+            query.whereEqualTo("name", textView.text)
+            if(query.first != null){
+                query.getFirstInBackground { prof, e ->
+                    if(e == null) {
+                        var listOfCursos = (prof["cursos"] as ParseRelation<*>).query
+                        listOfCursos.findInBackground { cursos, err ->
+                            if(err == null){
+                                cursosList = Array(cursos.size) {""}
+                                for(i in 0..cursos.size - 1){
+                                    cursosList[i] = (cursos[i]["name"].toString())
+                                }
 
+                                val adapterC = ArrayAdapter(requireActivity(),
+                                    android.R.layout.simple_dropdown_item_1line, cursosList)
+                                textView.setAdapter(adapterC)
+                            }
+                        }
+                    }
+                    else
+                        Log.e("ERROR", "PROF NOT FOUND")
+                }
+            }
+        }
+        else {
+            query.findInBackground { profes, e ->
+                if (e == null) {
+                    profesList = Array(profes.size) { "" }
+                    for (i in 0..profes.size - 1) {
+                        profesList[i] = (profes[i]["name"].toString())
+                    }
 
-        // Create the adapter and set it to the AutoCompleteTextView
+                    val adapter = ArrayAdapter(
+                        requireActivity(),
+                        android.R.layout.simple_dropdown_item_1line, profesList
+                    ) //simple_list_item_1
+                    textView.setAdapter(adapter)
+                }
+            }
+            queryC.findInBackground { cursos, e ->
+                if(e == null){
+                    cursosList = Array(cursos.size) {""}
+                    for(i in 0..cursos.size - 1){
+                        cursosList[i] = (cursos[i]["name"].toString())
+                    }
+
+                    val adapterC = ArrayAdapter(requireActivity(),
+                        android.R.layout.simple_dropdown_item_1line, cursosList) //simple_list_item_1
+                    textViewC.setAdapter(adapterC)
+                }
+            }
+        }
 
 
         textView.threshold = 1 //número de caracteres escritos para mostrar sugerencias
@@ -74,22 +134,6 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
             }
         }
 
-        val textViewC = view.findViewById<AutoCompleteTextView>(R.id.re_input_curso)
-                as AutoCompleteTextView //id del textview en layout
-        // Create the adapter and set it to the AutoCompleteTextView
-        query = ParseQuery<ParseObject>("Cursos")
-        query.findInBackground { cursos, e ->
-            if(e == null){
-                cursosList = Array(cursos.size) {""}
-                for(i in 0..cursos.size - 1){
-                    cursosList[i] = (cursos[i]["name"].toString())
-                }
-
-                val adapterC = ArrayAdapter(requireActivity(),
-                    android.R.layout.simple_dropdown_item_1line, cursosList) //simple_list_item_1
-                textViewC.setAdapter(adapterC)
-            }
-        }
 
         textViewC.threshold = 1 //número de caracteres escritos para mostrar sugerencias
 
@@ -101,55 +145,58 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
                 textViewC.showDropDown()
             }
         }
-        //
+
+
+
+
+        submitReview.setOnClickListener {
+            val comObject = ParseObject("Comments")
+            if(textView.text.toString() != "" && textViewC.text.toString() != ""
+                && comment!!.text.toString() != "" && comment.text.length > 6){
+                comObject.put("userComm", ParseUser.getCurrentUser())
+                val queryProfe = ParseQuery<ParseObject>("Profesores")
+                val queryCurso = ParseQuery<ParseObject>("Cursos")
+                queryCurso.whereMatches("name", textViewC.text.toString())
+                queryProfe.whereMatches("name", textView.text.toString())
+                var profId = ""
+                var cursoId = ""
+                queryProfe.getFirstInBackground { prof, e ->
+                    if (e == null){
+                        profId = prof.objectId
+                        queryCurso.getFirstInBackground { curso, err ->
+                            if(err == null){
+                                cursoId = curso.objectId
+                                comObject.put("profesorComm", prof)
+                                comObject.put("cursoComm", curso)
+                                Log.v("PROFID, CURSOID COMMENT", profId + " " + cursoId + " "
+                                        + comment.text.toString())
+                                comObject.put("Comment", comment.text.toString())
+                                comObject.put("Likes", 0)
+                                comObject.put("Dislikes", 0)
+                                comObject.save()
+                            }
+                            else {
+                                val curso = ParseObject("Cursos")
+                                curso.put("name", textViewC.text)
+                                curso.saveInBackground().isCompleted
+                                cursoId = curso.objectId
+                            }
+                        }
+
+                    }
+                    else {
+                        val profe = ParseObject("Profesores")
+                        profe.put("name", textView.text)
+                        profe.saveInBackground().isCompleted
+                        profId = profe.objectId
+                    }
+                }
+                Toast.makeText(this.context, "Review submitted!", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         return view
 
-
     }
-
- /*   //funct para tomar valor del radio btn del rating y pasar a variable numérica
-    //va en el adapter o aquí???
-    fun onRadioButtonClicked(view: View) {
-        if (view is RadioButton) {
-            // Is the button now checked?
-            val checked = view.isChecked
-
-            // Check which radio button was clicked
-            when (view.getId()) {
-                R.id.r1 ->
-                    if (checked) {
-                        //val rating = 1
-                        //etc...
-                    }
-                R.id.r2 ->
-                    if (checked) {
-                        //val rating = 2
-                    }
-                R.id.r3 ->
-                    if (checked) {
-                        //val rating = 3
-                    }
-                R.id.r4 ->
-                    if (checked) {
-                        //val rating = 4
-                    }
-                R.id.r5 ->
-                    if (checked) {
-                        //val rating = 5
-                    }
-            }
-        }
-    }
-
-    override fun onItemClick(position: Int) {
-
-        //poner funcionalidad/switchCase de radio btns aquí?
-        val rating = 1;
-
-
-
-    }*/
-
 
 }
