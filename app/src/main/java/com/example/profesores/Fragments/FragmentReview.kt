@@ -29,6 +29,7 @@ import java.util.*
 class FragmentReview : Fragment(), ProfesoresContract.View {
     private lateinit var profesList: Array<String>
     private lateinit var cursosList: Array<String>
+    private lateinit var comboList: Array<String>
 
 
     override fun onCreateView(

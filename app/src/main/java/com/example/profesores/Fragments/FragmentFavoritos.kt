@@ -29,6 +29,7 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.
     private lateinit var adapterCurso: AdapterFavoritos
     private lateinit var cursosList: Array<String>
     private lateinit var profesList: Array<String>
+    private lateinit var comboList: Array<String>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,9 +66,22 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.
             }
         }
 
-        /*
+
+        val query = ParseQuery<ParseObject>("Profesores")
+        val queryC = ParseQuery<ParseObject>("Cursos")
+
         val textView = view.findViewById<AutoCompleteTextView>(R.id.fv_searchEdit)
                 as AutoCompleteTextView//id del textview en layout
+
+        queryC.findInBackground { profes, e ->
+            if (e == null) {
+                profesList = Array(profes.size) { "" }
+                for (i in 0..profes.size - 1) {
+                    profesList[i] = (profes[i]["name"].toString())
+                }
+
+            }
+        }
 
         query.findInBackground { cursos, e ->
             if (e == null) {
@@ -76,11 +90,14 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.
                     cursosList[i] = (cursos[i]["name"].toString())
                 }
 
+                comboList = cursosList + profesList //para mostrar ambos profes y cursos en la misma lista de autocomplete
+
                 val adapter = ArrayAdapter(
                     requireActivity(),
-                    android.R.layout.simple_dropdown_item_1line, cursosList
+                    android.R.layout.simple_dropdown_item_1line, comboList
                 ) //simple_list_item_1
                 textView.setAdapter(adapter)
+
             }
         }
 
@@ -92,7 +109,7 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.
                 textView.showDropDown()
             }
         }
-        */
+
 
 
         return view
