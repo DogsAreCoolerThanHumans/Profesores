@@ -1,7 +1,7 @@
 <resources>
 <string name="app_name">Profesores</string>
 
-<string name="activity_login_user">Correo electrónico</string>
+<string name="activity_login_user">Expediente [ej: is685434]</string>
 <string name="activity_login_password">Contraseña</string>
 <string name="activity_login_login">Iniciar Sesión</string>
 <string name="activity_login_forgot_question">¿Olvidaste tus datos de inicio de sesión?</string>

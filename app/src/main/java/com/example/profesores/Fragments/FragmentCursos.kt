@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +23,7 @@ class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemC
     AdapterCurso.makeFavListener {
     private lateinit var adapter: AdapterCurso
     private val currentUser = ParseUser.getCurrentUser()
+    private lateinit var cursosList: Array<String>
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,6 +42,33 @@ class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemC
                 recyclerView.layoutManager = LinearLayoutManager(this.context)
             } else
                 error { "Error $e" }  // Log.e using anko
+        }
+
+        val textView = view.findViewById<AutoCompleteTextView>(R.id.cr_searchEdit)
+                as AutoCompleteTextView//id del textview en layout
+
+        query.findInBackground { cursos, e ->
+            if (e == null) {
+                cursosList = Array(cursos.size) { "" }
+                for (i in 0..cursos.size - 1) {
+                    cursosList[i] = (cursos[i]["name"].toString())
+                }
+
+                val adapter = ArrayAdapter(
+                    requireActivity(),
+                    android.R.layout.simple_dropdown_item_1line, cursosList
+                ) //simple_list_item_1
+                textView.setAdapter(adapter)
+            }
+        }
+
+        textView.threshold = 1
+
+        textView.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
+            if (b) {
+                // Display the suggestion dropdown on focus
+                textView.showDropDown()
+            }
         }
 
         return view
