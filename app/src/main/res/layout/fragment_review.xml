@@ -229,29 +229,6 @@
         app:layout_constraintTop_toBottomOf="@id/re_input_curso"
         app:layout_constraintStart_toEndOf="@id/re_dislikes"/>
 
-    <!--
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/re_register_btn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@drawable/ic_card_gradient"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-
-        android:text="Registrar prof/curs/rel"
-        android:textAllCaps="false"
-        android:textColor="#591D59"
-        android:textSize="15dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/re_comments"
-        app:layout_constraintVertical_bias="0.0" />
-    -->
-
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/re_tv_title"
         android:layout_width="wrap_content"
@@ -265,105 +242,6 @@
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/re_comments" />
-    <!--
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/re_tv_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rating:"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:layout_marginTop="5dp"
-
-        app:layout_constraintStart_toStartOf="@id/re_tv_title"
-        app:layout_constraintTop_toBottomOf="@+id/re_tv_title" />
-
-    <ImageView
-        android:id="@+id/re_rating"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-
-
-        android:src="@drawable/ic_rating"
-        android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/re_tv_rating"
-        app:layout_constraintEnd_toStartOf="@+id/radioGroup" />
-
-
-    <androidx.appcompat.widget.AppCompatre_searchEdit
-        android:id="@+id/rating_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-
-        android:hint="[1...5]"
-        app:backgroundTint="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimaryDark"
-
-        app:layout_constraintEnd_toEndOf="@id/re_dislikes_count"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/re_tv_rating"
-        app:layout_constraintTop_toBottomOf="@id/re_tv_title"
-        />
-        -->
-    <!--
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="horizontal"
-        android:outlineAmbientShadowColor="@color/colorPrimary"
-        android:outlineSpotShadowColor="@color/design_default_color_on_primary"
-        app:layout_constraintBottom_toBottomOf="@id/re_tv_rating"
-        app:layout_constraintStart_toEndOf="@id/re_tv_comments"
-        app:layout_constraintTop_toBottomOf="@id/re_tv_title"
-        app:layout_constraintEnd_toEndOf="@id/re_comentario_box">
-
-        <RadioButton
-            android:id="@+id/r1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="1"
-            android:textColor="@color/colorPrimary" />
-
-        <RadioButton
-            android:id="@+id/r2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="2"
-            android:textColor="@color/colorPrimary" />
-
-        <RadioButton
-            android:id="@+id/r3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="3"
-            android:textColor="@color/colorPrimary" />
-
-        <RadioButton
-            android:id="@+id/r4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="4"
-            android:textColor="@color/colorPrimary" />
-
-        <RadioButton
-            android:id="@+id/r5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:outlineSpotShadowColor="@color/colorPrimary"
-            android:text="5"
-            android:textColor="@color/colorPrimary"
-            android:textColorHighlight="@color/colorPrimary" />
-    </RadioGroup>
-    -->
-
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/re_tv_comments"

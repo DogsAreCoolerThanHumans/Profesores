@@ -37,11 +37,8 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_review, container, false)
-//        val title = view.findViewById<TextView>(R.id.fragment_review_tv_title) //profesores
-
 
         val query = ParseQuery<ParseObject>("Profesores")
-        val queryC = ParseQuery<ParseObject>("Cursos")
 
         val textView = view.findViewById<AutoCompleteTextView>(R.id.re_input_profesor)
                 as AutoCompleteTextView//id del textview en layout
@@ -52,6 +49,10 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
         val comment = view.findViewById<EditText>(R.id.re_comentario)
         comment.isEnabled = false
         val submitReview = view.findViewById<Button>(R.id.re_finish_btn)
+
+        val likesNum = view.findViewById<TextView>(R.id.re_likes_count)
+        val dislikesNum = view.findViewById<TextView>(R.id.re_dislikes_count)
+        val commentNum = view.findViewById<TextView>(R.id.re_comments_count)
 
 
         query.findInBackground { profes, e ->
@@ -120,89 +121,61 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
                     comment.setText("")
                     comment.isEnabled = false
                 }
-                else
+                else {
+                    val queryComment = ParseQuery<ParseObject>("Comments")
+                    val queryProfesor = ParseQuery<ParseObject>("Profesores")
+                    val queryCurso = ParseQuery<ParseObject>("Cursos")
+
+                    queryProfesor.whereMatches("name", textView.text.toString())
+                    val profeCurso = (queryProfesor["cursos"] as ParseRelation<*>).query
+                    queryCurso.whereEqualTo("name", textViewC.text.toString())
+
+                    Log.e("ERRORPROF", queryProfesor.first.objectId)
+                    var numLikes = 0
+                    var numDislikes = 0
+                    queryProfesor.getFirstInBackground { prof, err ->
+                        if(err == null){
+                            profeCurso.findInBackground { cursos, e ->
+                                if (e == null){
+                                    for( i in 0..cursos.size - 1){
+                                        if(cursos[i]["name"] == textViewC.text.toString()){
+                                            queryComment.whereEqualTo("profesorComm", prof)
+                                            queryComment.whereEqualTo("cursoComm", cursos[i])
+                                            queryComment.findInBackground { profeCursos, error ->
+                                                if (error == null){
+                                                    for (j in 0..profeCursos.size - 1){
+                                                        numLikes += Integer.parseInt(profeCursos[i]["Likes"].toString())
+                                                        numDislikes += Integer.parseInt(profeCursos[i]["Dislikes"].toString())
+                                                    }
+                                                    commentNum.setText(profeCursos.size)
+                                                    likesNum.setText(numLikes)
+                                                    dislikesNum.setText(numDislikes)
+                                                }
+                                                else {
+                                                    commentNum.setText(0)
+                                                    likesNum.setText(0)
+                                                    dislikesNum.setText(0)
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            Toast.makeText(context, "Curso not found!", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                }
+                                else {
+                                    Toast.makeText(context, "This Professor doesn't have any courses yet", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                        else {
+                            Toast.makeText(context, "Profesor not found!", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                     comment.isEnabled = true
+                }
             }
         })
-
-
-
-/*        if(textViewC.text.toString() != "" && textView.text.toString() == ""){
-            queryC.whereEqualTo("name", textViewC.text)
-            if(queryC.first != null){
-                queryC.getFirstInBackground { curso, e ->
-                    if(e == null) {
-                        var listOfProfes = (curso["profesores"] as ParseRelation<*>).query
-                        listOfProfes.findInBackground { profes, err ->
-                            if(err == null){
-                                profesList = Array(profes.size) { "" }
-                                for(i in 0..profes.size - 1){
-                                    profesList[i] = (profes[i]["name"].toString())
-                                }
-
-                                val adapter = ArrayAdapter(requireActivity(),
-                                    android.R.layout.simple_dropdown_item_1line, profesList)
-                                textView.setAdapter(adapter)
-                            }
-                        }
-                    }
-                    else
-                        Log.e("ERROR", "PROF NOT FOUND")
-                }
-            }
-        }
-        else if(textView.text.toString() != "" && textViewC.text.toString() == ""){
-            query.whereEqualTo("name", textView.text)
-            if(query.first != null){
-                query.getFirstInBackground { prof, e ->
-                    if(e == null) {
-                        var listOfCursos = (prof["cursos"] as ParseRelation<*>).query
-                        listOfCursos.findInBackground { cursos, err ->
-                            if(err == null){
-                                cursosList = Array(cursos.size) {""}
-                                for(i in 0..cursos.size - 1){
-                                    cursosList[i] = (cursos[i]["name"].toString())
-                                }
-
-                                val adapterC = ArrayAdapter(requireActivity(),
-                                    android.R.layout.simple_dropdown_item_1line, cursosList)
-                                textView.setAdapter(adapterC)
-                            }
-                        }
-                    }
-                    else
-                        Log.e("ERROR", "PROF NOT FOUND")
-                }
-            }
-        }
-        else {
-            query.findInBackground { profes, e ->
-                if (e == null) {
-                    profesList = Array(profes.size) { "" }
-                    for (i in 0..profes.size - 1) {
-                        profesList[i] = (profes[i]["name"].toString())
-                    }
-
-                    val adapter = ArrayAdapter(
-                        requireActivity(),
-                        android.R.layout.simple_dropdown_item_1line, profesList
-                    ) //simple_list_item_1
-                    textView.setAdapter(adapter)
-                }
-            }
-            queryC.findInBackground { cursos, e ->
-                if(e == null){
-                    cursosList = Array(cursos.size) {""}
-                    for(i in 0..cursos.size - 1){
-                        cursosList[i] = (cursos[i]["name"].toString())
-                    }
-
-                    val adapterC = ArrayAdapter(requireActivity(),
-                        android.R.layout.simple_dropdown_item_1line, cursosList) //simple_list_item_1
-                    textViewC.setAdapter(adapterC)
-                }
-            }
-        }*/
 
 
         textView.threshold = 1 //número de caracteres escritos para mostrar sugerencias
@@ -233,47 +206,45 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
 
         submitReview.setOnClickListener {
             val comObject = ParseObject("Comments")
-            if(textView.text.toString() != "" && textViewC.text.toString() != ""
-                && comment!!.text.toString() != "" && comment.text.length > 6){
+            if(comment.text.length > 6){
                 comObject.put("userComm", ParseUser.getCurrentUser())
                 val queryProfe = ParseQuery<ParseObject>("Profesores")
                 val queryCurso = ParseQuery<ParseObject>("Cursos")
                 queryCurso.whereMatches("name", textViewC.text.toString())
                 queryProfe.whereMatches("name", textView.text.toString())
-                var profId = ""
-                var cursoId = ""
                 queryProfe.getFirstInBackground { prof, e ->
                     if (e == null){
-                        profId = prof.objectId
                         queryCurso.getFirstInBackground { curso, err ->
                             if(err == null){
-                                cursoId = curso.objectId
                                 comObject.put("profesorComm", prof)
                                 comObject.put("cursoComm", curso)
                                 comObject.put("Comment", comment.text.toString())
                                 comObject.put("Likes", 0)
                                 comObject.put("Dislikes", 0)
                                 comObject.save()
+                                Toast.makeText(this.context, "Review submitted!", Toast.LENGTH_SHORT).show()
                                 val fragment = FragmentProfesores()
                                 val args = Bundle()
                                 (activity as ActivityMain).openFragment(fragment, args)
                             }
                             else {
-                                Log.e("CursoError", "Curso not found")
+                                Toast.makeText(this.context, "Curso not found!", Toast.LENGTH_SHORT).show()
                             }
                         }
-
                     }
+
                     else {
-                        Log.e("ProfError", "Prof not found")
+                        Toast.makeText(this.context, "Profesor not found!", Toast.LENGTH_SHORT).show()
                     }
                 }
-                Toast.makeText(this.context, "Review submitted!", Toast.LENGTH_SHORT).show()
+            }
+
+            else {
+                Toast.makeText(this.context, "Your comment must be above 6 characters of length", Toast.LENGTH_SHORT).show()
             }
         }
 
         return view
-
     }
 
 }
