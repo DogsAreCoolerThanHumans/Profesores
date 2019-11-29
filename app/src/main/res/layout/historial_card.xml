@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="10dp"
+    android:background="@drawable/ic_card_gradient"
+    android:divider="@android:color/transparent"
+    android:elevation="20dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/historial_card_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+
+        android:src="@drawable/ic_comentario"
+        android:tint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/historial_card_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_like"
+        android:tint="@color/colorPrimary"
+
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/historial_card_like_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+
+
+        android:layout_marginEnd="16dp"
+        android:text="69"
+        android:textColor="@color/colorPrimary"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/historial_card_like" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/historial_card_dislike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_margin="16dp"
+
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_dislike"
+        android:tint="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/historial_card_like_count" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/historial_card_dislike_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+
+        android:text="10"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/historial_card_dislike"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/historial_card_comentario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:layout_marginLeft="10dp"
+
+        android:elevation="20dp"
+        android:justificationMode="inter_word"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/historial_card_like"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/historial_card_icon"
+        app:layout_constraintTop_toBottomOf="@id/historial_card_profesor"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Me gustó mucho su clase porque el coral blanco o el ambiente que estamos manejando, lo estamos contaminando de una manera inigmi, i, im, inimaginablemente, inig, inigmante. Esto quiere decir que el coral blanco se está maltratando, eh, pues esas algas rojas. Eh, las algas verde puede servir como cobustible "
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/historial_card_profesor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:layout_marginLeft="10dp"
+
+        android:elevation="20dp"
+        android:justificationMode="inter_word"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"
+        android:textStyle="bold"
+
+        app:layout_constraintStart_toEndOf="@id/historial_card_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Profesor"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/historial_card_curso"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+
+        android:justificationMode="inter_word"
+        android:textColor="@color/colorAccent"
+        android:textSize="10dp"
+
+        app:layout_constraintStart_toEndOf="@id/historial_card_profesor"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Curso"
+        />
+
+
+
+    <!--
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_title_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/item_title_date"
+            android:textSize="10sp"
+            tools:text="Hola"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_title_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/item_title_full_name"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/item_title_image"
+            android:textSize="10sp"
+            tools:text="Adios"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_title_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/item_title_date"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:maxHeight="10dp"
+            android:maxWidth="10dp"
+            />
+            -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
