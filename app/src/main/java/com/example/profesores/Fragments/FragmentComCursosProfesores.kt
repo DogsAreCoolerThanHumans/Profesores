@@ -18,9 +18,6 @@ import com.parse.ParseQuery
 
 
 class FragmentComCursosProfesores : Fragment() {
-    private lateinit var cursosList: Array<String>
-    private lateinit var profesList: Array<String>
-    private lateinit var comboList: Array<String>
     private lateinit var adapter: AdapterComCursosProfesores
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +31,8 @@ class FragmentComCursosProfesores : Fragment() {
         var totalLikes = 0
         var totalDislikes = 0
         var totalComments = 0
+        var cursosList = mutableListOf<String>()
+        var profesList = mutableListOf<String>()
         val cursoName = view.findViewById<TextView>(R.id.com_cr_pr_tv_curso)
         val profName = view.findViewById<TextView>(R.id.com_cr_pr_profesor)
         val likesCount = view.findViewById<TextView>(R.id.com_pr_cr_likes_count)
@@ -94,9 +93,8 @@ class FragmentComCursosProfesores : Fragment() {
 
         queryC.findInBackground { profes, e ->
             if (e == null) {
-                profesList = Array(profes.size) { "" }
                 for (i in 0..profes.size - 1) {
-                    profesList[i] = (profes[i]["name"].toString())
+                    profesList.add(profes[i]["name"].toString())
                 }
 
             }
@@ -104,12 +102,11 @@ class FragmentComCursosProfesores : Fragment() {
 
         queryP.findInBackground { cursos, e ->
             if (e == null) {
-                cursosList = Array(cursos.size) { "" }
                 for (i in 0..cursos.size - 1) {
-                    cursosList[i] = (cursos[i]["name"].toString())
+                    cursosList.add(cursos[i]["name"].toString())
                 }
 
-                comboList =
+                var comboList =
                     cursosList + profesList //para mostrar ambos profes y cursos en la misma lista de autocomplete
 
                 val adapter1 = ArrayAdapter(

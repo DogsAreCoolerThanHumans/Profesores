@@ -27,9 +27,6 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.
         AdapterFavoritos.makeFavListener{
     private lateinit var adapterProf: AdapterFavoritos
     private lateinit var adapterCurso: AdapterFavoritos
-    private lateinit var cursosList: Array<String>
-    private lateinit var profesList: Array<String>
-    private lateinit var comboList: Array<String>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +36,11 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.
         val view = inflater.inflate(R.layout.fragment_favoritos, container, false)
         val profRecyclerView = view.findViewById<RecyclerView>(R.id.fv_rv_profesores)
         val cursosRecyclerView = view.findViewById<RecyclerView>(R.id.fv_rv_cursos)
+
+        var cursosList = mutableListOf<String>()
+
+        var profesList = mutableListOf<String>()
+
         var currentUser = ParseUser.getCurrentUser()
         (currentUser["profesoresFav"] as ParseRelation<*>).query.findInBackground { profList, e ->
             if(e == null){
@@ -75,9 +77,8 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.
 
         queryC.findInBackground { profes, e ->
             if (e == null) {
-                profesList = Array(profes.size) { "" }
                 for (i in 0..profes.size - 1) {
-                    profesList[i] = (profes[i]["name"].toString())
+                    profesList.add(profes[i]["name"].toString())
                 }
 
             }
@@ -85,12 +86,11 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.
 
         query.findInBackground { cursos, e ->
             if (e == null) {
-                cursosList = Array(cursos.size) { "" }
                 for (i in 0..cursos.size - 1) {
-                    cursosList[i] = (cursos[i]["name"].toString())
+                    cursosList.add(cursos[i]["name"].toString())
                 }
 
-                comboList = cursosList + profesList //para mostrar ambos profes y cursos en la misma lista de autocomplete
+                var comboList = (cursosList + profesList) //para mostrar ambos profes y cursos en la misma lista de autocomplete
 
                 val adapter = ArrayAdapter(
                     requireActivity(),

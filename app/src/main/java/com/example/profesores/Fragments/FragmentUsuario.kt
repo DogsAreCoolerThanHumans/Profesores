@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,15 +17,16 @@ import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
 import com.example.profesores.activities.ActivityLogin
 import com.example.profesores.adapters.AdapterComentario
+import com.example.profesores.adapters.AdapterHistorial
 import com.parse.ParseObject
 import com.parse.ParseQuery
 import com.example.profesores.utils.SESSION_ID_KEY
+import com.parse.Parse
+import com.parse.ParseUser
 
 
 class FragmentUsuario : Fragment(), ProfesoresContract.View {
-    private lateinit var cursosList: Array<String>
-    private lateinit var profesList: Array<String>
-    private lateinit var comboList: Array<String>
+    private lateinit var adapter: AdapterHistorial
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,28 +35,28 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_usuario, container, false)
         val logOutButton = view.findViewById<Button>(R.id.log_out_button)
+        val userName = view.findViewById<TextView>(R.id.us_tv_curso)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.us_rv)
-        val names = arrayListOf<HashMap<String, String>>()
-        names.add(HashMap())
-        names[0].put("name", "Me gustó mucho su clase porque el coral blanco o el ambiente que estamos manejando, lo estamos contaminando de una manera inigmi, i, im, inimaginablemente, inig, inigmante. Esto quiere decir que el coral blanco se está maltratando, eh, pues esas algas rojas. Eh, las algas verde puede servir como cobustible ")
-        names[0].put("lastName", "")
-        names.add(HashMap())
-        names[1].put("name", "Mi profe y clase favorita los tkm mil")
-        names[1].put("lastName", "")
-        names.add(HashMap())
-        names[2].put("name", "Excelente profesor, me gustarían más profes así en el ITESO")
-        names[2].put("lastName", "")
-        names.add(HashMap())
-        names[3].put("name", "Es una materia muy pesada porque el profesor no ayuda porque no me deja entrar a clase con mi botella de vodka")
-        names[3].put("lastName", "")
-        names.add(HashMap())
-        names[4].put("name", "Es el profe más cool de todo el ITESO. Me gustó muchísimo la parte en la que nos daba clase libre - 10/10")
-        names[4].put("lastName", "")
-        names.add(HashMap())
-        names[5].put("name", "Más clases en el HUECO PLISSSSS ")
-        names[5].put("lastName", "")
 
+        var cursosList = mutableListOf<String>()
+
+        var profesList = mutableListOf<String>()
+
+        val usuarioHistorial = ParseQuery<ParseObject>("Comments")
+        usuarioHistorial.findInBackground { comentariosUser, e ->
+            if(e == null){
+                var listComments = mutableListOf<ParseObject>()
+                for(i in 0..comentariosUser.size - 1){
+                    if((comentariosUser[i]["userComm"] as ParseObject).objectId == ParseUser.getCurrentUser().objectId){
+                        listComments.add(comentariosUser[i])
+                    }
+                }
+                adapter = AdapterHistorial(listComments)
+                recyclerView.adapter = adapter
+                recyclerView.layoutManager = LinearLayoutManager(view.context)
+            }
+        }
         logOutButton.setOnClickListener {
 
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context)
@@ -66,8 +68,6 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
             startActivity(intent)
         }
 
-        recyclerView.adapter = AdapterComentario(names)
-        recyclerView.layoutManager = LinearLayoutManager(view.context)
 
         val query = ParseQuery<ParseObject>("Profesores")
         val queryC = ParseQuery<ParseObject>("Cursos")
@@ -77,9 +77,8 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
 
         queryC.findInBackground { profes, e ->
             if (e == null) {
-                profesList = Array(profes.size) { "" }
                 for (i in 0..profes.size - 1) {
-                    profesList[i] = (profes[i]["name"].toString())
+                    profesList.add(profes[i]["name"].toString())
                 }
 
             }
@@ -87,12 +86,11 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
 
         query.findInBackground { cursos, e ->
             if (e == null) {
-                cursosList = Array(cursos.size) { "" }
                 for (i in 0..cursos.size - 1) {
-                    cursosList[i] = (cursos[i]["name"].toString())
+                    cursosList.add(cursos[i]["name"].toString())
                 }
 
-                comboList = cursosList + profesList //para mostrar ambos profes y cursos en la misma lista de autocomplete
+                var comboList = cursosList + profesList //para mostrar ambos profes y cursos en la misma lista de autocomplete
 
                 val adapter = ArrayAdapter(
                     requireActivity(),
@@ -111,6 +109,8 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
                 textView.showDropDown()
             }
         }
+
+        userName.setText(ParseUser.getCurrentUser()["username"].toString())
 
         return view
     }
