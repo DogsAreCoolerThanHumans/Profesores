@@ -81,50 +81,6 @@ class FragmentComCursosProfesores : Fragment() {
             }
         }
 
-        /*
-        val queryP = ParseQuery<ParseObject>("Profesores")
-        val queryC = ParseQuery<ParseObject>("Cursos")
-
-        val textView = view.findViewById<AutoCompleteTextView>(R.id.com_cr_pr_searchText)
-                as AutoCompleteTextView//id del textview en layout
-
-        queryC.findInBackground { profes, e ->
-            if (e == null) {
-                for (i in 0..profes.size - 1) {
-                    profesList.add(profes[i]["name"].toString())
-                }
-
-            }
-        }
-
-        queryP.findInBackground { cursos, e ->
-            if (e == null) {
-                for (i in 0..cursos.size - 1) {
-                    cursosList.add(cursos[i]["name"].toString())
-                }
-
-                var comboList =
-                    cursosList + profesList //para mostrar ambos profes y cursos en la misma lista de autocomplete
-
-                val adapter1 = ArrayAdapter(
-                    requireActivity(),
-                    android.R.layout.simple_dropdown_item_1line, comboList
-                ) //simple_list_item_1
-                textView.setAdapter(adapter1)
-
-            }
-        }
-
-        textView.threshold = 1
-
-        textView.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
-            if (b) {
-                // Display the suggestion dropdown on focus
-                textView.showDropDown()
-            }
-        }
-        */
-         
         return view
     }
 }

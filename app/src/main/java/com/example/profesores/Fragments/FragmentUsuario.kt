@@ -36,12 +36,12 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
         val view = inflater.inflate(R.layout.fragment_usuario, container, false)
         val logOutButton = view.findViewById<Button>(R.id.log_out_button)
         val userName = view.findViewById<TextView>(R.id.us_tv_curso)
+        val commentCount = view.findViewById<TextView>(R.id.us_comments_count)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.us_rv)
 
-        //var cursosList = mutableListOf<String>()
-        //var profesList = mutableListOf<String>()
 
+        var comments = 0
         val usuarioHistorial = ParseQuery<ParseObject>("Comments")
         usuarioHistorial.findInBackground { comentariosUser, e ->
             if(e == null){
@@ -49,8 +49,11 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
                 for(i in 0..comentariosUser.size - 1){
                     if((comentariosUser[i]["userComm"] as ParseObject).objectId == ParseUser.getCurrentUser().objectId){
                         listComments.add(comentariosUser[i])
+                        comments++
                     }
                 }
+
+                commentCount.setText(comments)
                 adapter = AdapterHistorial(listComments)
                 recyclerView.adapter = adapter
                 recyclerView.layoutManager = LinearLayoutManager(view.context)
@@ -66,50 +69,6 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
             val intent = Intent(this.context, ActivityLogin::class.java)
             startActivity(intent)
         }
-
-        /*
-        val query = ParseQuery<ParseObject>("Profesores")
-        val queryC = ParseQuery<ParseObject>("Cursos")
-
-        val textView = view.findViewById<AutoCompleteTextView>(R.id.us_searchEdit)
-                as AutoCompleteTextView//id del textview en layout
-
-        queryC.findInBackground { profes, e ->
-            if (e == null) {
-                for (i in 0..profes.size - 1) {
-                    profesList.add(profes[i]["name"].toString())
-                }
-
-            }
-        }
-
-        query.findInBackground { cursos, e ->
-            if (e == null) {
-                for (i in 0..cursos.size - 1) {
-                    cursosList.add(cursos[i]["name"].toString())
-                }
-
-                var comboList = cursosList + profesList //para mostrar ambos profes y cursos en la misma lista de autocomplete
-
-                val adapter = ArrayAdapter(
-                    requireActivity(),
-                    android.R.layout.simple_dropdown_item_1line, comboList
-                ) //simple_list_item_1
-                textView.setAdapter(adapter)
-
-            }
-        }
-
-        textView.threshold = 1
-
-        textView.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
-            if (b) {
-                // Display the suggestion dropdown on focus
-                textView.showDropDown()
-            }
-        }
-
-         */
 
         userName.setText(ParseUser.getCurrentUser()["username"].toString())
 

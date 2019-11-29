@@ -79,39 +79,4 @@
         tools:text="Curso" />
 
 
-    <!--
-
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/item_title_full_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/item_title_date"
-            android:textSize="10sp"
-            tools:text="Hola"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/item_title_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/item_title_full_name"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/item_title_image"
-            android:textSize="10sp"
-            tools:text="Adios"
-            />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/item_title_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/item_title_date"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:maxHeight="10dp"
-            android:maxWidth="10dp"
-            />
-            -->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

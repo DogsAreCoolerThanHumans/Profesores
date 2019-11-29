@@ -21,7 +21,7 @@ class ActivityMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         val navigation = findViewById<BottomNavigationView>(R.id.activity_main_bnv_navigation)
         navigation.setOnNavigationItemSelectedListener(this)
         navigation.getMenu().findItem(R.id.action_profesores).setChecked(true)//default
-        
+
         supportFragmentManager //clickeado por default
             .beginTransaction()
             .replace(R.id.activity_main_fl_main_content,

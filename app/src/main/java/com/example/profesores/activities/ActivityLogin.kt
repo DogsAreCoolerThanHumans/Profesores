@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import com.example.profesores.R
@@ -41,7 +42,7 @@ class ActivityLogin : AppCompatActivity() {
                         startActivity<ActivityMain>()
                     } else {
                         ParseUser.logOut()
-                        Log.e("Error", "Incorrect username or password")
+                        Toast.makeText(this, "User not found!", Toast.LENGTH_SHORT).show()
                     }
                 }
         }
