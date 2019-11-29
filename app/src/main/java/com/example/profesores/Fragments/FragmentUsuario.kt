@@ -3,19 +3,19 @@ package com.example.profesores.Fragments
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.TextView
+import android.view.inputmethod.EditorInfo
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
 import com.example.profesores.activities.ActivityLogin
+import com.example.profesores.activities.ActivityMain
 import com.example.profesores.adapters.AdapterComentario
 import com.example.profesores.adapters.AdapterHistorial
 import com.parse.ParseObject
@@ -110,6 +110,59 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
             }
         }
 
+        textView.setOnEditorActionListener { textView, i, keyEvent ->
+            if(i == EditorInfo.IME_ACTION_SEARCH){
+                if(profesList.contains(textView.text.toString())){
+                    val queryProf = ParseQuery<ParseObject>("Profesores")
+                    queryProf.whereEqualTo("name", textView.text.toString())
+                    val fragment = FragmentProfesorCurso()
+                    val args = Bundle()
+                    args.putString("profesorDeCurso", queryProf.first.objectId)
+                    (activity as ActivityMain).openFragment(fragment, args)
+                }
+                else if(cursosList.contains(textView.text.toString())){
+                    val queryCurso = ParseQuery<ParseObject>("Cursos")
+                    queryCurso.whereEqualTo("name", textView.text.toString())
+                    val fragment = FragmentCursoProfesores()
+                    val args = Bundle()
+                    args.putString("cursoId", queryCurso.first.objectId)
+                    (activity as ActivityMain).openFragment(fragment, args)
+                }
+                else {
+                    Toast.makeText(this.context, "Curso/Profesor not found!", Toast.LENGTH_SHORT).show()
+                }
+                true
+            }
+            false
+        }
+
+        textView.setOnKeyListener(View.OnKeyListener {
+            v, keyCode, event ->
+
+            if(keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                if(profesList.contains(textView.text.toString())){
+                    val queryProf = ParseQuery<ParseObject>("Profesores")
+                    queryProf.whereEqualTo("name", textView.text.toString())
+                    val fragment = FragmentProfesorCurso()
+                    val args = Bundle()
+                    args.putString("profesorDeCurso", queryProf.first.objectId)
+                    (activity as ActivityMain).openFragment(fragment, args)
+                }
+                else if(cursosList.contains(textView.text.toString())){
+                    val queryCurso = ParseQuery<ParseObject>("Cursos")
+                    queryCurso.whereEqualTo("name", textView.text.toString())
+                    val fragment = FragmentCursoProfesores()
+                    val args = Bundle()
+                    args.putString("cursoId", queryCurso.first.objectId)
+                    (activity as ActivityMain).openFragment(fragment, args)
+                }
+                else {
+                    Toast.makeText(this.context, "Curso/Profesor not found!", Toast.LENGTH_SHORT).show()
+                }
+                return@OnKeyListener true
+            }
+            false
+        })
         userName.setText(ParseUser.getCurrentUser()["username"].toString())
 
         return view
