@@ -20,9 +20,6 @@ import com.parse.ParseQuery
 
 class FragmentComProfesoresCursos : Fragment() {
     private lateinit var adapter: AdapterComProfesoresCursos
-    private lateinit var cursosList: Array<String>
-    private lateinit var profesList: Array<String>
-    private lateinit var comboList: Array<String>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +41,9 @@ class FragmentComProfesoresCursos : Fragment() {
         val queryCurso = ParseQuery<ParseObject>("Cursos")
         val profComm = arguments?.getString("profesor")
         val cursoComm = arguments?.getString("curso")
+
+        var cursosList = mutableListOf<String>()
+        var profesList = mutableListOf<String>()
 
         val query = ParseQuery<ParseObject>("Comments")
         queryProf.whereEqualTo("objectId", profComm)
@@ -93,9 +93,8 @@ class FragmentComProfesoresCursos : Fragment() {
 
         queryC.findInBackground { profes, e ->
             if (e == null) {
-                profesList = Array(profes.size) { "" }
                 for (i in 0..profes.size - 1) {
-                    profesList[i] = (profes[i]["name"].toString())
+                    profesList.add(profes[i]["name"].toString())
                 }
 
             }
@@ -103,12 +102,11 @@ class FragmentComProfesoresCursos : Fragment() {
 
         queryP.findInBackground { cursos, e ->
             if (e == null) {
-                cursosList = Array(cursos.size) { "" }
                 for (i in 0..cursos.size - 1) {
-                    cursosList[i] = (cursos[i]["name"].toString())
+                    cursosList.add(cursos[i]["name"].toString())
                 }
 
-                comboList = cursosList + profesList //para mostrar ambos profes y cursos en la misma lista de autocomplete
+                var comboList = cursosList + profesList //para mostrar ambos profes y cursos en la misma lista de autocomplete
 
                 val adapter1 = ArrayAdapter(
                     requireActivity(),

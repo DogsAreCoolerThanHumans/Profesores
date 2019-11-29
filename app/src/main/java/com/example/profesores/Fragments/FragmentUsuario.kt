@@ -109,60 +109,7 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
                 textView.showDropDown()
             }
         }
-
-        textView.setOnEditorActionListener { textView, i, keyEvent ->
-            if(i == EditorInfo.IME_ACTION_SEARCH){
-                if(profesList.contains(textView.text.toString())){
-                    val queryProf = ParseQuery<ParseObject>("Profesores")
-                    queryProf.whereEqualTo("name", textView.text.toString())
-                    val fragment = FragmentProfesorCurso()
-                    val args = Bundle()
-                    args.putString("profesorDeCurso", queryProf.first.objectId)
-                    (activity as ActivityMain).openFragment(fragment, args)
-                }
-                else if(cursosList.contains(textView.text.toString())){
-                    val queryCurso = ParseQuery<ParseObject>("Cursos")
-                    queryCurso.whereEqualTo("name", textView.text.toString())
-                    val fragment = FragmentCursoProfesores()
-                    val args = Bundle()
-                    args.putString("cursoId", queryCurso.first.objectId)
-                    (activity as ActivityMain).openFragment(fragment, args)
-                }
-                else {
-                    Toast.makeText(this.context, "Curso/Profesor not found!", Toast.LENGTH_SHORT).show()
-                }
-                true
-            }
-            false
-        }
-
-        textView.setOnKeyListener(View.OnKeyListener {
-            v, keyCode, event ->
-
-            if(keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
-                if(profesList.contains(textView.text.toString())){
-                    val queryProf = ParseQuery<ParseObject>("Profesores")
-                    queryProf.whereEqualTo("name", textView.text.toString())
-                    val fragment = FragmentProfesorCurso()
-                    val args = Bundle()
-                    args.putString("profesorDeCurso", queryProf.first.objectId)
-                    (activity as ActivityMain).openFragment(fragment, args)
-                }
-                else if(cursosList.contains(textView.text.toString())){
-                    val queryCurso = ParseQuery<ParseObject>("Cursos")
-                    queryCurso.whereEqualTo("name", textView.text.toString())
-                    val fragment = FragmentCursoProfesores()
-                    val args = Bundle()
-                    args.putString("cursoId", queryCurso.first.objectId)
-                    (activity as ActivityMain).openFragment(fragment, args)
-                }
-                else {
-                    Toast.makeText(this.context, "Curso/Profesor not found!", Toast.LENGTH_SHORT).show()
-                }
-                return@OnKeyListener true
-            }
-            false
-        })
+        
         userName.setText(ParseUser.getCurrentUser()["username"].toString())
 
         return view
