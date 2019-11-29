@@ -69,14 +69,6 @@ class ActivityMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         // super.onBackPressed();
     }*/
 
-    fun openProfesorCurso(){
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_main_fl_main_content,
-                            FragmentProfesorCurso()
-            )
-            .commit()
-    }
 
     fun openFragment(fragment: Fragment, args: Bundle?) {
         fragment.arguments = args
@@ -84,6 +76,7 @@ class ActivityMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             .beginTransaction()
             .replace(R.id.activity_main_fl_main_content,
                      fragment)
+            .addToBackStack(null)
             .commit()
     }
 }

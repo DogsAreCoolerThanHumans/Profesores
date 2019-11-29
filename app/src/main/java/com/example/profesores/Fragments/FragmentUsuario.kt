@@ -1,38 +1,38 @@
 package com.example.profesores.Fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profesores.Fragments.profesores.ProfesoresContract
 import com.example.profesores.R
+import com.example.profesores.activities.ActivityLogin
 import com.example.profesores.adapters.AdapterComentario
-import com.example.profesores.adapters.AdapterCurso
 import com.parse.ParseObject
 import com.parse.ParseQuery
-import org.jetbrains.anko.find
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.support.v4.find
-import org.jetbrains.anko.support.v4.startActivity
+import com.example.profesores.utils.SESSION_ID_KEY
+
 
 class FragmentUsuario : Fragment(), ProfesoresContract.View {
     private lateinit var cursosList: Array<String>
     private lateinit var profesList: Array<String>
     private lateinit var comboList: Array<String>
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_usuario, container, false)
-        val title = view.findViewById<TextView>(R.id.fragment_usuario_tv_title) //profesores
+        val logOutButton = view.findViewById<Button>(R.id.log_out_button)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.us_rv)
         val names = arrayListOf<HashMap<String, String>>()
@@ -54,9 +54,20 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
         names.add(HashMap())
         names[5].put("name", "Más clases en el HUECO PLISSSSS ")
         names[5].put("lastName", "")
+
+        logOutButton.setOnClickListener {
+
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context)
+            val editor = sharedPreferences.edit()
+            editor.putString(SESSION_ID_KEY, "")
+            editor.apply()
+
+            val intent = Intent(this.context, ActivityLogin::class.java)
+            startActivity(intent)
+        }
+
         recyclerView.adapter = AdapterComentario(names)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
-
 
         val query = ParseQuery<ParseObject>("Profesores")
         val queryC = ParseQuery<ParseObject>("Cursos")

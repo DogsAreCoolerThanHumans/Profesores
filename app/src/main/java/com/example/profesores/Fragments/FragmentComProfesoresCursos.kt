@@ -34,7 +34,7 @@ class FragmentComProfesoresCursos : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.fragment_com_pr_cr_rv)
         var totalLikes = 0
         var totalDislikes = 0
-        var totalComments: Int
+        var totalComments = 0
         val cursoName = view.findViewById<TextView>(R.id.com_cr_pr_tv_curso)
         val profName = view.findViewById<TextView>(R.id.com_pr_cr_tv_profesor)
         val likesCount = view.findViewById<TextView>(R.id.com_pr_cr_likes_count)
@@ -46,45 +46,43 @@ class FragmentComProfesoresCursos : Fragment() {
         val profComm = arguments?.getString("profesor")
         val cursoComm = arguments?.getString("curso")
 
+        val query = ParseQuery<ParseObject>("Comments")
         queryProf.whereEqualTo("objectId", profComm)
             .getFirstInBackground { prof, e ->
-                if(e == null)
+                if(e == null) {
+                    query.whereEqualTo("profesorComm", prof).findInBackground { comWithProfs, err ->
+                        if(err == null){
+                            var listComments = mutableListOf<ParseObject>()
+                            for(i in 0..comWithProfs.size - 1){
+                                val stringCursoId = (comWithProfs[i]["cursoComm"] as ParseObject).objectId
+                                if (stringCursoId == cursoComm){
+                                    totalLikes += Integer.parseInt(comWithProfs[i]["Likes"].toString())
+                                    totalDislikes += Integer.parseInt(comWithProfs[i]["Dislikes"].toString())
+                                    totalComments++
+                                    listComments.add(comWithProfs[i])
+                                }
+                            }
+                            likesCount.text = totalLikes.toString()
+                            dislikesCount.text = totalDislikes.toString()
+                            commentCount.text = totalComments.toString()
+                            adapter = AdapterComProfesoresCursos(listComments)
+                            recyclerView.adapter = adapter
+                            recyclerView.layoutManager = LinearLayoutManager(this.context)
+                        }
+                        else {
+
+                        }
+                    }
                     profName.text = prof["name"].toString()
+                }
             }
+
 
         queryCurso.whereEqualTo("objectId", cursoComm).getFirstInBackground{
             curso, e->
-            if(e == null)
+            if(e == null) {
+                query.whereEqualTo("cursoComm", curso)
                 cursoName.text = curso["name"].toString()
-        }
-
-        val queryProfCom = ParseQuery<ParseObject>("Comments")
-        val queryCursoCom = ParseQuery<ParseObject>("Comments")
-
-        queryProfCom.whereMatches("profesorComm", profComm)
-        queryCursoCom.whereMatches("cursoComm", cursoComm)
-
-        val queries = ArrayList<ParseQuery<ParseObject>>()
-        queries.add(queryProfCom)
-        queries.add(queryCursoCom)
-        val query = ParseQuery.or(queries)
-        query.findInBackground { commList, e->
-            if(e == null){
-                adapter = AdapterComProfesoresCursos(commList)
-                Log.e("LOL", commList[0]["Comment"].toString())
-                recyclerView.adapter = adapter
-                for(i in 0..commList.size - 1){
-                    totalLikes += Integer.parseInt(commList[i]["Likes"].toString())
-                    totalDislikes += Integer.parseInt(commList[i]["Dislikes"].toString())
-                }
-                totalComments = commList.size
-                likesCount.text = totalLikes.toString()
-                dislikesCount.text = totalDislikes.toString()
-                commentCount.text = totalComments.toString()
-                recyclerView.layoutManager = LinearLayoutManager(this.context)
-            }
-            else {
-                Log.e("ERROR_COMMENT", "COMMENTS NOT FOUND")
             }
         }
 

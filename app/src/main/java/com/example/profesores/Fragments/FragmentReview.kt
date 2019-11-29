@@ -51,10 +51,6 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
         comment.isEnabled = false
         val submitReview = view.findViewById<Button>(R.id.re_finish_btn)
 
-        val likesNum = view.findViewById<TextView>(R.id.re_likes_count)
-        val dislikesNum = view.findViewById<TextView>(R.id.re_dislikes_count)
-        val commentNum = view.findViewById<TextView>(R.id.re_comments_count)
-
 
         query.findInBackground { profes, e ->
             if (e == null) {
@@ -123,56 +119,6 @@ class FragmentReview : Fragment(), ProfesoresContract.View {
                     comment.isEnabled = false
                 }
                 else {
-                    val queryComment = ParseQuery<ParseObject>("Comments")
-                    val queryProfesor = ParseQuery<ParseObject>("Profesores")
-                    val queryCurso = ParseQuery<ParseObject>("Cursos")
-
-                    queryProfesor.whereMatches("name", textView.text.toString())
-                    val profeCurso = (queryProfesor["cursos"] as ParseRelation<*>).query
-                    queryCurso.whereEqualTo("name", textViewC.text.toString())
-
-                    Log.e("ERRORPROF", queryProfesor.first.objectId)
-                    var numLikes = 0
-                    var numDislikes = 0
-                    queryProfesor.getFirstInBackground { prof, err ->
-                        if(err == null){
-                            profeCurso.findInBackground { cursos, e ->
-                                if (e == null){
-                                    for( i in 0..cursos.size - 1){
-                                        if(cursos[i]["name"] == textViewC.text.toString()){
-                                            queryComment.whereEqualTo("profesorComm", prof)
-                                            queryComment.whereEqualTo("cursoComm", cursos[i])
-                                            queryComment.findInBackground { profeCursos, error ->
-                                                if (error == null){
-                                                    for (j in 0..profeCursos.size - 1){
-                                                        numLikes += Integer.parseInt(profeCursos[i]["Likes"].toString())
-                                                        numDislikes += Integer.parseInt(profeCursos[i]["Dislikes"].toString())
-                                                    }
-                                                    commentNum.setText(profeCursos.size)
-                                                    likesNum.setText(numLikes)
-                                                    dislikesNum.setText(numDislikes)
-                                                }
-                                                else {
-                                                    commentNum.setText(0)
-                                                    likesNum.setText(0)
-                                                    dislikesNum.setText(0)
-                                                }
-                                            }
-                                        }
-                                        else {
-                                            Toast.makeText(context, "Curso not found!", Toast.LENGTH_SHORT).show()
-                                        }
-                                    }
-                                }
-                                else {
-                                    Toast.makeText(context, "This Professor doesn't have any courses yet", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                        }
-                        else {
-                            Toast.makeText(context, "Profesor not found!", Toast.LENGTH_SHORT).show()
-                        }
-                    }
                     comment.isEnabled = true
                 }
             }

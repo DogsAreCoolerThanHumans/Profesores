@@ -67,6 +67,8 @@ class FragmentCursoProfesores : Fragment(), AdapterCourseProfessor.OnItemClickLi
     override fun onItemClick(position: Int) {
         val fragment = FragmentComCursosProfesores()
         val args = Bundle()
+        args.putString("curso", arguments?.getString("cursoId"))
+        args.putString("profesor", adapter.names[position].objectId)
         (activity as ActivityMain).openFragment(fragment, args)
     }
 

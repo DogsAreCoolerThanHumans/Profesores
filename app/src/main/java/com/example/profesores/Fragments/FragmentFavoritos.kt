@@ -121,7 +121,7 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.
         val args = Bundle()
         if(isProf == 1) {
             fragment = FragmentProfesorCurso()
-            args.putString("profesorId", adapterProf.recipes[position].objectId)
+            args.putString("profesorDeCurso", adapterProf.recipes[position].objectId)
         }
 
         else {
