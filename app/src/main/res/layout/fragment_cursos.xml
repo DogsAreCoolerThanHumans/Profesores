@@ -14,23 +14,13 @@
 
         android:fillColor="#9999"
         android:src="@drawable/ic_profesores"
-        app:layout_constraintBottom_toBottomOf="@id/cr_searchEdit"
-        app:layout_constraintEnd_toStartOf="@id/cr_searchEdit"
+
         app:layout_constraintStart_toStartOf="parent"
         android:tint="@color/colorAccent"
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <ImageView
-        android:id="@+id/cr_sr"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_search"
-        app:layout_constraintBottom_toBottomOf="@id/cr_searchEdit"
-        app:layout_constraintEnd_toStartOf="@id/cr_us"
-        app:layout_constraintStart_toEndOf="@id/cr_searchEdit"
-        android:tint="@color/colorAccent"
-        />
+
 
 
     <ImageView
@@ -43,29 +33,10 @@
         android:background="#00FFFFFF"
         android:backgroundTint="#00FFFFFF"
         android:src="@drawable/ic_usuario_circle"
-        app:layout_constraintBottom_toBottomOf="@id/cr_searchEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/cr_sr"
         app:layout_constraintTop_toTopOf="parent"
         android:tint="@color/colorAccent"/>
 
-    <AutoCompleteTextView
-        android:id="@+id/cr_searchEdit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:ems="10"
-        android:gravity="right"
-        android:hint="Search  "
-        android:inputType="textPersonName"
-        app:layout_constraintVertical_bias="0"
-        android:layout_marginTop="10dp"
-        app:backgroundTint="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimaryDark"
-
-        app:layout_constraintEnd_toStartOf="@id/cr_sr"
-        app:layout_constraintStart_toEndOf="@id/cr_pr"
-        app:layout_constraintTop_toTopOf="parent"/>
 
     <View
         android:id="@+id/cr_dv"
@@ -80,7 +51,7 @@
 
         app:layout_constraintEnd_toEndOf="@id/cr_us"
         app:layout_constraintStart_toStartOf="@+id/cr_pr"
-        app:layout_constraintTop_toBottomOf="@id/cr_sr" />
+        app:layout_constraintTop_toBottomOf="@id/cr_us" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/cr_tv_title"

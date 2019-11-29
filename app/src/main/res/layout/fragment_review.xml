@@ -36,21 +36,10 @@
 
         android:src="@drawable/ic_profesores"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/re_searchEdit"
-        app:layout_constraintEnd_toStartOf="@id/re_searchEdit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
-    <ImageView
-        android:id="@+id/re_sr"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_search"
-        android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/re_searchEdit"
-        app:layout_constraintEnd_toStartOf="@id/re_us"
-        app:layout_constraintStart_toEndOf="@id/re_searchEdit" />
 
 
     <ImageView
@@ -63,29 +52,11 @@
         android:backgroundTint="#00FFFFFF"
         android:src="@drawable/ic_usuario_circle"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/re_searchEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/re_sr"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
-    <EditText
-        android:id="@+id/re_searchEdit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:gravity="right"
-        android:hint="Search  "
-        android:inputType="textPersonName"
-        android:textColorHint="@color/colorPrimaryDark"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintEnd_toStartOf="@id/re_sr"
 
-        app:layout_constraintStart_toEndOf="@id/re_pr"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
 
     <View
         android:id="@+id/re_dv"
@@ -101,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="@id/re_us"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/re_pr"
-        app:layout_constraintTop_toBottomOf="@id/re_sr" />
+        app:layout_constraintTop_toBottomOf="@id/re_us" />
 
     <ImageView
         android:id="@+id/re_curs"
@@ -130,7 +101,7 @@
         android:textColorHint="@color/colorPrimaryDark"
         android:textSize="25sp"
         android:maxLength="60"
-        android:maxLines="23"
+        android:maxLines="3"
 
         app:backgroundTint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
@@ -162,12 +133,12 @@
         android:text="New Review"
         android:textColor="@android:color/white"
         android:textSize="35sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/re_dv2" />
+        app:layout_constraintTop_toBottomOf="@+id/re_input_curso" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/re_tv_comments"

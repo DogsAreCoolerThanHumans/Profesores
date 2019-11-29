@@ -81,6 +81,7 @@ class FragmentComCursosProfesores : Fragment() {
             }
         }
 
+        /*
         val queryP = ParseQuery<ParseObject>("Profesores")
         val queryC = ParseQuery<ParseObject>("Cursos")
 
@@ -122,6 +123,8 @@ class FragmentComCursosProfesores : Fragment() {
                 textView.showDropDown()
             }
         }
+        */
+         
         return view
     }
 }

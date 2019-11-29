@@ -39,9 +39,8 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.us_rv)
 
-        var cursosList = mutableListOf<String>()
-
-        var profesList = mutableListOf<String>()
+        //var cursosList = mutableListOf<String>()
+        //var profesList = mutableListOf<String>()
 
         val usuarioHistorial = ParseQuery<ParseObject>("Comments")
         usuarioHistorial.findInBackground { comentariosUser, e ->
@@ -68,7 +67,7 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
             startActivity(intent)
         }
 
-
+        /*
         val query = ParseQuery<ParseObject>("Profesores")
         val queryC = ParseQuery<ParseObject>("Cursos")
 
@@ -109,6 +108,8 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
                 textView.showDropDown()
             }
         }
+
+         */
 
         userName.setText(ParseUser.getCurrentUser()["username"].toString())
 

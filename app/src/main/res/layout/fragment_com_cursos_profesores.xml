@@ -31,22 +31,11 @@
 
         android:src="@drawable/ic_profesores"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/com_cr_pr_searchText"
-        app:layout_constraintEnd_toStartOf="@id/com_cr_pr_searchText"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0
 " />
-
-    <ImageView
-        android:id="@+id/com_cr_pr_sr"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_search"
-        android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/com_cr_pr_searchText"
-        app:layout_constraintEnd_toStartOf="@id/com_cr_pr_us"
-        app:layout_constraintStart_toEndOf="@id/com_cr_pr_searchText" />
 
 
     <ImageView
@@ -59,27 +48,7 @@
         android:backgroundTint="#00FFFFFF"
         android:src="@drawable/ic_usuario_circle"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/com_cr_pr_searchText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/com_cr_pr_sr"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
-
-    <AutoCompleteTextView
-        android:id="@+id/com_cr_pr_searchText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:gravity="right"
-        android:hint="Search  "
-        android:inputType="textPersonName"
-        android:textColorHint="@color/colorPrimaryDark"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintEnd_toStartOf="@id/com_cr_pr_sr"
-
-        app:layout_constraintStart_toEndOf="@id/com_cr_pr_pr"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
@@ -97,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="@id/com_cr_pr_us"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/com_cr_pr_pr"
-        app:layout_constraintTop_toBottomOf="@id/com_cr_pr_sr" />
+        app:layout_constraintTop_toBottomOf="@id/com_cr_pr_us" />
 
     <ImageView
         android:id="@+id/com_cr_pr_curs"
@@ -171,56 +140,6 @@
         app:layout_constraintTop_toBottomOf="@id/com_cr_pr_curs"
         app:layout_constraintStart_toEndOf="@id/com_cr_pr_comments"/>
 
-    <ImageView
-        android:id="@+id/com_cr_pr_likes"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_like"
-        android:tint="@color/colorAccent"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="10dp"
-
-        app:layout_constraintTop_toBottomOf="@id/com_cr_pr_curs"
-        app:layout_constraintStart_toEndOf="@id/com_pr_cr_comments_count"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/com_pr_cr_likes_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="10dp"
-
-        app:layout_constraintTop_toBottomOf="@id/com_cr_pr_curs"
-        app:layout_constraintStart_toEndOf="@id/com_cr_pr_likes"/>
-
-    <ImageView
-        android:id="@+id/com_cr_pr_dislikes"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_dislike"
-        android:tint="@color/colorAccent"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="10dp"
-
-        app:layout_constraintTop_toBottomOf="@id/com_cr_pr_curs"
-        app:layout_constraintStart_toEndOf="@id/com_pr_cr_likes_count"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/com_pr_cr_dislikes_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="10dp"
-
-        app:layout_constraintTop_toBottomOf="@id/com_cr_pr_curs"
-        app:layout_constraintStart_toEndOf="@id/com_cr_pr_dislikes"/>
-
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/fragment_com_profesores_cursos_tv_title"
@@ -234,7 +153,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/com_pr_cr_dislikes_count" />
+        app:layout_constraintTop_toBottomOf="@id/com_pr_cr_comments_count" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_com_cursos_profesores_rv"

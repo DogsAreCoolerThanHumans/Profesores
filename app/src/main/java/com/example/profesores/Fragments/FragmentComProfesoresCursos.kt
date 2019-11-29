@@ -40,8 +40,8 @@ class FragmentComProfesoresCursos : Fragment() {
         val profComm = arguments?.getString("profesor")
         val cursoComm = arguments?.getString("curso")
 
-        var cursosList = mutableListOf<String>()
-        var profesList = mutableListOf<String>()
+        //var cursosList = mutableListOf<String>()
+        //var profesList = mutableListOf<String>()
 
         val query = ParseQuery<ParseObject>("Comments")
         queryProf.whereEqualTo("objectId", profComm)
@@ -81,6 +81,7 @@ class FragmentComProfesoresCursos : Fragment() {
             }
         }
 
+        /*
         val queryP = ParseQuery<ParseObject>("Profesores")
         val queryC = ParseQuery<ParseObject>("Cursos")
 
@@ -121,6 +122,8 @@ class FragmentComProfesoresCursos : Fragment() {
                 textView.showDropDown()
             }
         }
+
+         */
         return view
     }
 }

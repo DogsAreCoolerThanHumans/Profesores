@@ -44,6 +44,7 @@ class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemC
                 error { "Error $e" }  // Log.e using anko
         }
 
+        /*
         val textView = view.findViewById<AutoCompleteTextView>(R.id.cr_searchEdit)
                 as AutoCompleteTextView//id del textview en layout
 
@@ -70,6 +71,8 @@ class FragmentCursos : Fragment(), ProfesoresContract.View, AdapterCurso.OnItemC
                 textView.showDropDown()
             }
         }
+
+         */
 
         return view
     }

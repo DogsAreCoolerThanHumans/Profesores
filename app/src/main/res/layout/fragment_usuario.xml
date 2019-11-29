@@ -15,22 +15,11 @@
 
         android:src="@drawable/ic_profesores"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/us_searchEdit"
-        app:layout_constraintEnd_toStartOf="@id/us_searchEdit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0
 " />
 
-    <ImageView
-        android:id="@+id/us_sr"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_search"
-        android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/us_searchEdit"
-        app:layout_constraintEnd_toStartOf="@id/us_us"
-        app:layout_constraintStart_toEndOf="@id/us_searchEdit" />
 
 
     <ImageView
@@ -43,30 +32,11 @@
         android:backgroundTint="#00FFFFFF"
         android:src="@drawable/ic_usuario_circle"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/us_searchEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/us_sr"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
-    <AutoCompleteTextView
-        android:id="@+id/us_searchEdit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:gravity="right"
-        android:hint="Search  "
-        android:imeOptions="actionSearch"
-        android:inputType="text"
-        android:textColorHint="@color/colorPrimaryDark"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintEnd_toStartOf="@id/us_sr"
 
-        app:layout_constraintStart_toEndOf="@id/us_pr"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
 
     <View
         android:id="@+id/us_dv"
@@ -82,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="@id/us_us"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/us_pr"
-        app:layout_constraintTop_toBottomOf="@id/us_sr" />
+        app:layout_constraintTop_toBottomOf="@id/us_us" />
 
     <ImageView
         android:id="@+id/us_prof"
@@ -166,52 +136,7 @@
         app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
         app:layout_constraintStart_toEndOf="@id/us_comments"/>
 
-    <ImageView
-        android:id="@+id/us_likes"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_like"
-        android:tint="@color/colorAccent"
-        android:layout_marginHorizontal="5dp"
 
-        app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
-        app:layout_constraintStart_toEndOf="@id/us_comments_count"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/us_likes_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:layout_marginHorizontal="5dp"
-
-        app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
-        app:layout_constraintStart_toEndOf="@id/us_likes"/>
-
-    <ImageView
-        android:id="@+id/us_dislikes"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_dislike"
-        android:tint="@color/colorAccent"
-        android:layout_marginHorizontal="5dp"
-
-        app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
-        app:layout_constraintStart_toEndOf="@id/us_likes_count"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/us_dislikes_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:layout_marginHorizontal="5dp"
-
-
-        app:layout_constraintBottom_toBottomOf="@id/fragment_usuario_tv_title"
-        app:layout_constraintStart_toEndOf="@id/us_dislikes"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/us_rv"

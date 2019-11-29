@@ -37,9 +37,8 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.
         val profRecyclerView = view.findViewById<RecyclerView>(R.id.fv_rv_profesores)
         val cursosRecyclerView = view.findViewById<RecyclerView>(R.id.fv_rv_cursos)
 
-        var cursosList = mutableListOf<String>()
-
-        var profesList = mutableListOf<String>()
+        //var cursosList = mutableListOf<String>()
+        //var profesList = mutableListOf<String>()
 
         var currentUser = ParseUser.getCurrentUser()
         (currentUser["profesoresFav"] as ParseRelation<*>).query.findInBackground { profList, e ->
@@ -68,7 +67,7 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.
             }
         }
 
-
+        /*
         val query = ParseQuery<ParseObject>("Profesores")
         val queryC = ParseQuery<ParseObject>("Cursos")
 
@@ -110,7 +109,7 @@ class FragmentFavoritos : Fragment(), ProfesoresContract.View, AdapterFavoritos.
             }
         }
 
-
+         */
 
         return view
     }

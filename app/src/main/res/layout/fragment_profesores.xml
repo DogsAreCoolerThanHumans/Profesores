@@ -17,21 +17,9 @@
         android:fillColor="#9999"
         android:src="@drawable/ic_profesores"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/pr_searchEdit"
-        app:layout_constraintEnd_toStartOf="@id/pr_searchEdit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/pr_sr"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_search"
-        app:layout_constraintBottom_toBottomOf="@id/pr_searchEdit"
-        app:layout_constraintEnd_toStartOf="@id/pr_us"
-        app:layout_constraintStart_toEndOf="@id/pr_searchEdit"
-        android:tint="@color/colorAccent"
-        />
 
 
     <ImageView
@@ -45,27 +33,10 @@
         android:backgroundTint="#00FFFFFF"
         android:src="@drawable/ic_usuario_circle"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/pr_searchEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/pr_sr"
         android:tint="@color/colorAccent"/>
 
-    <AutoCompleteTextView
-        android:id="@+id/pr_searchEdit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:gravity="right"
-        android:hint="Search  "
-        android:inputType="textPersonName"
-        android:textColorHint="@color/colorPrimaryDark"
-        app:backgroundTint="@color/colorPrimary"
 
-        app:layout_constraintEnd_toStartOf="@id/pr_sr"
-        app:layout_constraintStart_toEndOf="@id/pr_pr"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/pr_dv"
@@ -81,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="@id/pr_us"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/pr_pr"
-        app:layout_constraintTop_toBottomOf="@id/pr_sr" />
+        app:layout_constraintTop_toBottomOf="@id/pr_us" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/pr_tv_profesores"

@@ -26,7 +26,7 @@ class AdapterHistorial(private val names: List<ParseObject>): RecyclerView.Adapt
     class HistorialViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val comment: TextView = view.findViewById(R.id.historial_card_comentario)
         private val profeTitle: TextView = view.findViewById(R.id.historial_card_profesor)
-        private val cursoTitle: TextView = view.findViewById(R.id.historial_card_profesor)
+        private val cursoTitle: TextView = view.findViewById(R.id.historial_card_curso)
         private val queryProf = ParseQuery<ParseObject>("Profesores")
         private val queryCurso = ParseQuery<ParseObject>("Cursos")
 

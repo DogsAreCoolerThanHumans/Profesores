@@ -51,7 +51,7 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/item_card_icon"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Profe Don Verga"
+        tools:text="Profe Chido"
         android:textColor="@color/colorAccent"
         android:elevation="20dp"/>
 

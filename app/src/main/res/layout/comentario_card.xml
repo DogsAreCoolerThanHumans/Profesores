@@ -40,15 +40,12 @@
         android:id="@+id/comentario_card_like_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
 
-
-        android:layout_marginEnd="16dp"
         android:text="69"
         android:textColor="@color/colorPrimary"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comentario_card_like" />
+        app:layout_constraintTop_toBottomOf="@+id/comentario_card_like"
+        app:layout_constraintStart_toStartOf="@id/comentario_card_like"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/comentario_card_dislike"
@@ -58,7 +55,6 @@
 
         android:layout_margin="16dp"
 
-        android:layout_marginTop="72dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_dislike"
         android:tint="@color/colorPrimary"
@@ -70,14 +66,11 @@
         android:id="@+id/comentario_card_dislike_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
 
         android:text="10"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/comentario_card_dislike"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@id/comentario_card_dislike"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/comentario"
@@ -85,6 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
 
         android:elevation="20dp"
         android:justificationMode="inter_word"

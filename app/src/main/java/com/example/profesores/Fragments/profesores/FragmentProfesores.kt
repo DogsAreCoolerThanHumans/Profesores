@@ -39,7 +39,7 @@ class FragmentProfesores : Fragment(), ProfesoresContract.View, AdapterProfesor.
         val query = ParseQuery<ParseObject>("Profesores")
 
         //Para filterd:
-        searchView =  view.findViewById(R.id.pr_searchEdit)
+        //searchView =  view.findViewById(R.id.pr_searchEdit)
         query.include("cursos")
         query.findInBackground { list, e ->
             if (e == null) {
@@ -52,6 +52,7 @@ class FragmentProfesores : Fragment(), ProfesoresContract.View, AdapterProfesor.
                 error { "Error $e" }  // Log.e using anko
         }
 
+        /*
         val textView = view.findViewById<AutoCompleteTextView>(R.id.pr_searchEdit)
                 as AutoCompleteTextView//id del textview en layout
 
@@ -78,33 +79,11 @@ class FragmentProfesores : Fragment(), ProfesoresContract.View, AdapterProfesor.
                 textView.showDropDown()
             }
         }
-
-
+         */
 
         return view
     }
 
-    //Para filters
-    @Override
-    override fun onResume() {
-        super.onResume()
-        searchView.addTextChangedListener(object : TextWatcher{
-            override fun afterTextChanged(p0: Editable?) {
-
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                Log.v("Filter", "Perform filter ${p0.toString()}")
-                adapter.filter.filter(p0)
-            }
-
-        })
-    }
-    //
 
 
 

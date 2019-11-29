@@ -15,22 +15,12 @@
 
         android:src="@drawable/ic_profesores"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/cr_pr_searchEdit"
-        app:layout_constraintEnd_toStartOf="@id/cr_pr_searchEdit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0
 " />
 
-    <ImageView
-        android:id="@+id/cr_pr_sr"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_search"
-        android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/cr_pr_searchEdit"
-        app:layout_constraintEnd_toStartOf="@id/cr_pr_us"
-        app:layout_constraintStart_toEndOf="@id/cr_pr_searchEdit" />
+
 
 
     <ImageView
@@ -43,29 +33,10 @@
         android:backgroundTint="#00FFFFFF"
         android:src="@drawable/ic_usuario_circle"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@id/cr_pr_searchEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/cr_pr_sr"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
-    <EditText
-        android:id="@+id/cr_pr_searchEdit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:gravity="right"
-        android:hint="Search  "
-        android:inputType="textPersonName"
-        android:textColorHint="@color/colorPrimaryDark"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintEnd_toStartOf="@id/cr_pr_sr"
-
-        app:layout_constraintStart_toEndOf="@id/cr_pr_pr"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
 
     <View
         android:id="@+id/cr_pr_dv"
@@ -81,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="@id/cr_pr_us"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/cr_pr_pr"
-        app:layout_constraintTop_toBottomOf="@id/cr_pr_sr" />
+        app:layout_constraintTop_toBottomOf="@id/cr_pr_us" />
 
     <ImageView
         android:id="@+id/cr_pr_prof"
