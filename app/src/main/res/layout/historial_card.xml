@@ -43,8 +43,7 @@
         app:layout_constraintStart_toEndOf="@id/historial_card_icon"
         app:layout_constraintTop_toBottomOf="@id/historial_card_profesor"
         app:layout_constraintVertical_bias="0.0"
-        tools:text="Me gustó mucho su clase porque el coral blanco o el ambiente que estamos manejando, lo estamos contaminando de una manera inigmi, i, im, inimaginablemente, inig, inigmante. Esto quiere decir que el coral blanco se está maltratando, eh, pues esas algas rojas. Eh, las algas verde puede servir como cobustible "
-        />
+        tools:text="Me gustó mucho su clase porque el coral blanco o el ambiente que estamos manejando, lo estamos contaminando de una manera inigmi, i, im, inimaginablemente, inig, inigmante. Esto quiere decir que el coral blanco se está maltratando, eh, pues esas algas rojas. Eh, las algas verde puede servir como cobustible " />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/historial_card_profesor"
@@ -60,6 +59,7 @@
         android:textStyle="bold"
 
         app:layout_constraintStart_toEndOf="@id/historial_card_icon"
+
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Profesor"
         />
@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
 
 
-        android:justificationMode="inter_word"
+        android:justificationMode="none"
         android:textColor="@color/colorAccent"
         android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="@id/historial_card_profesor"

@@ -53,7 +53,7 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
                     }
                 }
 
-                commentCount.setText(comments)
+                commentCount.setText(comments.toString())
                 adapter = AdapterHistorial(listComments)
                 recyclerView.adapter = adapter
                 recyclerView.layoutManager = LinearLayoutManager(view.context)
