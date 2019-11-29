@@ -21,9 +21,7 @@ class ActivityMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         val navigation = findViewById<BottomNavigationView>(R.id.activity_main_bnv_navigation)
         navigation.setOnNavigationItemSelectedListener(this)
         navigation.getMenu().findItem(R.id.action_profesores).setChecked(true)//default
-
-        val profesores_cursos_layout = findViewById<TextView>(R.id.item_card_name)
-
+        
         supportFragmentManager //clickeado por default
             .beginTransaction()
             .replace(R.id.activity_main_fl_main_content,
@@ -64,11 +62,6 @@ class ActivityMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return true
     }
 
-/*    override fun onBackPressed() {
-
-        // super.onBackPressed();
-    }*/
-
 
     fun openFragment(fragment: Fragment, args: Bundle?) {
         fragment.arguments = args
@@ -80,4 +73,3 @@ class ActivityMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             .commit()
     }
 }
-//

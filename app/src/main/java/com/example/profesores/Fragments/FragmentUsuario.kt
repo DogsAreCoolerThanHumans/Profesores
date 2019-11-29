@@ -109,7 +109,7 @@ class FragmentUsuario : Fragment(), ProfesoresContract.View {
                 textView.showDropDown()
             }
         }
-        
+
         userName.setText(ParseUser.getCurrentUser()["username"].toString())
 
         return view

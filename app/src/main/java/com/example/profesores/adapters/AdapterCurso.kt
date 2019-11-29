@@ -56,18 +56,6 @@ class AdapterCurso (val names: List<ParseObject>):
                 else
                     favoriteButton.setImageResource(R.drawable.heart_outline)
             }
-            /*listCursos.findInBackground { cursoList, e->
-                if(e == null){
-                    if(cursoList.size != 0) {
-                        for (i in 0..cursoList.size - 1) {
-                            if (cursoList[i]["name"] == user["name"])
-                                favoriteButton.setImageResource(R.drawable.cards_heart)
-                        }
-                    }
-                } else {
-                    Log.e("error", "error con funcionalidad de favoritos")
-                }
-            }*/
         }
 
         constructor(itemView: View, listener: OnItemClickListener?, favListener: makeFavListener?)

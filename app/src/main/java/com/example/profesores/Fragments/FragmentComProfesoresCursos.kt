@@ -33,8 +33,6 @@ class FragmentComProfesoresCursos : Fragment() {
         var totalComments = 0
         val cursoName = view.findViewById<TextView>(R.id.com_cr_pr_tv_curso)
         val profName = view.findViewById<TextView>(R.id.com_pr_cr_tv_profesor)
-        val likesCount = view.findViewById<TextView>(R.id.com_pr_cr_likes_count)
-        val dislikesCount = view.findViewById<TextView>(R.id.com_pr_cr_dislikes_count)
         val commentCount = view.findViewById<TextView>(R.id.com_pr_cr_comments_count)
 
         val queryProf = ParseQuery<ParseObject>("Profesores")
@@ -61,8 +59,6 @@ class FragmentComProfesoresCursos : Fragment() {
                                     listComments.add(comWithProfs[i])
                                 }
                             }
-                            likesCount.text = totalLikes.toString()
-                            dislikesCount.text = totalDislikes.toString()
                             commentCount.text = totalComments.toString()
                             adapter = AdapterComProfesoresCursos(listComments)
                             recyclerView.adapter = adapter

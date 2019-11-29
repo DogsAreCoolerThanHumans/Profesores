@@ -35,13 +35,9 @@ class AdapterComProfesoresCursos (val names: List<ParseObject>)
 
     class ComProfesorCursoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val comment: AppCompatTextView = view.findViewById(R.id.comentario)
-        val dislikesCount: TextView = view.findViewById(R.id.comentario_card_dislike_count)
-        val likesCount: TextView = view.findViewById(R.id.comentario_card_like_count)
 
         fun bind(user: ParseObject) {
             comment.text = user["Comment"].toString()
-            likesCount.text = user["Likes"].toString()
-            dislikesCount.text = user["Dislikes"].toString()
         }
 
     }
