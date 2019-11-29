@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toTopOf="@id/misProfesores"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:layout_editor_absoluteX="30dp" />
+        android:layout_marginTop="100dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/activity_login_til_username"
@@ -76,58 +76,8 @@
         android:textAllCaps="false"
         android:textColor="#591D59"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@id/activity_login_tv_forgot_question"
         app:layout_constraintTop_toBottomOf="@id/activity_login_til_password"
         tools:layout_editor_absoluteX="30dp" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/activity_login_tv_forgot_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/activity_login_forgot_question"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/activity_login_tv_forgot_action"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_login_btn_login"
-        android:textColor="@android:color/white"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/activity_login_tv_forgot_action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_login_forgot_action"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/activity_login_tv_forgot_question"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/activity_login_tv_forgot_question"
-        app:layout_constraintTop_toTopOf="@id/activity_login_tv_forgot_question" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/activity_login_tv_create_account_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_login_create_account_question"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/activity_login_tv_create_account_action"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/activity_login_tv_create_account_action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/activity_login_create_account_action"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/activity_login_tv_create_account_question"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/activity_login_tv_create_account_question"
-        app:layout_constraintTop_toTopOf="@id/activity_login_tv_create_account_question" />
 
     <TextView
         android:id="@+id/misProfesores"
